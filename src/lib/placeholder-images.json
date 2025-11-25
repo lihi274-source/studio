@@ -39,25 +39,25 @@
       "id": "country-spain",
       "title": "España",
       "description": "Disfruta del sol, la siesta y la fiesta. Desde la arquitectura de Gaudí en Barcelona hasta las playas de las Islas Baleares.",
-      "imageUrl": "https://images.unsplash.com/photo-1533856493584-0c6ca8ca9ce3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhbXVzZW1lbnQlMjBwYXJrfGVufDB8fHx8MTc2NDAwMTMzN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1533856493584-0c6ca8ca9ce3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhbXVzZW1lbnQlMjBwYXJrfGVufDB8fHx8MTc2NDAwMTMzN3ww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "spain barcelona"
     },
     {
       "id": "tour-paris",
       "description": "Un tour romántico por la ciudad de la luz, visitando la Torre Eiffel y el Louvre.",
-      "imageUrl": "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwYXJpcyUyMGVpZmZlbCUyMHRvd2VyfGVufDB8fHx8MTc2NDAwNjE4MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwYXJpcyUyMGVpZmZlbCUyMHRvd2VyfGVufDB8fHx8MTc2NDAwNjE4MHww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "paris eiffel tower"
     },
     {
       "id": "tour-rome",
       "description": "Explora la historia del Imperio Romano con visitas al Coliseo, el Foro Romano y el Vaticano.",
-      "imageUrl": "https://images.unsplash.com/photo-1666225908854-2495f1f4d83a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxyb21lJTIwY29sb3NzZXVtfGVufDB8fHx8MTc2Mzk5NzM4NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1666225908854-2495f1f4d83a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxyb21lJTIwY29sb3NzZXVtfGVufDB8fHx8MTc2Mzk5NzM4NXww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "rome colosseum"
     },
     {
       "id": "tour-new-york",
       "description": "Siente la energía de la Gran Manzana, desde Times Square hasta la Estatua de la Libertad.",
-      "imageUrl": "https://images.unsplash.com/photo-1448317971280-6c74e016e49c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxuZXclMjB5b3JrJTIwY2l0eXxlbnwwfHx8fDE3NjQwNjEyNDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1448317971280-6c74e016e49c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxuZXclMjB5b3JrJTIwY2l0eXxlbnwwfHx8fDE3NjQwNjEyNDd8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "new york city"
     },
     {
@@ -98,6 +98,11 @@
       "id": "promo-barcelona",
       "imageUrl": "https://cdn-imgix.headout.com/microbrands-content-image/image/0cfef2762d8811e1937510140ed70027-Sagrada%20Familia.jpg?auto=format&w=588.6&h=331.2&q=90&fit=clip",
       "imageHint": "barcelona sagrada familia"
+    },
+    {
+      "id": "promo-tarragona",
+      "imageUrl": "https://www.gastronomistas.com/wp-content/uploads/skyline-port-aventura-gastronomistas.com-.jpg",
+      "imageHint": "tarragona portaventura"
     }
   ]
 }

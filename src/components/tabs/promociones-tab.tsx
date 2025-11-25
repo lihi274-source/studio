@@ -32,6 +32,13 @@ const promocionesData: Promocion[] = [
     price: 250,
     currency: 'EUR',
     description: 'Vive la magia de Barcelona con 3 noches de hotel y entradas para la Sagrada Familia y el Park Güell. Una inmersión total en la obra de Gaudí.'
+  },
+  {
+    id: 'promo-tarragona',
+    title: 'Adrenalina y Playa en Tarragona',
+    price: 210,
+    currency: 'EUR',
+    description: 'Combina la emoción de PortAventura Park con el relax de las playas de la Costa Daurada. Incluye 2 noches de hotel y entradas para el parque.'
   }
 ];
 
