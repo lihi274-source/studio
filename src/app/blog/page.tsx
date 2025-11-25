@@ -18,11 +18,11 @@ export default function BlogPage() {
       <article className="bg-card p-6 md:p-10 rounded-lg shadow-lg">
         <div className="relative w-full h-60 md:h-80 mb-8 rounded-lg overflow-hidden">
             <Image
-                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3ZWJzaXRlJTIwZGVzaWdufGVufDB8fHx8MTc2NDExNTAyM3ww&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Equipo trabajando en un diseño web"
+                src="https://www.shutterstock.com/image-photo/commercial-airliner-flying-over-mountains-600nw-2477114069.jpg"
+                alt="Avión comercial volando sobre montañas"
                 fill
                 className="object-cover"
-                data-ai-hint="website design"
+                data-ai-hint="airplane mountains"
             />
         </div>
 
