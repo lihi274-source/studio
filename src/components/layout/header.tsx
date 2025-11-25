@@ -16,6 +16,7 @@ const Header = () => {
             <li><Link href="/" className="text-lg text-foreground hover:text-primary transition-colors">Inicio</Link></li>
             <li><a href="#" className="text-lg text-foreground hover:text-primary transition-colors">Sobre nosotros</a></li>
             <li><Link href="/blog" className="text-lg text-foreground hover:text-primary transition-colors">BLOG</Link></li>
+            <li><Link href="/account" className="text-lg text-foreground hover:text-primary transition-colors">Mi Cuenta</Link></li>
           </ul>
         </nav>
       </div>
