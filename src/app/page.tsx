@@ -1,10 +1,11 @@
-import { Hotel, Map, Plane } from 'lucide-react';
+import { Hotel, Map, Plane, Tag } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import VuelosTab from '@/components/tabs/vuelos-tab';
 import HotelesTab from '@/components/tabs/hoteles-tab';
 import ExcursionesTab from '@/components/tabs/excursiones-tab';
+import PromocionesTab from '@/components/tabs/promociones-tab';
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8">
         <Tabs defaultValue="vuelos" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 h-auto md:h-12 bg-primary/10 rounded-lg">
+          <TabsList className="grid w-full grid-cols-4 h-auto md:h-12 bg-primary/10 rounded-lg">
             <TabsTrigger value="vuelos" className="py-2.5 text-sm md:text-base">
               <Plane className="mr-2 h-5 w-5" />
               Vuelos
@@ -25,6 +26,10 @@ export default function Home() {
               <Map className="mr-2 h-5 w-5" />
               Excursiones
             </TabsTrigger>
+            <TabsTrigger value="promociones" className="py-2.5 text-sm md:text-base">
+              <Tag className="mr-2 h-5 w-5" />
+              Promociones
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="vuelos">
             <VuelosTab />
@@ -34,6 +39,9 @@ export default function Home() {
           </TabsContent>
           <TabsContent value="excursiones">
             <ExcursionesTab />
+          </TabsContent>
+          <TabsContent value="promociones">
+            <PromocionesTab />
           </TabsContent>
         </Tabs>
       </main>
