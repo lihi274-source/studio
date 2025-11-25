@@ -35,6 +35,12 @@
       "description": "Viaja en el tiempo visitando las majestuosas Pirámides de Giza y la Esfinge.",
       "imageUrl": "https://images.unsplash.com/photo-1553913861-c0fddf2619ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxlZ3lwdCUyMHB5cmFtaWRzfGVufDB8fHx8MTc2NDAwMzc2NXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "egypt pyramids"
+    },
+    {
+      "id": "tour-portaventura",
+      "description": "Disfruta de la magia de la Navidad en PortAventura con atracciones y espectáculos únicos.",
+      "imageUrl": "https://images.unsplash.com/photo-1533856493584-0c6ca8ca9ce3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhbXVzZW1lbnQlMjBwYXJrfGVufDB8fHx8MTc2NDAwMTMzN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "amusement park"
     }
   ]
 }

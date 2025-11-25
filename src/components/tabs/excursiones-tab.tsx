@@ -17,6 +17,7 @@ const excursionsData: Excursion[] = [
   { id: 'tour-tokyo', title: 'Tradición y Modernidad en Tokio', price: 15000, currency: 'JPY' },
   { id: 'tour-sydney', title: 'Maravillas de Sídney y Playas', price: 110, currency: 'AUD' },
   { id: 'tour-cairo', title: 'Misterios del Antiguo Egipto', price: 75, currency: 'USD' },
+  { id: 'tour-portaventura', title: 'PortAventura: Especial Navidad', price: 60, currency: 'EUR' },
 ];
 
 const ExcursionesTab = () => {
