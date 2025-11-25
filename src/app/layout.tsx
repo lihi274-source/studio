@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'Viajes Explorador',
+  title: 'Viajes HICA',
   description: 'Tu agencia de viajes para explorar el mundo.',
 };
 

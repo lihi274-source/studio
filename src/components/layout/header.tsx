@@ -7,7 +7,7 @@ const Header = () => {
         <div className="flex items-center">
             <Compass className="h-8 w-8 mr-4 text-primary" />
             <h1 className="text-4xl font-headline text-primary-foreground">
-              Viajes Explorador
+              Viajes HICA
             </h1>
         </div>
         <nav className="mt-4">
