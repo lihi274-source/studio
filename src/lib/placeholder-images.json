@@ -83,6 +83,21 @@
       "description": "Disfruta de la magia de la Navidad en PortAventura con atracciones y espectáculos únicos.",
       "imageUrl": "https://images.unsplash.com/photo-1533856493584-0c6ca8ca9ce3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhbXVzZW1lbnQlMjBwYXJrfGVufDB8fHx8MTc2NDAwMTMzN3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "amusement park"
+    },
+    {
+      "id": "promo-valencia",
+      "imageUrl": "https://images.unsplash.com/photo-1549402123-74092b34b693?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx2YWxlbmNpYSUyMGFxdWFyaXVtfGVufDB8fHx8MTc2NjU1MzkwNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "valencia aquarium"
+    },
+    {
+      "id": "promo-madrid",
+      "imageUrl": "https://images.unsplash.com/photo-1543783284-56a93a69a375?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtYWRyaWQlMjBhcnQlMjBtdXNldW18ZW58MHx8fHwxNzY2NTU0MDEwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "madrid museum"
+    },
+    {
+      "id": "promo-barcelona",
+      "imageUrl": "https://images.unsplash.com/photo-1579282240050-c395241b9978?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxiYXJjZWxvbmElMjBzYWdyYWRhJTIwZmFtaWxpYXxlbnwwfHx8fDE3NjY1NTQwNDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "barcelona sagrada familia"
     }
   ]
 }
