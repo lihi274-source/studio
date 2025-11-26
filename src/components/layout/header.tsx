@@ -1,4 +1,4 @@
-import { Compass } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const Header = () => {
@@ -6,10 +6,12 @@ const Header = () => {
     <header className="py-6 bg-background/80 backdrop-blur-sm border-b border-border/50 sticky top-0 z-40">
       <div className="container mx-auto flex flex-col items-center justify-center text-center">
         <div className="flex items-center">
-            <Compass className="h-8 w-8 mr-4 text-primary" />
-            <h1 className="text-4xl font-headline text-primary-foreground">
-              <Link href="/">Viajes HICA</Link>
-            </h1>
+            <Link href="/" className="flex items-center">
+              <Image src="/logo.png" alt="Viajes HICA Logo" width={40} height={40} className="mr-4" />
+              <h1 className="text-4xl font-headline text-primary-foreground">
+                Viajes HICA
+              </h1>
+            </Link>
         </div>
         <nav className="mt-4">
           <ul className="flex space-x-8">
