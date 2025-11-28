@@ -1,6 +1,7 @@
 import { ArrowLeft, Users, Globe, Goal } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 
 export default function AboutPage() {
   const creationYear = 2023;
