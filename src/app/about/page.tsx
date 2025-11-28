@@ -1,4 +1,4 @@
-import { ArrowLeft, Users, Globe, Goal } from 'lucide-react';
+import { ArrowLeft, Users, Globe, Goal, Rocket } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
@@ -17,6 +17,14 @@ export default function AboutPage() {
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
           Hacemos que la planificación de tu próxima aventura sea tan emocionante y sencilla como el viaje mismo.
         </p>
+        <div className="mt-8">
+            <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+                <Link href="/#excursiones">
+                    <Rocket className="mr-2 h-5 w-5" />
+                    RESERVA YA
+                </Link>
+            </Button>
+        </div>
       </div>
       
       <div className="relative w-full h-80 md:h-[500px] mb-12 rounded-2xl overflow-hidden shadow-2xl">
@@ -69,7 +77,7 @@ export default function AboutPage() {
           La pestaña de <strong className="text-primary">Excursiones</strong> es tu ventana a las aventuras que te esperan. Presentamos cada actividad con imágenes de alta calidad, descripciones claras y precios transparentes. El diseño en formato de tarjetas te permite comparar visualmente y elegir la experiencia que más te llame la atención. Con un solo clic en "Reservar ahora", estarás un paso más cerca de vivirla.
         </p>
         <p>
-          En Viajes HICA, hemos puesto todo nuestro esfuerzo en crear una plataforma que no solo funcione bien, sino que también te inspire. Tu próxima gran aventura empieza con una experiencia web excepcional. ¡Feliz viaje!
+          En Viajes HICA, hemos puesto todo nuestro esfuerzo en crear una plataforma que no solo funcione bien, sino que también te inspire. Tu próxima great aventura empieza con una experiencia web excepcional. ¡Feliz viaje!
         </p>
         <div className="text-center mt-10">
           <Button asChild>
