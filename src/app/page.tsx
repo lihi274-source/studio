@@ -14,7 +14,7 @@ export default function Home() {
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8">
         <Tabs defaultValue="destinos" className="w-full">
-          <TabsList className="grid w-full grid-cols-5 h-auto md:h-12 bg-primary/10 rounded-lg">
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 h-auto bg-primary/10 rounded-lg">
             <TabsTrigger value="destinos" className="py-2.5 text-sm md:text-base">
               <Globe className="mr-2 h-5 w-5" />
               Destinos
@@ -31,7 +31,7 @@ export default function Home() {
               <Map className="mr-2 h-5 w-5" />
               Excursiones
             </TabsTrigger>
-            <TabsTrigger value="promociones" className="py-2.5 text-sm md:text-base">
+            <TabsTrigger value="promociones" className="py-2.5 text-sm md:text-base sm:col-span-1 md:col-span-1">
               <Tag className="mr-2 h-5 w-5" />
               Promociones
             </TabsTrigger>

@@ -94,14 +94,14 @@ const VuelosTab = () => {
                         <FormControl>
                           <Button
                             variant={'outline'}
-                            className={cn('w-full pl-3 text-left font-normal', !field.value && 'text-muted-foreground')}
+                            className={cn('w-full justify-start text-left font-normal', !field.value && 'text-muted-foreground')}
                           >
+                            <CalendarIcon className="mr-2 h-4 w-4" />
                             {field.value ? (
                               format(field.value, 'PPP', { locale: es })
                             ) : (
                               <span>Elige una fecha</span>
                             )}
-                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
@@ -130,14 +130,14 @@ const VuelosTab = () => {
                         <FormControl>
                           <Button
                             variant={'outline'}
-                            className={cn('w-full pl-3 text-left font-normal', !field.value && 'text-muted-foreground')}
+                            className={cn('w-full justify-start text-left font-normal', !field.value && 'text-muted-foreground')}
                           >
+                            <CalendarIcon className="mr-2 h-4 w-4" />
                             {field.value ? (
                               format(field.value, 'PPP', { locale: es })
                             ) : (
                               <span>Elige una fecha</span>
                             )}
-                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                           </Button>
                         </FormControl>
                       </PopoverTrigger>

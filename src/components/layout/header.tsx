@@ -1,26 +1,74 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Button } from '@/components/ui/button';
+import { Menu, Plane, Hotel, Map, Tag, Globe, Home, Newspaper, User } from 'lucide-react';
+
+const navLinks = [
+  { href: '/', label: 'Inicio', icon: Home },
+  { href: '/#', label: 'Sobre nosotros', icon: Newspaper },
+  { href: '/blog', label: 'BLOG', icon: Newspaper },
+  { href: '/account', label: 'Mi Cuenta', icon: User },
+];
+
 
 const Header = () => {
   return (
-    <header className="py-6 bg-background/80 backdrop-blur-sm border-b border-border/50 sticky top-0 z-40">
-      <div className="container mx-auto flex flex-col items-center justify-center text-center">
+    <header className="py-4 bg-background/80 backdrop-blur-sm border-b border-border/50 sticky top-0 z-40">
+      <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <Image src="/logo.png" alt="Viajes HICA Logo" width={40} height={40} className="mr-4" />
-              <h1 className="text-4xl font-headline text-primary-foreground">
+              <Image src="/logo.png" alt="Viajes HICA Logo" width={35} height={35} className="mr-3" />
+              <h1 className="text-2xl md:text-3xl font-headline text-primary-foreground">
                 Viajes HICA
               </h1>
             </Link>
         </div>
-        <nav className="mt-4">
-          <ul className="flex space-x-8">
-            <li><Link href="/" className="text-lg text-foreground hover:text-primary transition-colors">Inicio</Link></li>
-            <li><a href="#" className="text-lg text-foreground hover:text-primary transition-colors">Sobre nosotros</a></li>
-            <li><Link href="/blog" className="text-lg text-foreground hover:text-primary transition-colors">BLOG</Link></li>
-            <li><Link href="/account" className="text-lg text-foreground hover:text-primary transition-colors">Mi Cuenta</Link></li>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex">
+          <ul className="flex items-center space-x-6">
+            {navLinks.map(link => (
+                 <li key={link.href}><Link href={link.href} className="text-base text-foreground hover:text-primary transition-colors">{link.label}</Link></li>
+            ))}
           </ul>
         </nav>
+
+        {/* Mobile Navigation */}
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Abrir menú</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right">
+              <div className="flex flex-col space-y-4 p-4">
+                <Link href="/" className="flex items-center mb-4">
+                    <Image src="/logo.png" alt="Viajes HICA Logo" width={35} height={35} className="mr-3" />
+                    <h2 className="text-2xl font-headline">Viajes HICA</h2>
+                </Link>
+                <nav>
+                    <ul className="space-y-2">
+                        {navLinks.map((link) => (
+                        <li key={link.href}>
+                            <Link
+                            href={link.href}
+                            className="flex items-center p-2 rounded-md text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
+                            >
+                            <link.icon className="mr-3 h-5 w-5" />
+                            {link.label}
+                            </Link>
+                        </li>
+                        ))}
+                    </ul>
+                </nav>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
+
       </div>
     </header>
   );

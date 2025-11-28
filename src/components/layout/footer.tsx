@@ -5,9 +5,9 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-200">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           
-          <div className="lg:col-span-2">
+          <div className="sm:col-span-2">
             <h3 className="text-2xl font-headline text-white mb-4">Viajes HICA</h3>
             <p className="text-gray-400 max-w-md">
               Tu agencia de viajes de confianza. Hacemos que la planificación de tu próxima aventura sea emocionante y sencilla. Explora el mundo con nosotros.
