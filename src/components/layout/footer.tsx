@@ -48,7 +48,12 @@ const Footer = () => {
           
         </div>
         <div className="mt-10 pt-8 border-t border-gray-700 text-center text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Viajes HICA. Todos los derechos reservados.</p>
+          <p className="mb-4">&copy; {new Date().getFullYear()} Viajes HICA. Todos los derechos reservados.</p>
+          <div className="flex justify-center space-x-6">
+              <Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">Aviso legal</Link>
+              <Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">Privacidad</Link>
+              <Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">Cookies</Link>
+          </div>
         </div>
       </div>
     </footer>
