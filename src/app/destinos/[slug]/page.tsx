@@ -6,6 +6,14 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
+// Helper function to parse text with asterisks for bolding
+const parseBold = (text: string) => {
+  const parts = text.split(/\*{2}(.*?)\*{2}/g);
+  return parts.map((part, index) =>
+    index % 2 === 1 ? <strong key={index}>{part}</strong> : part
+  );
+};
+
 // Helper component to render markdown-like text
 const DetailsContent = ({ content }: { content: string }) => {
     const lines = content.split('\n').map((line, index) => {
@@ -13,12 +21,12 @@ const DetailsContent = ({ content }: { content: string }) => {
         return <h3 key={index} className="font-headline text-2xl mt-6 mb-2 text-primary-foreground">{line.substring(4)}</h3>;
       }
       if (line.startsWith('*   ')) {
-        return <li key={index} className="mb-2">{line.substring(4)}</li>;
+        return <li key={index} className="mb-2">{parseBold(line.substring(4))}</li>;
       }
       if(line.trim() === '') {
         return null;
       }
-      return <p key={index}>{line}</p>;
+      return <p key={index}>{parseBold(line)}</p>;
     });
 
     const listItems = lines.filter(line => line && line.type === 'li');
@@ -108,5 +116,4 @@ export default function DestinoPage({ params }: { params: { slug: string } }) {
     </div>
   );
 }
-
     

@@ -121,14 +121,14 @@
       "id": "blog-tip1",
       "title": "Cómo Hacer la Maleta como un Profesional",
       "description": "Optimiza el espacio y viaja más ligero con nuestros trucos para hacer la maleta. Desde cómo doblar la ropa hasta los imprescindibles que no pueden faltar.",
-      "imageUrl": "https://images.unsplash.com/photo-1582192243453-3fe335d1a2a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwYWNraW5nJTIwc3VpdGNhc2V8ZW58MHx8fHwxNzY0NzAxNjk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1582192243453-3fe335d1a2a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwYWNraW5nJTIwc3VpdGNhc2V8ZW58MHx8fHwxNzY0NzAxNjk5fDA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "packing suitcase"
     },
     {
       "id": "blog-tip2",
       "title": "Fotografía de Viajes: Captura Momentos, no solo Fotos",
       "description": "Aprende a contar una historia con tus imágenes. Te damos consejos sobre composición, luz y cómo capturar la verdadera esencia de cada lugar.",
-      "imageUrl": "https://images.unsplash.com/photo-1508921359325-06304005b6e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0cmF2ZWwlMjBwaG90b2dyYXBoeXxlbnwwfHx8fDE3NjQ3MDE3NDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1508921359325-06304005b6e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0cmF2ZWwlMjBwaG90b2dyYXBoeXxlbnwwfHx8fDE3NjQ3MDE3NDV8MA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "travel photography"
     }
   ]
