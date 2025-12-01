@@ -5,65 +5,71 @@
       "title": "Japón",
       "description": "Un país donde la tradición milenaria y la tecnología futurista conviven. No te pierdas los templos de Kioto ni el cruce de Shibuya en Tokio.",
       "imageUrl": "https://images.unsplash.com/photo-1547448526-5e9d57fa28f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0b2t5byUyMGphcGFufGVufDB8fHx8MTc2NDA4MDc3OHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "japan temple"
+      "imageHint": "japan temple",
+      "details": "### Qué ver y hacer:\n\n*   **Tokio:** Explora Shibuya y su famoso cruce, visita el templo Senso-ji en Asakusa y disfruta de la tecnología en Akihabara.\n*   **Kioto:** Recorre los templos tradicionales como Fushimi Inari y el Pabellón Dorado (Kinkaku-ji).\n*   **Experiencia cultural:** Participa en una ceremonia del té, prueba sushi auténtico y pasea por jardines zen.\n*   **Naturaleza:** Contempla el Monte Fuji desde el Lago Kawaguchi o haz senderismo en los Alpes Japoneses."
     },
     {
       "id": "country-italy",
       "title": "Italia",
       "description": "Cuna del Imperio Romano y el Renacimiento. Disfruta de su inigualable gastronomía, su arte y sus románticos paisajes.",
       "imageUrl": "https://images.unsplash.com/photo-1666225908854-2495f1f4d83a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxyb21lJTIwY29sb3NzZXVtfGVufDB8fHx8MTc2Mzk5NzM4NXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "italy colosseum"
+      "imageHint": "italy colosseum",
+      "details": "### Qué ver y hacer:\n\n*   **Roma:** Visita el Coliseo, la Fontana di Trevi y el Vaticano.\n*   **Venecia:** Pasea en góndola por los canales y explora la Plaza de San Marcos.\n*   **Florencia:** Admira el arte renacentista en la Galería Uffizi y el Duomo.\n*   **Cultura y comida:** Aprende a hacer pasta fresca y prueba auténtica pizza napolitana."
     },
     {
       "id": "country-egypt",
       "title": "Egipto",
       "description": "Viaja en el tiempo visitando las majestuosas Pirámides de Giza, la Esfinge y los tesoros de los faraones en el Nilo.",
       "imageUrl": "https://images.unsplash.com/photo-1553913861-c0fddf2619ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxlZ3lwdCUyMHB5cmFtaWRzfGVufDB8fHx8MTc2NDAwMzc2NXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "egypt pyramids"
+      "imageHint": "egypt pyramids",
+      "details": "### Qué ver y hacer:\n\n*   **El Cairo:** Descubre las Pirámides de Giza y la Esfinge, visita el Museo Egipcio.\n*   **Luxor:** Explora el Valle de los Reyes y los templos de Karnak.\n*   **Nilo:** Haz un crucero por el río para ver paisajes y templos históricos.\n*   **Experiencia única:** Monta en camello y vive el desierto."
     },
     {
       "id": "country-france",
       "title": "Francia",
       "description": "Famosa por su alta cocina, su moda y su arte. París, la 'Ciudad de la Luz', te espera con sus encantos y su romanticismo.",
-      "imageUrl": "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwYXJpcyUyMGVpZmZlbCUyMHRvd2VyfGVufDB8fHx8MTc2NDAwNjE4MHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "france paris"
+      "imageUrl": "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwYXJpcyUyMGVpZmZlbCUyMHRvd2VyfGVufDB8fHx8MTc2NDAwNjE4MHww&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "france paris",
+      "details": "### Qué ver y hacer:\n\n*   **París:** Sube a la Torre Eiffel, recorre el Louvre y pasea por Montmartre.\n*   **Regiones:** Disfruta de los viñedos en Burdeos o la Provenza con sus campos de lavanda.\n*   **Costa Azul:** Descubre Niza y Cannes, ideales para playas y glamour.\n*   **Gastronomía:** Degusta croissants, quesos y vinos franceses."
     },
     {
       "id": "country-usa",
       "title": "Estados Unidos",
       "description": "Un país de contrastes, desde los rascacielos de Nueva York hasta los parques nacionales como el Gran Cañón.",
-      "imageUrl": "https://images.unsplash.com/photo-1448317971280-6c74e016e49c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxuZXclMjB5b3JrJTIwY2l0eXxlbnwwfHx8fDE3NjQwNjEyNDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "usa city"
+      "imageUrl": "https://images.unsplash.com/photo-1448317971280-6c74e016e49c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxuZXclMjB5b3JrJTIwY2l0eXxlbnwwfHx8fDE3NjQwNjEyNDd8MA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "usa city",
+      "details": "### Qué ver y hacer:\n\n*   **Nueva York:** Pasea por Central Park, sube al Empire State y recorre Times Square.\n*   **Costa Oeste:** Explora Los Ángeles, Hollywood y las playas de California.\n*   **Parques Nacionales:** Visita el Gran Cañón, Yellowstone o Yosemite.\n*   **Diversión:** Disfruta de parques temáticos en Orlando (Disney, Universal)."
     },
     {
       "id": "country-spain",
       "title": "España",
       "description": "Disfruta del sol, la siesta y la fiesta. Desde la arquitectura de Gaudí en Barcelona hasta las playas de las Islas Baleares.",
-      "imageUrl": "https://images.unsplash.com/photo-1533856493584-0c6ca8ca9ce3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhbXVzZW1lbnQlMjBwYXJrfGVufDB8fHx8MTc2NDAwMTMzN3ww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "spain barcelona"
+      "imageUrl": "https://images.unsplash.com/photo-1533856493584-0c6ca8ca9ce3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhbXVzZW1lbnQlMjBwYXJrfGVufDB8fHx8MTc2NDAwMTMzN3ww&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "spain barcelona",
+      "details": "### Qué ver y hacer:\n\n*   **Barcelona:** Admira la Sagrada Familia y pasea por Las Ramblas.\n*   **Madrid:** Descubre el Museo del Prado y el Parque del Retiro.\n*   **Andalucía:** Recorre la Alhambra en Granada y la Mezquita de Córdoba.\n*   **Playas y gastronomía:** Disfruta de la Costa Brava, tapas y paella en Valencia."
     },
     {
       "id": "tour-paris",
       "description": "Un tour romántico por la ciudad de la luz, visitando la Torre Eiffel y el Louvre.",
-      "imageUrl": "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwYXJpcyUyMGVpZmZlbCUyMHRvd2VyfGVufDB8fHx8MTc2NDAwNjE4MHww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwYXJpcyUyMGVpZmZlbCUyMHRvd2VyfGVufDB8fHx8MTc2NDAwNjE4MHww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "paris eiffel tower"
     },
     {
       "id": "tour-rome",
       "description": "Explora la historia del Imperio Romano con visitas al Coliseo, el Foro Romano y el Vaticano.",
-      "imageUrl": "https://images.unsplash.com/photo-1666225908854-2495f1f4d83a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxyb21lJTIwY29sb3NzZXVtfGVufDB8fHx8MTc2Mzk5NzM4NXww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1666225908854-2495f1f4d83a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxyb21lJTIwY29sb3NzZXVtfGVufDB8fHx8MTc2Mzk5NzM4NXww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "rome colosseum"
     },
     {
       "id": "tour-new-york",
       "description": "Siente la energía de la Gran Manzana, desde Times Square hasta la Estatua de la Libertad.",
-      "imageUrl": "https://images.unsplash.com/photo-1448317971280-6c74e016e49c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxuZXclMjB5b3JrJTIwY2l0eXxlbnwwfHx8fDE3NjQwNjEyNDd8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1448317971280-6c74e016e49c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxuZXclMjB5b3JrJTIwY2l0eXxlbnwwfHx8fDE3NjQwNjEyNDd8MA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "new york city"
     },
     {
       "id": "tour-tokyo",
       "description": "Sumérgete en la cultura japonesa, con templos antiguos y la modernidad de Shibuya.",
-      "imageUrl": "https://images.unsplash.com/photo-1547448526-5e9d57fa28f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0b2t5byUyMGphcGFufGVufDB8fHx8MTc2NDA4MDc3OHww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1547448526-5e9d57fa28f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0b2t5byUyMGphcGFufGVufDB8fHx8MTc2NDA4MDc3OHww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "tokyo japan"
     },
     {
@@ -81,7 +87,7 @@
     {
       "id": "tour-portaventura",
       "description": "Disfruta de la magia de la Navidad en PortAventura con atracciones y espectáculos únicos.",
-      "imageUrl": "https://images.unsplash.com/photo-1533856493584-0c6ca8ca9ce3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhbXVzZW1lbnQlMjBwYXJrfGVufDB8fHx8MTc2NDAwMTMzN3ww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1533856493584-0c6ca8ca9ce3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhbXVzZW1lbnQlMjBwYXJrfGVufDB8fHx8MTc2NDAwMTMzN3ww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "amusement park"
     },
     {

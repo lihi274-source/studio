@@ -6,6 +6,45 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
+// Helper component to render markdown-like text
+const DetailsContent = ({ content }: { content: string }) => {
+    const lines = content.split('\n').map((line, index) => {
+      if (line.startsWith('### ')) {
+        return <h3 key={index} className="font-headline text-2xl mt-6 mb-2 text-primary-foreground">{line.substring(4)}</h3>;
+      }
+      if (line.startsWith('*   ')) {
+        return <li key={index} className="mb-2">{line.substring(4)}</li>;
+      }
+      if(line.trim() === '') {
+        return null;
+      }
+      return <p key={index}>{line}</p>;
+    });
+
+    const listItems = lines.filter(line => line && line.type === 'li');
+    
+    let currentList: React.ReactNode[] = [];
+    const renderedContent: React.ReactNode[] = [];
+
+    lines.forEach((line, index) => {
+        if (line && line.type === 'li') {
+            currentList.push(line);
+        } else {
+            if (currentList.length > 0) {
+                renderedContent.push(<ul key={`ul-${index}`} className="list-disc list-inside space-y-2">{currentList}</ul>);
+                currentList = [];
+            }
+            renderedContent.push(line);
+        }
+    });
+
+    if (currentList.length > 0) {
+        renderedContent.push(<ul key="ul-last" className="list-disc list-inside space-y-2">{currentList}</ul>);
+    }
+
+    return <>{renderedContent}</>;
+};
+
 export default function DestinoPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const destination = PlaceHolderImages.find(p => p.id === slug);
@@ -35,19 +74,24 @@ export default function DestinoPage({ params }: { params: { slug: string } }) {
       <Card>
         <CardContent className="p-8 md:p-12">
             <article className="prose prose-lg lg:prose-xl dark:prose-invert max-w-none text-foreground">
-                <p>{destination.description}</p>
+                <p className="lead text-xl text-muted-foreground">{destination.description}</p>
                 
-                {/* A more detailed description could be added here in the future */}
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nisi eget nunc ultricies aliquet. 
-                    Donec auctor, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, nec aliquam nisl nisl eget nisl. 
-                    Vivamus auctor, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, nec aliquam nisl nisl eget nisl.
-                </p>
-                 <p>
-                    Phasellus accumsan, ex ut eleifend consequat, nulla nunc egestas magna, nec eleifend libero libero vitae magna. 
-                    Curabitur tempor, elit ut consequat tincidunt, quam nunc vehicula dolor, non fermentum purus mi at felis. 
-                    Proin euismod, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, nec aliquam nisl nisl eget nisl.
-                </p>
+                {destination.details ? (
+                    <DetailsContent content={destination.details} />
+                ) : (
+                    <>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nisi eget nunc ultricies aliquet. 
+                            Donec auctor, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, nec aliquam nisl nisl eget nisl. 
+                            Vivamus auctor, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, nec aliquam nisl nisl eget nisl.
+                        </p>
+                         <p>
+                            Phasellus accumsan, ex ut eleifend consequat, nulla nunc egestas magna, nec eleifend libero libero vitae magna. 
+                            Curabitur tempor, elit ut consequat tincidunt, quam nunc vehicula dolor, non fermentum purus mi at felis. 
+                            Proin euismod, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, nec aliquam nisl nisl eget nisl.
+                        </p>
+                    </>
+                )}
 
             </article>
             <div className="text-center mt-10">
@@ -64,3 +108,5 @@ export default function DestinoPage({ params }: { params: { slug: string } }) {
     </div>
   );
 }
+
+    
