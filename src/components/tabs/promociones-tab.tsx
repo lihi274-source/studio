@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -13,6 +15,20 @@ type Promocion = {
 
 const promocionesData: Promocion[] = [
   { 
+    id: 'promo-disneyland', 
+    title: 'Magia en Disneyland® Paris', 
+    price: 350, 
+    currency: 'EUR', 
+    description: 'Vive un sueño en Disneyland® Paris. Incluye 2 noches en un hotel temático y entradas para los 2 parques Disney. ¡Ideal para toda la familia!'
+  },
+  { 
+    id: 'promo-caldea', 
+    title: 'Relax en Caldea, Andorra', 
+    price: 199, 
+    currency: 'EUR', 
+    description: 'Escápate a las montañas de Andorra. Disfruta de 2 noches de hotel con desayuno y acceso de 3 horas al espectacular centro termolúdico Caldea.'
+  },
+  {
     id: 'promo-valencia', 
     title: 'Escapada Azul a Valencia', 
     price: 180, 
@@ -25,20 +41,6 @@ const promocionesData: Promocion[] = [
     price: 220, 
     currency: 'EUR', 
     description: 'Disfruta de la capital española con 2 noches de alojamiento y un tour guiado por el famoso Triángulo del Arte: los museos del Prado, Reina Sofía y Thyssen-Bornemisza.'
-  },
-  {
-    id: 'promo-barcelona',
-    title: 'Aventura Modernista en Barcelona',
-    price: 250,
-    currency: 'EUR',
-    description: 'Vive la magia de Barcelona con 3 noches de hotel y entradas para la Sagrada Familia y el Park Güell. Una inmersión total en la obra de Gaudí.'
-  },
-  {
-    id: 'promo-tarragona',
-    title: 'Adrenalina y Playa en Tarragona',
-    price: 210,
-    currency: 'EUR',
-    description: 'Combina la emoción de PortAventura Park con el relax de las playas de la Costa Daurada. Incluye 2 noches de hotel y entradas para el parque.'
   }
 ];
 
@@ -54,7 +56,7 @@ const PromocionesTab = () => {
         <h2 className="font-headline text-3xl text-primary-foreground">Nuestras Promociones Exclusivas</h2>
         <p className="text-muted-foreground mt-2">Aprovecha nuestras ofertas de hotel + excursión al mejor precio.</p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {promociones.map((promo) => (
           <Card key={promo.id} className="flex flex-col overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
             {promo.imageUrl && (

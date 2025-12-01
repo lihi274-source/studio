@@ -12,7 +12,7 @@
       "id": "country-italy",
       "title": "Italia",
       "description": "Cuna del Imperio Romano y el Renacimiento. Disfruta de su inigualable gastronomía, su arte y sus románticos paisajes.",
-      "imageUrl": "https://images.unsplash.com/photo-1666225908854-2495f1f4d83a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxyb21lJTIwY29sb3NzZXVtfGVufDB8fHx8MTc2Mzk5NzM4NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1666225908854-2495f1f4d83a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxyb21lJTIwY29sb3NzZXVtfGVufDB8fHx8MTc2Mzk5NzM4NXww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "italy colosseum",
       "details": "### Qué ver y hacer:\n\n*   **Roma:** Visita el Coliseo, la Fontana di Trevi y el Vaticano.\n*   **Venecia:** Pasea en góndola por los canales y explora la Plaza de San Marcos.\n*   **Florencia:** Admira el arte renacentista en la Galería Uffizi y el Duomo.\n*   **Cultura y comida:** Aprende a hacer pasta fresca y prueba auténtica pizza napolitana."
     },
@@ -20,7 +20,7 @@
       "id": "country-egypt",
       "title": "Egipto",
       "description": "Viaja en el tiempo visitando las majestuosas Pirámides de Giza, la Esfinge y los tesoros de los faraones en el Nilo.",
-      "imageUrl": "https://images.unsplash.com/photo-1553913861-c0fddf2619ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxlZ3lwdCUyMHB5cmFtaWRzfGVufDB8fHx8MTc2NDAwMzc2NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1553913861-c0fddf2619ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxlZ3lwdCUyMHB5cmFtaWRzfGVufDB8fHx8MTc2NDAwMzc2NXww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "egypt pyramids",
       "details": "### Qué ver y hacer:\n\n*   **El Cairo:** Descubre las Pirámides de Giza y la Esfinge, visita el Museo Egipcio.\n*   **Luxor:** Explora el Valle de los Reyes y los templos de Karnak.\n*   **Nilo:** Haz un crucero por el río para ver paisajes y templos históricos.\n*   **Experiencia única:** Monta en camello y vive el desierto."
     },
@@ -109,6 +109,16 @@
       "id": "promo-tarragona",
       "imageUrl": "https://www.gastronomistas.com/wp-content/uploads/skyline-port-aventura-gastronomistas.com-.jpg",
       "imageHint": "tarragona portaventura"
+    },
+    {
+      "id": "promo-disneyland",
+      "imageUrl": "https://images.unsplash.com/photo-1597466599227-91499296e85a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkaXNuZXlsYW5kJTIwcGFyaXN8ZW58MHx8fHwxNzY0NzAxMDU1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "disneyland paris"
+    },
+    {
+      "id": "promo-caldea",
+      "imageUrl": "https://www.shutterstock.com/shutterstock/photos/1917711467/display_1500/stock-photo-andorra-la-vella-andorra-september-view-of-the-building-of-the-thermal-spa-caldea-1917711467.jpg",
+      "imageHint": "andorra caldea"
     },
     {
       "id": "blog-featured",
