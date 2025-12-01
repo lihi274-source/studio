@@ -31,7 +31,7 @@ const DestinosTab = () => {
                 <CardDescription>{country.description}</CardDescription>
               </div>
               <Button className="mt-4 w-full bg-accent hover:bg-accent/90 text-accent-foreground">
-                Ver ofertas
+                Saber más
               </Button>
             </div>
           </Card>
