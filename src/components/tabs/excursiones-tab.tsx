@@ -1,31 +1,11 @@
+'use client';
+
 import Image from 'next/image';
+import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-
-type Excursion = {
-  id: string;
-  title: string;
-  price: number;
-  currency: string;
-};
-
-const excursionsData: Excursion[] = [
-  { id: 'tour-paris', title: 'Tour Eiffel y Crucero por el Sena', price: 120, currency: 'EUR' },
-  { id: 'tour-rome', title: 'Roma Antigua: Coliseo y Foro', price: 95, currency: 'EUR' },
-  { id: 'tour-new-york', title: 'Contrastes de Nueva York', price: 80, currency: 'USD' },
-  { id: 'tour-tokyo', title: 'Tradición y Modernidad en Tokio', price: 15000, currency: 'JPY' },
-  { id: 'tour-sydney', title: 'Maravillas de Sídney y Playas', price: 110, currency: 'AUD' },
-  { id: 'tour-cairo', title: 'Misterios del Antiguo Egipto', price: 75, currency: 'USD' },
-  { id: 'tour-portaventura', title: 'PortAventura: Especial Navidad', price: 60, currency: 'EUR' },
-];
-
-const conversionRates: Record<string, number> = {
-    USD: 0.93, // 1 USD = 0.93 EUR
-    JPY: 0.0059, // 1 JPY = 0.0059 EUR
-    AUD: 0.61, // 1 AUD = 0.61 EUR
-    EUR: 1,
-};
+import { excursionsData, conversionRates } from '@/lib/excursions-data';
 
 const ExcursionesTab = () => {
   const excursions = excursionsData.map(excursion => {
@@ -63,8 +43,10 @@ const ExcursionesTab = () => {
               <p className="text-lg font-bold text-primary">
                 {new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(excursion.priceInEur)}
               </p>
-              <Button className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                Reservar ahora
+              <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
+                <Link href={`/reservar?excursionId=${excursion.id}`}>
+                  Reservar ahora
+                </Link>
               </Button>
             </CardFooter>
           </Card>
