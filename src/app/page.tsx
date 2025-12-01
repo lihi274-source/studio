@@ -1,3 +1,7 @@
+'use client';
+
+import { Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Hotel, Map, Plane, Tag, Globe } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Header from '@/components/layout/header';
@@ -8,12 +12,15 @@ import ExcursionesTab from '@/components/tabs/excursiones-tab';
 import PromocionesTab from '@/components/tabs/promociones-tab';
 import DestinosTab from '@/components/tabs/destinos-tab';
 
-export default function Home() {
+function HomePageContent() {
+  const searchParams = useSearchParams();
+  const defaultTab = searchParams.get('tab') || 'destinos';
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8">
-        <Tabs defaultValue="destinos" className="w-full">
+        <Tabs defaultValue={defaultTab} className="w-full">
           <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 h-auto bg-primary/10 rounded-lg">
             <TabsTrigger value="destinos" className="py-2.5 text-sm md:text-base">
               <Globe className="mr-2 h-5 w-5" />
@@ -55,5 +62,13 @@ export default function Home() {
       </main>
       <Footer />
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HomePageContent />
+    </Suspense>
   );
 }

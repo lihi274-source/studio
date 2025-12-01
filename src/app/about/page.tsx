@@ -19,7 +19,7 @@ export default function AboutPage() {
         </p>
         <div className="mt-8">
             <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                <Link href="/#excursiones">
+                <Link href="/?tab=excursiones">
                     <Rocket className="mr-2 h-5 w-5" />
                     RESERVA YA
                 </Link>
@@ -74,7 +74,7 @@ export default function AboutPage() {
         
         <h3 className="font-headline text-2xl md:text-3xl text-primary-foreground mt-10 mb-4">Descubre Experiencias Inolvidables</h3>
         <p>
-          La pestaña de <Link href="/#excursiones"><strong className="text-primary hover:underline">Excursiones</strong></Link> es tu ventana a las aventuras que te esperan. Presentamos cada actividad con imágenes de alta calidad, descripciones claras y precios transparentes. El diseño en formato de tarjetas te permite comparar visualmente y elegir la experiencia que más te llame la atención. Con un solo clic en "Reservar ahora", estarás un paso más cerca de vivirla.
+          La pestaña de <Link href="/?tab=excursiones"><strong className="text-primary hover:underline">Excursiones</strong></Link> es tu ventana a las aventuras que te esperan. Presentamos cada actividad con imágenes de alta calidad, descripciones claras y precios transparentes. El diseño en formato de tarjetas te permite comparar visualmente y elegir la experiencia que más te llame la atención. Con un solo clic en "Reservar ahora", estarás un paso más cerca de vivirla.
         </p>
         <p>
           En Viajes HICA, hemos puesto todo nuestro esfuerzo en crear una plataforma que no solo funcione bien, sino que también te inspire. Tu próxima great aventura empieza con una experiencia web excepcional. ¡Feliz viaje!
