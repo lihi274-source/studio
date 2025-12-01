@@ -1,5 +1,8 @@
+'use client';
+
 import Image from 'next/image';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import Link from 'next/link';
+import { Card, CardDescription, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
@@ -30,8 +33,10 @@ const DestinosTab = () => {
                 <CardTitle className="font-headline text-2xl mb-2">{country.title}</CardTitle>
                 <CardDescription>{country.description}</CardDescription>
               </div>
-              <Button className="mt-4 w-full bg-accent hover:bg-accent/90 text-accent-foreground">
-                Saber más
+              <Button asChild className="mt-4 w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+                <Link href={`/destinos/${country.id}`}>
+                  Saber más
+                </Link>
               </Button>
             </div>
           </Card>

@@ -1,0 +1,66 @@
+import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { notFound } from 'next/navigation';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+
+export default function DestinoPage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+  const destination = PlaceHolderImages.find(p => p.id === slug);
+
+  if (!destination) {
+    notFound();
+  }
+
+  return (
+    <div className="container mx-auto px-4 py-12 max-w-5xl">
+      <div className="relative w-full h-80 md:h-[500px] mb-12 rounded-2xl overflow-hidden shadow-2xl">
+        <Image
+          src={destination.imageUrl}
+          alt={destination.title || destination.imageHint}
+          fill
+          className="object-cover"
+          data-ai-hint={destination.imageHint}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+        <div className="absolute bottom-0 left-0 p-8 md:p-12">
+            <h1 className="font-headline text-4xl md:text-6xl text-white">
+                {destination.title}
+            </h1>
+        </div>
+      </div>
+      
+      <Card>
+        <CardContent className="p-8 md:p-12">
+            <article className="prose prose-lg lg:prose-xl dark:prose-invert max-w-none text-foreground">
+                <p>{destination.description}</p>
+                
+                {/* A more detailed description could be added here in the future */}
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nisi eget nunc ultricies aliquet. 
+                    Donec auctor, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, nec aliquam nisl nisl eget nisl. 
+                    Vivamus auctor, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, nec aliquam nisl nisl eget nisl.
+                </p>
+                 <p>
+                    Phasellus accumsan, ex ut eleifend consequat, nulla nunc egestas magna, nec eleifend libero libero vitae magna. 
+                    Curabitur tempor, elit ut consequat tincidunt, quam nunc vehicula dolor, non fermentum purus mi at felis. 
+                    Proin euismod, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, nec aliquam nisl nisl eget nisl.
+                </p>
+
+            </article>
+            <div className="text-center mt-10">
+              <Button asChild>
+                <Link href="/?tab=destinos">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Volver a Destinos
+                </Link>
+              </Button>
+            </div>
+        </CardContent>
+      </Card>
+
+    </div>
+  );
+}
