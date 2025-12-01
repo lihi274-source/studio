@@ -20,10 +20,18 @@ const excursionsData: Excursion[] = [
   { id: 'tour-portaventura', title: 'PortAventura: Especial Navidad', price: 60, currency: 'EUR' },
 ];
 
+const conversionRates: Record<string, number> = {
+    USD: 0.93, // 1 USD = 0.93 EUR
+    JPY: 0.0059, // 1 JPY = 0.0059 EUR
+    AUD: 0.61, // 1 AUD = 0.61 EUR
+    EUR: 1,
+};
+
 const ExcursionesTab = () => {
   const excursions = excursionsData.map(excursion => {
     const imageData = PlaceHolderImages.find(img => img.id === excursion.id);
-    return { ...excursion, ...imageData };
+    const priceInEur = excursion.price * (conversionRates[excursion.currency] || 1);
+    return { ...excursion, ...imageData, priceInEur };
   });
 
   return (
@@ -53,7 +61,7 @@ const ExcursionesTab = () => {
             <CardContent className="flex-grow" />
             <CardFooter className="flex justify-between items-center">
               <p className="text-lg font-bold text-primary">
-                {new Intl.NumberFormat('es-ES', { style: 'currency', currency: excursion.currency }).format(excursion.price)}
+                {new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(excursion.priceInEur)}
               </p>
               <Button className="bg-accent hover:bg-accent/90 text-accent-foreground">
                 Reservar ahora
