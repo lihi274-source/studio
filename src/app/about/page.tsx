@@ -12,7 +12,7 @@ export default function AboutPage() {
     <div className="container mx-auto px-4 py-12 max-w-5xl">
       <div className="text-center mb-12">
         <h1 className="font-headline text-4xl md:text-6xl text-primary-foreground mb-4">
-          Sobre Viajes HICA
+          Viajes HICA
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
           Hacemos que la planificación de tu próxima aventura sea tan emocionante y sencilla como el viaje mismo.
