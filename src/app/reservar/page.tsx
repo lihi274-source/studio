@@ -29,6 +29,7 @@ const bookingSchema = z.object({
   fullName: z.string().min(3, 'El nombre es requerido.'),
   email: z.string().email('El email no es válido.'),
   phone: z.string().min(9, 'El teléfono no es válido.'),
+  excursion: z.string().optional(),
 });
 
 type BookingFormValues = z.infer<typeof bookingSchema>;
@@ -66,14 +67,37 @@ function BookingPageContent() {
 
   const onSubmit = async (values: BookingFormValues) => {
     setIsSubmitting(true);
-    console.log({ excursion: excursion.title, ...values });
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    toast({
-      title: "¡Reserva solicitada!",
-      description: `Hemos recibido tu solicitud para ${values.participants} persona(s) el ${format(values.date, 'PPP', { locale: es })}. Te contactaremos pronto.`,
-    });
-    form.reset();
+    
+    try {
+      const response = await fetch("https://formspree.io/f/xanrjdrv", {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({ ...values, excursion: excursion.title })
+      });
+
+      if (response.ok) {
+        toast({
+          title: "¡Reserva solicitada!",
+          description: `Hemos recibido tu solicitud para ${values.participants} persona(s) el ${format(values.date, 'PPP', { locale: es })}. Te contactaremos pronto.`,
+        });
+        form.reset();
+      } else {
+         toast({
+          variant: "destructive",
+          title: 'Error al enviar la reserva',
+          description: 'Hubo un problema. Por favor, inténtalo de nuevo.',
+        });
+      }
+    } catch (error) {
+       toast({
+          variant: "destructive",
+          title: 'Error de red',
+          description: 'No se pudo conectar con el servidor. Revisa tu conexión.',
+        });
+    }
+    
     setIsSubmitting(false);
   };
 

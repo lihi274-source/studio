@@ -35,17 +35,37 @@ export default function ContactoPage() {
 
   const onSubmit = async (values: ContactFormValues) => {
     setIsSubmitting(true);
-    console.log('Datos del formulario de contacto:', values);
     
-    // Simula una llamada a la API
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch("https://formspree.io/f/xanrjdrv", {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(values)
+      });
 
-    toast({
-      title: '¡Mensaje enviado!',
-      description: 'Gracias por contactarnos. Te responderemos lo antes posible.',
-    });
+      if (response.ok) {
+        toast({
+          title: '¡Mensaje enviado!',
+          description: 'Gracias por contactarnos. Te responderemos lo antes posible.',
+        });
+        form.reset();
+      } else {
+        toast({
+          variant: "destructive",
+          title: 'Error al enviar el mensaje',
+          description: 'Hubo un problema. Por favor, inténtalo de nuevo.',
+        });
+      }
+    } catch (error) {
+      toast({
+          variant: "destructive",
+          title: 'Error de red',
+          description: 'No se pudo conectar con el servidor. Revisa tu conexión.',
+        });
+    }
 
-    form.reset();
     setIsSubmitting(false);
   };
 
