@@ -15,12 +15,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { CalendarIcon, Users, User, Mail, Phone, Loader2 } from 'lucide-react';
+import { CalendarIcon, Users, User, Mail, Phone, Loader2, ArrowLeft } from 'lucide-react';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
+import Link from 'next/link';
 
 const bookingSchema = z.object({
   date: z.date({ required_error: 'La fecha es requerida.' }),
@@ -78,6 +79,14 @@ function BookingPageContent() {
 
   return (
     <div className="container mx-auto px-4 py-12">
+       <div className="mb-8">
+        <Button asChild variant="outline">
+          <Link href="/?tab=excursiones">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Volver a Excursiones
+          </Link>
+        </Button>
+      </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Excursion Info */}
         <div className="space-y-6">
