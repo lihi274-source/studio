@@ -70,6 +70,12 @@ const nextConfig: NextConfig = {
         hostname: 'www.stage-entertainment.es',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.renfe.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
@@ -77,4 +83,5 @@ const nextConfig: NextConfig = {
 
 export default nextConfig;
 
+    
     
