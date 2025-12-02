@@ -21,7 +21,8 @@ const promocionesData: Promocion[] = [
     title: 'Magia en Disneyland® Paris', 
     price: 99, 
     currency: 'EUR', 
-    description: 'Vive un sueño en Disneyland® Paris con entradas para los 2 parques Disney. ¡Una experiencia ideal para toda la familia!'
+    description: 'Vive un sueño en Disneyland® Paris con entradas para los 2 parques Disney. ¡Una experiencia ideal para toda la familia!',
+    excursionId: 'tour-paris'
   },
   { 
     id: 'promo-caldea', 
@@ -50,7 +51,8 @@ const promocionesData: Promocion[] = [
     title: 'El Rey León, El Musical',
     price: 75,
     currency: 'EUR',
-    description: 'Disfruta del aclamado musical El Rey León en el corazón de Madrid. Un espectáculo que no te puedes perder.'
+    description: 'Disfruta del aclamado musical El Rey León en el corazón de Madrid. Un espectáculo que no te puedes perder.',
+    excursionId: 'tour-rey-leon'
   }
 ];
 

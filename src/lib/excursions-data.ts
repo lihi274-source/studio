@@ -14,6 +14,7 @@ export const excursionsData: Excursion[] = [
   { id: 'tour-cairo', title: 'Misterios del Antiguo Egipto', price: 75, currency: 'USD' },
   { id: 'tour-portaventura', title: 'PortAventura: Especial Navidad', price: 60, currency: 'EUR' },
   { id: 'tour-caldea', title: 'Relax en Caldea, Andorra', price: 45, currency: 'EUR' },
+  { id: 'tour-rey-leon', title: 'El Rey León, El Musical', price: 75, currency: 'EUR' },
 ];
 
 export const conversionRates: Record<string, number> = {
