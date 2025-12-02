@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import Link from 'next/link';
 
 type Promocion = {
   id: string;
@@ -11,6 +12,7 @@ type Promocion = {
   price: number;
   currency: string;
   description: string;
+  excursionId?: string;
 };
 
 const promocionesData: Promocion[] = [
@@ -26,7 +28,8 @@ const promocionesData: Promocion[] = [
     title: 'Relax en Caldea, Andorra', 
     price: 45, 
     currency: 'EUR', 
-    description: 'Escápate a las montañas y disfruta de un acceso de 3 horas al espectacular centro termolúdico Caldea en Andorra.'
+    description: 'Escápate a las montañas y disfruta de un acceso de 3 horas al espectacular centro termolúdico Caldea en Andorra.',
+    excursionId: 'tour-caldea'
   },
   {
     id: 'promo-valencia', 
@@ -60,8 +63,8 @@ const PromocionesTab = () => {
   return (
     <div className="mt-6">
       <div className="text-center mb-12">
-        <h2 className="font-headline text-3xl text-primary-foreground">Nuestras Promociones Exclusivas</h2>
-        <p className="text-muted-foreground mt-2">Aprovecha nuestras ofertas de hotel + excursión al mejor precio.</p>
+        <h2 className="font-headline text-3xl text-primary-foreground">Promociones Exclusivas</h2>
+        <p className="text-muted-foreground mt-2">Aprovecha nuestras ofertas de excursiónes al mejor precio.</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {promociones.map((promo) => (
@@ -87,9 +90,17 @@ const PromocionesTab = () => {
               <p className="text-lg font-bold text-primary">
                 Desde {new Intl.NumberFormat('es-ES', { style: 'currency', currency: promo.currency }).format(promo.price)}
               </p>
-              <Button className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                Ver Oferta
-              </Button>
+              {promo.excursionId ? (
+                 <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
+                    <Link href={`/reservar?excursionId=${promo.excursionId}`}>
+                      Ver Oferta
+                    </Link>
+                  </Button>
+              ) : (
+                <Button className="bg-accent hover:bg-accent/90 text-accent-foreground">
+                  Ver Oferta
+                </Button>
+              )}
             </CardFooter>
           </Card>
         ))}

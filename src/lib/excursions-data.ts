@@ -13,6 +13,7 @@ export const excursionsData: Excursion[] = [
   { id: 'tour-sydney', title: 'Maravillas de Sídney y Playas', price: 110, currency: 'AUD' },
   { id: 'tour-cairo', title: 'Misterios del Antiguo Egipto', price: 75, currency: 'USD' },
   { id: 'tour-portaventura', title: 'PortAventura: Especial Navidad', price: 60, currency: 'EUR' },
+  { id: 'tour-caldea', title: 'Relax en Caldea, Andorra', price: 45, currency: 'EUR' },
 ];
 
 export const conversionRates: Record<string, number> = {
