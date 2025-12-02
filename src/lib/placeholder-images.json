@@ -51,7 +51,7 @@
     {
       "id": "tour-paris",
       "description": "Un tour romántico por la ciudad de la luz, visitando la Torre Eiffel y el Louvre.",
-      "imageUrl": "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwYXJpcyUyMGVpZmZlbCUyMHRvd2VyfGVufDB8fHx8MTc2NDAwNjE4MHww&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://www.sortiraparis.com/images/80/87950/484853-visuels-disneyland-paris-chateau.jpg",
       "imageHint": "paris eiffel tower"
     },
     {
@@ -87,7 +87,7 @@
     {
       "id": "tour-portaventura",
       "description": "Disfruta de la magia de la Navidad en PortAventura con atracciones y espectáculos únicos.",
-      "imageUrl": "https://images.unsplash.com/photo-1533856493584-0c6ca8ca9ce3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhbXVzZW1lbnQlMjBwYXJrfGVufDB8fHx8MTc2NDAwMTMzN3ww&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://www.gastronomistas.com/wp-content/uploads/skyline-port-aventura-gastronomistas.com-.jpg",
       "imageHint": "amusement park"
     },
     {
@@ -122,7 +122,7 @@
     },
     {
       "id": "promo-rey-leon",
-      "imageUrl": "https://images.unsplash.com/photo-1596985879735-9b2f2c8a2a5b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0aGVhdGVyJTIwc2hvd3xlbnwwfHx8fDE3NjQ3MjM4NTN8MA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://www.stage-entertainment.es/files/IMG/El-Rey-Leon-El-Musical-Madrid_1600x900.jpg",
       "imageHint": "theatre show"
     },
     {
@@ -141,6 +141,18 @@
       "description": "Descubre la capital española con un tour guiado por el famoso Triángulo del Arte.",
       "imageUrl": "https://res.cloudinary.com/hello-tickets/image/upload/ar_4:3,c_fill,f_auto,q_auto,w_800/v1613473963/ipu7chnajqua5bnm8swl.jpg",
       "imageHint": "madrid museum"
+    },
+    {
+      "id": "tour-caldea",
+      "description": "Escápate a las montañas y disfruta de un acceso de 3 horas al espectacular centro termolúdico Caldea en Andorra.",
+      "imageUrl": "https://www.civitatis.com/f/andorra/escaldes-engordany/entrada-caldea-589x392.jpg",
+      "imageHint": "andorra spa"
+    },
+    {
+      "id": "tour-rey-leon",
+      "description": "Disfruta del aclamado musical El Rey León en el corazón de Madrid. Un espectáculo que no te puedes perder.",
+      "imageUrl": "https://www.stage-entertainment.es/files/IMG/El-Rey-Leon-El-Musical-Madrid_1600x900.jpg",
+      "imageHint": "lion king musical"
     },
     {
       "id": "blog-featured",

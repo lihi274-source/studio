@@ -64,6 +64,12 @@ const nextConfig: NextConfig = {
         hostname: 'www.sortiraparis.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.stage-entertainment.es',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
