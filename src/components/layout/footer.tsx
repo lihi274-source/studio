@@ -1,4 +1,4 @@
-import { Mail, Phone, Twitter, Instagram, Facebook } from 'lucide-react';
+import { Mail, Phone, Twitter, Instagram, Facebook, MapPin } from 'lucide-react';
 import Link from 'next/link';
 
 const Footer = () => {
@@ -24,6 +24,10 @@ const Footer = () => {
               <li className="flex items-center">
                 <Mail className="mr-3 h-5 w-5 text-primary" />
                 <a href="mailto:contacto@viajeshica.com" className="hover:text-white transition-colors">contacto@viajeshica.com</a>
+              </li>
+               <li className="flex items-start">
+                <MapPin className="mr-3 h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                <span>C/Amposta Nº8 Bajo s/n</span>
               </li>
             </ul>
           </div>
