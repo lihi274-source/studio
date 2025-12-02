@@ -41,6 +41,13 @@ const promocionesData: Promocion[] = [
     price: 50, 
     currency: 'EUR', 
     description: 'Descubre la capital española con un tour guiado por el famoso Triángulo del Arte: los museos del Prado, Reina Sofía y Thyssen-Bornemisza.'
+  },
+  {
+    id: 'promo-rey-leon',
+    title: 'El Rey León, El Musical',
+    price: 75,
+    currency: 'EUR',
+    description: 'Disfruta del aclamado musical El Rey León en el corazón de Madrid. Un espectáculo que no te puedes perder.'
   }
 ];
 
@@ -56,7 +63,7 @@ const PromocionesTab = () => {
         <h2 className="font-headline text-3xl text-primary-foreground">Nuestras Promociones Exclusivas</h2>
         <p className="text-muted-foreground mt-2">Aprovecha nuestras ofertas de hotel + excursión al mejor precio.</p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {promociones.map((promo) => (
           <Card key={promo.id} className="flex flex-col overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
             {promo.imageUrl && (
