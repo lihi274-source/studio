@@ -6,6 +6,12 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
+export async function generateStaticParams() {
+  return PlaceHolderImages.map((p) => ({
+    slug: p.id,
+  }));
+}
+
 // Helper function to parse text with asterisks for bolding
 const parseBold = (text: string) => {
   const parts = text.split(/\*{2}(.*?)\*{2}/g);
@@ -89,15 +95,11 @@ export default function DestinoPage({ params }: { params: { slug: string } }) {
                 ) : (
                     <>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nisi eget nunc ultricies aliquet. 
-                            Donec auctor, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, nec aliquam nisl nisl eget nisl. 
-                            Vivamus auctor, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, nec aliquam nisl nisl eget nisl.
+                            Más detalles sobre este destino estarán disponibles próximamente. Estamos trabajando para ofrecerte la mejor información.
                         </p>
                          <p>
-                            Phasellus accumsan, ex ut eleifend consequat, nulla nunc egestas magna, nec eleifend libero libero vitae magna. 
-                            Curabitur tempor, elit ut consequat tincidunt, quam nunc vehicula dolor, non fermentum purus mi at felis. 
-                            Proin euismod, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, nec aliquam nisl nisl eget nisl.
-                        </p>
+                            Mientras tanto, puedes explorar nuestras excursiones o ponerte en contacto con nosotros si tienes alguna pregunta específica.
+                         </p>
                     </>
                 )}
 
