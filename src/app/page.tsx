@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Hotel, Map, Plane, Tag, Globe } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -14,13 +14,22 @@ import DestinosTab from '@/components/tabs/destinos-tab';
 
 function HomePageContent() {
   const searchParams = useSearchParams();
-  const defaultTab = searchParams.get('tab') || 'destinos';
+  const initialTab = searchParams.get('tab') || 'destinos';
+  const [activeTab, setActiveTab] = useState(initialTab);
+
+  // When the query param changes, update the state
+  useEffect(() => {
+    const tabFromUrl = searchParams.get('tab');
+    if (tabFromUrl && tabFromUrl !== activeTab) {
+      setActiveTab(tabFromUrl);
+    }
+  }, [searchParams, activeTab]);
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8">
-        <Tabs defaultValue={defaultTab} className="w-full">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 h-auto bg-primary/10 rounded-lg">
             <TabsTrigger value="destinos" className="py-2.5 text-sm md:text-base">
               <Globe className="mr-2 h-5 w-5" />

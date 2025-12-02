@@ -53,7 +53,15 @@ const promocionesData: Promocion[] = [
     currency: 'EUR',
     description: 'Disfruta del aclamado musical El Rey León en el corazón de Madrid. Un espectáculo que no te puedes perder.',
     excursionId: 'tour-rey-leon'
-  }
+  },
+  {
+    id: 'promo-portaventura',
+    title: 'PortAventura: Especial Navidad',
+    price: 60,
+    currency: 'EUR',
+    description: 'Disfruta de la magia de la Navidad en PortAventura con atracciones y espectáculos únicos para toda la familia.',
+    excursionId: 'tour-portaventura',
+  },
 ];
 
 const PromocionesTab = () => {
@@ -75,7 +83,7 @@ const PromocionesTab = () => {
               <div className="relative w-full aspect-video">
                 <Image
                   src={promo.imageUrl}
-                  alt={promo.title}
+                  alt={promo.title || ''}
                   fill
                   className="object-cover"
                   data-ai-hint={promo.imageHint}
@@ -99,7 +107,7 @@ const PromocionesTab = () => {
                     </Link>
                   </Button>
               ) : (
-                <Button className="bg-accent hover:bg-accent/90 text-accent-foreground">
+                <Button className="bg-accent hover:bg-accent/90 text-accent-foreground" disabled>
                   Ver Oferta
                 </Button>
               )}
