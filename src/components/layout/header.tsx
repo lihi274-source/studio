@@ -2,12 +2,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { Menu, Plane, Hotel, Map, Tag, Globe, Home, Newspaper, User, Info } from 'lucide-react';
+import { Menu, Plane, Hotel, Map, Tag, Globe, Home, Newspaper, User, Info, MessageSquare } from 'lucide-react';
 
 const navLinks = [
   { href: '/', label: 'Inicio', icon: Home },
   { href: '/about', label: 'Sobre nosotros', icon: Info },
   { href: '/blog', label: 'BLOG', icon: Newspaper },
+  { href: '/contacto', label: 'Contacto', icon: MessageSquare },
   { href: '/account', label: 'Mi Cuenta', icon: User },
 ];
 
