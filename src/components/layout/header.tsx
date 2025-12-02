@@ -20,9 +20,12 @@ const Header = () => {
         <div className="flex items-center">
             <Link href="/" className="flex items-center">
               <Image src="/logo.png" alt="Viajes HICA Logo" width={60} height={60} className="mr-3" />
-              <h1 className="text-2xl md:text-3xl font-headline text-primary-foreground">
-                Viajes HICA
-              </h1>
+              <div>
+                <h1 className="text-2xl md:text-3xl font-headline text-primary-foreground">
+                  Viajes HICA
+                </h1>
+                <p className="text-sm text-muted-foreground hidden sm:block">Tu agencia de viajes para explorar el mundo.</p>
+              </div>
             </Link>
         </div>
 
@@ -48,7 +51,10 @@ const Header = () => {
               <div className="flex flex-col space-y-4 p-4">
                 <Link href="/" className="flex items-center mb-4">
                     <Image src="/logo.png" alt="Viajes HICA Logo" width={60} height={60} className="mr-3" />
-                    <h2 className="text-2xl font-headline">Viajes HICA</h2>
+                    <div>
+                        <h2 className="text-2xl font-headline">Viajes HICA</h2>
+                        <p className="text-sm text-muted-foreground">Tu agencia de viajes para explorar el mundo.</p>
+                    </div>
                 </Link>
                 <nav>
                     <ul className="space-y-2">
