@@ -58,6 +58,12 @@ const nextConfig: NextConfig = {
         hostname: 'www.civitatis.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.sortiraparis.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
