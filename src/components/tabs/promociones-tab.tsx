@@ -17,30 +17,30 @@ const promocionesData: Promocion[] = [
   { 
     id: 'promo-disneyland', 
     title: 'Magia en Disneyland® Paris', 
-    price: 350, 
+    price: 99, 
     currency: 'EUR', 
-    description: 'Vive un sueño en Disneyland® Paris. Incluye 2 noches en un hotel temático y entradas para los 2 parques Disney. ¡Ideal para toda la familia!'
+    description: 'Vive un sueño en Disneyland® Paris con entradas para los 2 parques Disney. ¡Una experiencia ideal para toda la familia!'
   },
   { 
     id: 'promo-caldea', 
     title: 'Relax en Caldea, Andorra', 
-    price: 199, 
+    price: 45, 
     currency: 'EUR', 
-    description: 'Escápate a las montañas de Andorra. Disfruta de 2 noches de hotel con desayuno y acceso de 3 horas al espectacular centro termolúdico Caldea.'
+    description: 'Escápate a las montañas y disfruta de un acceso de 3 horas al espectacular centro termolúdico Caldea en Andorra.'
   },
   {
     id: 'promo-valencia', 
     title: 'Escapada Azul a Valencia', 
-    price: 180, 
+    price: 35, 
     currency: 'EUR', 
-    description: 'Sumérgete en la belleza de Valencia con 2 noches en un hotel de 4 estrellas y entradas incluidas para el impresionante Oceanogràfic. ¡Una experiencia inolvidable!'
+    description: 'Sumérgete en la belleza del mundo marino con las entradas para el impresionante Oceanogràfic de Valencia. ¡Una experiencia inolvidable!'
   },
   { 
     id: 'promo-madrid', 
     title: 'Arte y Cultura en Madrid', 
-    price: 220, 
+    price: 50, 
     currency: 'EUR', 
-    description: 'Disfruta de la capital española con 2 noches de alojamiento y un tour guiado por el famoso Triángulo del Arte: los museos del Prado, Reina Sofía y Thyssen-Bornemisza.'
+    description: 'Descubre la capital española con un tour guiado por el famoso Triángulo del Arte: los museos del Prado, Reina Sofía y Thyssen-Bornemisza.'
   }
 ];
 
