@@ -4,7 +4,7 @@
       "id": "country-japan",
       "title": "Japón",
       "description": "Un país donde la tradición milenaria y la tecnología futurista conviven. No te pierdas los templos de Kioto ni el cruce de Shibuya en Tokio.",
-      "imageUrl": "https://images.unsplash.com/photo-1547448526-5e9d57fa28f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0b2t5byUyMGphcGFufGVufDB8fHx8MTc2NDA4MDc3OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1547448526-5e9d57fa28f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0b2t5byUyMGphcGFufGVufDB8fHx8MTc2NDA4MDc3OHww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "japan temple",
       "details": "### Qué ver y hacer:\n\n*   **Tokio:** Explora Shibuya y su famoso cruce, visita el templo Senso-ji en Asakusa y disfruta de la tecnología en Akihabara.\n*   **Kioto:** Recorre los templos tradicionales como Fushimi Inari y el Pabellón Dorado (Kinkaku-ji).\n*   **Experiencia cultural:** Participa en una ceremonia del té, prueba sushi auténtico y pasea por jardines zen.\n*   **Naturaleza:** Contempla el Monte Fuji desde el Lago Kawaguchi o haz senderismo en los Alpes Japoneses."
     },
@@ -126,30 +126,21 @@
       "imageHint": "theatre show"
     },
     {
-      "id": "blog-featured",
-      "title": "Guía para Descubrir los Tesoros Escondidos de las Capitales Europeas",
-      "description": "Más allá de los monumentos icónicos, cada ciudad europea guarda secretos esperando a ser descubiertos. Te llevamos por callejones con encanto, mercados locales y miradores secretos.",
-      "imageUrl": "https://images.unsplash.com/photo-1471623432079-b99d33bab662?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxldXJvcGUlMjBzdHJlZXR8ZW58MHx8fHwxNzY0NzAxNjM3fDA&ixlib.rb-4.1.0&q=80&w=1080",
-      "imageHint": "europe street"
-    },
-    {
-      "id": "blog-tip1",
-      "title": "Cómo Hacer la Maleta como un Profesional",
-      "description": "Optimiza el espacio y viaja más ligero con nuestros trucos para hacer la maleta. Desde cómo doblar la ropa hasta los imprescindibles que no pueden faltar.",
-      "imageUrl": "https://images.unsplash.com/photo-1582192243453-3fe335d1a2a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwYWNraW5nJTIwc3VpdGNhc2V8ZW58MHx8fHwxNzY0NzAxNjk5fDA&ixlib.rb-4.1.0&q=80&w=1080",
-      "imageHint": "packing suitcase"
-    },
-    {
-      "id": "blog-tip2",
-      "title": "Fotografía de Viajes: Captura Momentos, no solo Fotos",
-      "description": "Aprende a contar una historia con tus imágenes. Te damos consejos sobre composición, luz y cómo capturar la verdadera esencia de cada lugar.",
-      "imageUrl": "https://images.unsplash.com/photo-1508921359325-06304005b6e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0cmF2ZWwlMjBwaG90b2dyYXBoeXxlbnwwfHx8fDE3NjQ3MDE3NDV8MA&ixlib.rb-4.1.0&q=80&w=1080",
-      "imageHint": "travel photography"
-    },
-    {
       "id": "promo-portaventura",
       "imageUrl": "https://www.gastronomistas.com/wp-content/uploads/skyline-port-aventura-gastronomistas.com-.jpg",
       "imageHint": "portaventura theme park"
+    },
+    {
+      "id": "tour-valencia",
+      "description": "Sumérgete en la belleza del mundo marino con las entradas para el impresionante Oceanogràfic de Valencia.",
+      "imageUrl": "https://cdn-imgix.headout.com/media/images/5f8b0f4b1a25c3bc6db8521a357ba90a-vv.jpg?auto=format&w=900&h=562.5&q=90&ar=16%3A10&fit=crop",
+      "imageHint": "valencia aquarium"
+    },
+    {
+      "id": "tour-madrid",
+      "description": "Descubre la capital española con un tour guiado por el famoso Triángulo del Arte.",
+      "imageUrl": "https://res.cloudinary.com/hello-tickets/image/upload/ar_4:3,c_fill,f_auto,q_auto,w_800/v1613473963/ipu7chnajqua5bnm8swl.jpg",
+      "imageHint": "madrid museum"
     }
   ]
 }

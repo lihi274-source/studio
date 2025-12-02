@@ -37,14 +37,16 @@ const promocionesData: Promocion[] = [
     title: 'Escapada Azul a Valencia', 
     price: 35, 
     currency: 'EUR', 
-    description: 'Sumérgete en la belleza del mundo marino con las entradas para el impresionante Oceanogràfic de Valencia. ¡Una experiencia inolvidable!'
+    description: 'Sumérgete en la belleza del mundo marino con las entradas para el impresionante Oceanogràfic de Valencia. ¡Una experiencia inolvidable!',
+    excursionId: 'tour-valencia'
   },
   { 
     id: 'promo-madrid', 
     title: 'Arte y Cultura en Madrid', 
     price: 50, 
     currency: 'EUR', 
-    description: 'Descubre la capital española con un tour guiado por el famoso Triángulo del Arte: los museos del Prado, Reina Sofía y Thyssen-Bornemisza.'
+    description: 'Descubre la capital española con un tour guiado por el famoso Triángulo del Arte: los museos del Prado, Reina Sofía y Thyssen-Bornemisza.',
+    excursionId: 'tour-madrid'
   },
   {
     id: 'promo-rey-leon',
