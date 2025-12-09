@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Loader2, Search, Package, MapPin, Calendar, AlertCircle, CheckCircle, FileText } from 'lucide-react';
+import { Loader2, Search, Package, MapPin, AlertCircle, CheckCircle, FileText } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const searchSchema = z.object({
@@ -20,7 +20,6 @@ const searchSchema = z.object({
 type SearchFormValues = z.infer<typeof searchSchema>;
 
 type Shipment = {
-  id: string;
   tracking_code: string;
   origen: string;
   destino: string;
