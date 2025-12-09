@@ -8,9 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
-import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Loader2, Search, Package, MapPin, AlertCircle, CheckCircle, FileText } from 'lucide-react';
+import { Loader2, Search, Package, MapPin, AlertCircle, CheckCircle, FileText, Wallet, SearchCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const searchSchema = z.object({
@@ -28,10 +27,12 @@ type Shipment = {
   ubicacion_actual: string;
 };
 
-const statusConfig = {
-  'Buscando ofertas': { progress: 10, color: 'bg-yellow-500', label: 'Buscando ofertas' },
-  'Pendiente pago': { progress: 50, color: 'bg-blue-500', label: 'Pendiente de pago' },
-  'Pagado': { progress: 100, color: 'bg-green-500', label: 'Pagado' },
+const statuses = ['Buscando ofertas', 'Pendiente pago', 'Pagado'];
+
+const statusIcons = {
+  'Buscando ofertas': SearchCheck,
+  'Pendiente pago': Wallet,
+  'Pagado': CheckCircle,
 };
 
 export default function TrackingPage() {
@@ -69,8 +70,8 @@ export default function TrackingPage() {
       setIsLoading(false);
     }
   };
-
-  const currentStatus = shipment ? statusConfig[shipment.status] : null;
+  
+  const currentStatusIndex = shipment ? statuses.indexOf(shipment.status) : -1;
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-3xl">
@@ -116,22 +117,49 @@ export default function TrackingPage() {
         </Alert>
       )}
 
-      {shipment && currentStatus && (
+      {shipment && (
         <Card className="mt-8 animate-in fade-in-50">
           <CardHeader>
             <CardTitle className="font-headline text-2xl">Resultats per a: {shipment.tracking_code}</CardTitle>
             <CardDescription>A continuació es mostra la informació més recent del teu enviament.</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <span className="font-semibold text-lg">{currentStatus.label}</span>
-                <span className="text-sm text-muted-foreground">{currentStatus.progress}%</span>
-              </div>
-              <Progress value={currentStatus.progress} className={cn("h-3", currentStatus.color)} />
+          <CardContent className="space-y-8">
+            {/* Timeline */}
+            <div className="flex justify-between items-start">
+              {statuses.map((status, index) => {
+                const Icon = statusIcons[status as keyof typeof statusIcons];
+                const isCompleted = index < currentStatusIndex;
+                const isActive = index === currentStatusIndex;
+
+                return (
+                  <div key={status} className="flex-1 flex flex-col items-center relative">
+                    <div className={cn(
+                      "flex items-center justify-center w-12 h-12 rounded-full border-2",
+                      isCompleted ? "bg-green-500 border-green-600 text-white" : "",
+                      isActive ? "bg-blue-500 border-blue-600 text-white animate-pulse" : "",
+                      !isCompleted && !isActive ? "bg-card border-border" : ""
+                    )}>
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <p className={cn(
+                      "mt-2 text-sm text-center",
+                      isActive ? "font-bold text-primary" : "text-muted-foreground"
+                    )}>
+                      {status}
+                    </p>
+                    {index < statuses.length - 1 && (
+                      <div className={cn(
+                        "absolute top-6 left-1/2 w-full h-0.5",
+                        isCompleted ? "bg-green-500" : "bg-border"
+                      )} style={{ transform: 'translateY(-50%)' }} />
+                    )}
+                  </div>
+                );
+              })}
             </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+
+            {/* Shipment details */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm pt-6 border-t">
                 <div className="flex items-start gap-3">
                     <Package className="h-5 w-5 text-primary mt-1"/>
                     <div>
