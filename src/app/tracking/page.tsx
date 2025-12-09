@@ -125,34 +125,35 @@ export default function TrackingPage() {
           </CardHeader>
           <CardContent className="space-y-8">
             {/* Timeline */}
-            <div className="flex justify-between items-start">
+            <div className="relative flex justify-between items-start pt-4">
+              <div className="absolute top-10 left-0 w-full h-0.5 bg-border -z-10" />
               {statuses.map((status, index) => {
                 const Icon = statusIcons[status as keyof typeof statusIcons];
                 const isCompleted = index < currentStatusIndex;
                 const isActive = index === currentStatusIndex;
+                const isFuture = index > currentStatusIndex;
 
                 return (
-                  <div key={status} className="flex-1 flex flex-col items-center relative">
+                  <div key={status} className="flex-1 flex flex-col items-center relative text-center">
+                     <div className={cn(
+                        "absolute top-4 left-1/2 w-full h-0.5 -z-10",
+                         index === 0 ? "w-1/2 left-1/2" : (index === statuses.length -1 ? "w-1/2 right-1/2" : ""),
+                         isCompleted ? "bg-green-500" : "bg-border"
+                     )}/>
                     <div className={cn(
-                      "flex items-center justify-center w-12 h-12 rounded-full border-2",
+                      "flex items-center justify-center w-12 h-12 rounded-full border-2 z-10",
                       isCompleted ? "bg-green-500 border-green-600 text-white" : "",
                       isActive ? "bg-blue-500 border-blue-600 text-white animate-pulse" : "",
-                      !isCompleted && !isActive ? "bg-card border-border" : ""
+                      isFuture ? "bg-card border-border" : ""
                     )}>
                       <Icon className="w-6 h-6" />
                     </div>
                     <p className={cn(
-                      "mt-2 text-sm text-center",
-                      isActive ? "font-bold text-primary" : "text-muted-foreground"
+                      "mt-2 text-sm font-medium",
+                      isActive ? "text-primary" : "text-muted-foreground"
                     )}>
                       {status}
                     </p>
-                    {index < statuses.length - 1 && (
-                      <div className={cn(
-                        "absolute top-6 left-1/2 w-full h-0.5",
-                        isCompleted ? "bg-green-500" : "bg-border"
-                      )} style={{ transform: 'translateY(-50%)' }} />
-                    )}
                   </div>
                 );
               })}
