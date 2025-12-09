@@ -125,39 +125,42 @@ export default function TrackingPage() {
           </CardHeader>
           <CardContent className="space-y-8">
             {/* Timeline */}
-            <div className="relative flex justify-between items-start pt-4">
-              <div className="absolute top-10 left-0 w-full h-0.5 bg-border -z-10" />
-              {statuses.map((status, index) => {
-                const Icon = statusIcons[status as keyof typeof statusIcons];
-                const isCompleted = index < currentStatusIndex;
-                const isActive = index === currentStatusIndex;
-                const isFuture = index > currentStatusIndex;
+             <div className="flex items-center w-full px-4 sm:px-8 pt-4">
+                <div className="relative flex-1">
+                    <div className="absolute top-1/2 -translate-y-1/2 w-full h-0.5 bg-border"></div>
+                    <div
+                        className="absolute top-1/2 -translate-y-1/2 h-0.5 bg-green-500 transition-all duration-500"
+                        style={{ width: `${(currentStatusIndex / (statuses.length - 1)) * 100}%` }}
+                    ></div>
+                    <div className="relative flex justify-between">
+                        {statuses.map((status, index) => {
+                            const Icon = statusIcons[status as keyof typeof statusIcons];
+                            const isCompleted = index <= currentStatusIndex;
+                            const isActive = index === currentStatusIndex;
 
-                return (
-                  <div key={status} className="flex-1 flex flex-col items-center relative text-center">
-                     <div className={cn(
-                        "absolute top-4 left-1/2 w-full h-0.5 -z-10",
-                         index === 0 ? "w-1/2 left-1/2" : (index === statuses.length -1 ? "w-1/2 right-1/2" : ""),
-                         isCompleted ? "bg-green-500" : "bg-border"
-                     )}/>
-                    <div className={cn(
-                      "flex items-center justify-center w-12 h-12 rounded-full border-2 z-10",
-                      isCompleted ? "bg-green-500 border-green-600 text-white" : "",
-                      isActive ? "bg-blue-500 border-blue-600 text-white animate-pulse" : "",
-                      isFuture ? "bg-card border-border" : ""
-                    )}>
-                      <Icon className="w-6 h-6" />
+                            return (
+                                <div key={status} className="z-10">
+                                    <div className={cn(
+                                        "flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 transition-colors duration-300",
+                                        isCompleted ? "bg-green-500 border-green-600 text-white" : "bg-card border-border",
+                                        isActive && "animate-pulse"
+                                    )}>
+                                        <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
-                    <p className={cn(
-                      "mt-2 text-sm font-medium",
-                      isActive ? "text-primary" : "text-muted-foreground"
-                    )}>
-                      {status}
-                    </p>
-                  </div>
-                );
-              })}
+                </div>
             </div>
+            <div className="flex justify-between px-2 sm:px-4">
+                {statuses.map((status) => (
+                    <p key={status} className="text-center text-xs sm:text-sm text-muted-foreground w-1/3 font-medium">
+                        {status}
+                    </p>
+                ))}
+            </div>
+
 
             {/* Shipment details */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm pt-6 border-t">
