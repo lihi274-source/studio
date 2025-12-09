@@ -14,7 +14,7 @@ import { Loader2, Search, Package, MapPin, Calendar, AlertCircle } from 'lucide-
 import { cn } from '@/lib/utils';
 
 const searchSchema = z.object({
-  tracking_code: z.string().min(3, 'El codi de seguiment és requerit.'),
+  tracking_code: z.string().min(3, 'El código de seguimiento es requerido.'),
 });
 
 type SearchFormValues = z.infer<typeof searchSchema>;
@@ -25,14 +25,14 @@ type Shipment = {
   origin: string;
   destination: string;
   eta: string;
-  status: 'En magatzem' | 'En trànsit' | 'Lliurat';
+  status: 'En almacén' | 'En tránsito' | 'Entregado';
   current_location: string;
 };
 
 const statusConfig = {
-  'En magatzem': { progress: 10, color: 'bg-yellow-500', label: 'En Magatzem' },
-  'En trànsit': { progress: 50, color: 'bg-blue-500', label: 'En Trànsit' },
-  'Lliurat': { progress: 100, color: 'bg-green-500', label: 'Lliurat' },
+  'En almacén': { progress: 10, color: 'bg-yellow-500', label: 'En Almacén' },
+  'En tránsito': { progress: 50, color: 'bg-blue-500', label: 'En Tránsito' },
+  'Entregado': { progress: 100, color: 'bg-green-500', label: 'Entregado' },
 };
 
 export default function TrackingPage() {
@@ -55,17 +55,17 @@ export default function TrackingPage() {
     try {
       const response = await fetch(`https://sheetdb.io/api/v1/8cm3mytzi94ag/search?tracking_code=${data.tracking_code}`);
       if (!response.ok) {
-        throw new Error('No s\'ha pogut connectar amb el servidor.');
+        throw new Error('No se ha podido conectar con el servidor.');
       }
       const results: Shipment[] = await response.json();
 
       if (results.length > 0) {
         setShipment(results[0]);
       } else {
-        setError('Codi no trobat. Revisa el codi i torna a intentar-ho.');
+        setError('Código no encontrado. Revisa el código y vuelve a intentarlo.');
       }
     } catch (e) {
-      setError('Hi ha hagut un error en la connexió. Intenta-ho més tard.');
+      setError('Ha habido un error en la conexión. Inténtalo más tarde.');
     } finally {
       setIsLoading(false);
     }
@@ -77,9 +77,9 @@ export default function TrackingPage() {
     <div className="container mx-auto px-4 py-12 max-w-3xl">
       <Card className="w-full border-2 border-primary/10 shadow-lg">
         <CardHeader className="text-center">
-          <CardTitle className="font-headline text-4xl">Localitza el teu enviament</CardTitle>
+          <CardTitle className="font-headline text-4xl">Localiza tu envío</CardTitle>
           <CardDescription className="text-lg">
-            Introdueix el teu codi de seguiment per veure l'estat actual.
+            Introduce tu código de seguimiento para ver el estado actual.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -93,7 +93,7 @@ export default function TrackingPage() {
                     <FormControl>
                       <div className="relative">
                         <Package className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                        <Input placeholder="Escriu el teu codi aquí..." {...field} className="pl-10 h-12 text-base" />
+                        <Input placeholder="Escribe tu código aquí..." {...field} className="pl-10 h-12 text-base" />
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -102,7 +102,7 @@ export default function TrackingPage() {
               />
               <Button type="submit" size="lg" className="h-12 bg-accent hover:bg-accent/90 text-accent-foreground" disabled={isLoading}>
                 {isLoading ? <Loader2 className="animate-spin" /> : <Search />}
-                <span className="ml-2">Cercar</span>
+                <span className="ml-2">Buscar</span>
               </Button>
             </form>
           </Form>
@@ -120,8 +120,8 @@ export default function TrackingPage() {
       {shipment && currentStatus && (
         <Card className="mt-8 animate-in fade-in-50">
           <CardHeader>
-            <CardTitle className="font-headline text-2xl">Resultats per: {shipment.tracking_code}</CardTitle>
-            <CardDescription>A continuació es mostra la informació més recent del teu enviament.</CardDescription>
+            <CardTitle className="font-headline text-2xl">Resultados para: {shipment.tracking_code}</CardTitle>
+            <CardDescription>A continuación se muestra la información más reciente de tu envío.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div>
@@ -143,21 +143,21 @@ export default function TrackingPage() {
                  <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-primary mt-1"/>
                     <div>
-                        <p className="font-semibold">Destí</p>
+                        <p className="font-semibold">Destino</p>
                         <p className="text-muted-foreground">{shipment.destination}</p>
                     </div>
                 </div>
                  <div className="flex items-start gap-3">
                     <Calendar className="h-5 w-5 text-primary mt-1"/>
                     <div>
-                        <p className="font-semibold">Data prevista (ETA)</p>
+                        <p className="font-semibold">Fecha prevista (ETA)</p>
                         <p className="text-muted-foreground">{shipment.eta}</p>
                     </div>
                 </div>
                 <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-green-500 mt-1"/>
                     <div>
-                        <p className="font-semibold">Ubicació actual</p>
+                        <p className="font-semibold">Ubicación actual</p>
                         <p className="text-muted-foreground">{shipment.current_location}</p>
                     </div>
                 </div>
