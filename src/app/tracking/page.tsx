@@ -10,11 +10,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Loader2, Search, Package, MapPin, Calendar, AlertCircle } from 'lucide-react';
+import { Loader2, Search, Package, MapPin, Calendar, AlertCircle, CheckCircle, FileText } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const searchSchema = z.object({
-  tracking_code: z.string().min(3, 'El código de seguimiento es requerido.'),
+  tracking_code: z.string().min(3, 'El codi de seguiment és requerit.'),
 });
 
 type SearchFormValues = z.infer<typeof searchSchema>;
@@ -22,17 +22,17 @@ type SearchFormValues = z.infer<typeof searchSchema>;
 type Shipment = {
   id: string;
   tracking_code: string;
-  origin: string;
-  destination: string;
-  eta: string;
-  status: 'En almacén' | 'En tránsito' | 'Entregado';
-  current_location: string;
+  origen: string;
+  destino: string;
+  confirmacion_reserva: string;
+  status: 'Buscando ofertas' | 'Pendiente pago' | 'Pagado';
+  ubicacion_actual: string;
 };
 
 const statusConfig = {
-  'En almacén': { progress: 10, color: 'bg-yellow-500', label: 'En Almacén' },
-  'En tránsito': { progress: 50, color: 'bg-blue-500', label: 'En Tránsito' },
-  'Entregado': { progress: 100, color: 'bg-green-500', label: 'Entregado' },
+  'Buscando ofertas': { progress: 10, color: 'bg-yellow-500', label: 'Buscando ofertas' },
+  'Pendiente pago': { progress: 50, color: 'bg-blue-500', label: 'Pendiente de pago' },
+  'Pagado': { progress: 100, color: 'bg-green-500', label: 'Pagado' },
 };
 
 export default function TrackingPage() {
@@ -55,17 +55,17 @@ export default function TrackingPage() {
     try {
       const response = await fetch(`https://sheetdb.io/api/v1/8cm3mytzi94ag/search?tracking_code=${data.tracking_code}`);
       if (!response.ok) {
-        throw new Error('No se ha podido conectar con el servidor.');
+        throw new Error('No s\'ha pogut connectar amb el servidor.');
       }
       const results: Shipment[] = await response.json();
 
       if (results.length > 0) {
         setShipment(results[0]);
       } else {
-        setError('Código no encontrado. Revisa el código y vuelve a intentarlo.');
+        setError('Codi no trobat. Revisa el codi i torna a intentar-ho.');
       }
     } catch (e) {
-      setError('Ha habido un error en la conexión. Inténtalo más tarde.');
+      setError('Hi ha hagut un error en la connexió. Intenta-ho més tard.');
     } finally {
       setIsLoading(false);
     }
@@ -77,9 +77,9 @@ export default function TrackingPage() {
     <div className="container mx-auto px-4 py-12 max-w-3xl">
       <Card className="w-full border-2 border-primary/10 shadow-lg">
         <CardHeader className="text-center">
-          <CardTitle className="font-headline text-4xl">Localiza tu envío</CardTitle>
+          <CardTitle className="font-headline text-4xl">Localitza el teu enviament</CardTitle>
           <CardDescription className="text-lg">
-            Introduce tu código de seguimiento para ver el estado actual.
+            Introdueix el teu codi de seguiment per veure l'estat actual.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -93,7 +93,7 @@ export default function TrackingPage() {
                     <FormControl>
                       <div className="relative">
                         <Package className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                        <Input placeholder="Escribe tu código aquí..." {...field} className="pl-10 h-12 text-base" />
+                        <Input placeholder="Escriu el teu codi aquí..." {...field} className="pl-10 h-12 text-base" />
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -102,7 +102,7 @@ export default function TrackingPage() {
               />
               <Button type="submit" size="lg" className="h-12 bg-accent hover:bg-accent/90 text-accent-foreground" disabled={isLoading}>
                 {isLoading ? <Loader2 className="animate-spin" /> : <Search />}
-                <span className="ml-2">Buscar</span>
+                <span className="ml-2">Cercar</span>
               </Button>
             </form>
           </Form>
@@ -120,8 +120,8 @@ export default function TrackingPage() {
       {shipment && currentStatus && (
         <Card className="mt-8 animate-in fade-in-50">
           <CardHeader>
-            <CardTitle className="font-headline text-2xl">Resultados para: {shipment.tracking_code}</CardTitle>
-            <CardDescription>A continuación se muestra la información más reciente de tu envío.</CardDescription>
+            <CardTitle className="font-headline text-2xl">Resultats per a: {shipment.tracking_code}</CardTitle>
+            <CardDescription>A continuació es mostra la informació més recent del teu enviament.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div>
@@ -137,28 +137,28 @@ export default function TrackingPage() {
                     <Package className="h-5 w-5 text-primary mt-1"/>
                     <div>
                         <p className="font-semibold">Origen</p>
-                        <p className="text-muted-foreground">{shipment.origin}</p>
+                        <p className="text-muted-foreground">{shipment.origen}</p>
                     </div>
                 </div>
                  <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-primary mt-1"/>
                     <div>
-                        <p className="font-semibold">Destino</p>
-                        <p className="text-muted-foreground">{shipment.destination}</p>
+                        <p className="font-semibold">Destí</p>
+                        <p className="text-muted-foreground">{shipment.destino}</p>
                     </div>
                 </div>
                  <div className="flex items-start gap-3">
-                    <Calendar className="h-5 w-5 text-primary mt-1"/>
+                    <FileText className="h-5 w-5 text-primary mt-1"/>
                     <div>
-                        <p className="font-semibold">Fecha prevista (ETA)</p>
-                        <p className="text-muted-foreground">{shipment.eta}</p>
+                        <p className="font-semibold">Confirmació Reserva</p>
+                        <p className="text-muted-foreground">{shipment.confirmacion_reserva}</p>
                     </div>
                 </div>
                 <div className="flex items-start gap-3">
-                    <MapPin className="h-5 w-5 text-green-500 mt-1"/>
+                    <CheckCircle className="h-5 w-5 text-green-500 mt-1"/>
                     <div>
-                        <p className="font-semibold">Ubicación actual</p>
-                        <p className="text-muted-foreground">{shipment.current_location}</p>
+                        <p className="font-semibold">Ubicació actual</p>
+                        <p className="text-muted-foreground">{shipment.ubicacion_actual}</p>
                     </div>
                 </div>
             </div>
