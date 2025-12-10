@@ -23,15 +23,15 @@ type Shipment = {
   origen: string;
   destino: string;
   confirmacion_reserva: string;
-  status: 'Buscando ofertas' | 'Pendiente pago' | 'Pagado';
+  status: 'Buscando ofertas' | 'Pendiente de pago' | 'Pagado';
   ubicacion_actual: string;
 };
 
-const statuses = ['Buscando ofertas', 'Pendiente pago', 'Pagado'];
+const statuses = ['Buscando ofertas', 'Pendiente de pago', 'Pagado'];
 
 const statusIcons = {
   'Buscando ofertas': SearchCheck,
-  'Pendiente pago': Wallet,
+  'Pendiente de pago': Wallet,
   'Pagado': CheckCircle,
 };
 
