@@ -51,7 +51,7 @@
     {
       "id": "tour-paris",
       "description": "Un tour romántico por la ciudad de la luz, visitando la Torre Eiffel y el Louvre.",
-      "imageUrl": "https://www.sortiraparis.com/images/80/87950/484853-visuels-disneyland-paris-chateau.jpg",
+      "imageUrl": "/disney.jpeg",
       "imageHint": "paris eiffel tower"
     },
     {
@@ -112,7 +112,7 @@
     },
     {
       "id": "promo-disneyland",
-      "imageUrl": "https://www.sortiraparis.com/images/80/87950/484853-visuels-disneyland-paris-chateau.jpg",
+      "imageUrl": "/disney.jpeg",
       "imageHint": "disneyland paris"
     },
     {
