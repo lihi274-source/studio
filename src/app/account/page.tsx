@@ -10,8 +10,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Loader2, LogOut, User, KeyRound } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import Header from '@/components/layout/header';
-import Footer from '@/components/layout/footer';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
@@ -93,18 +91,15 @@ export default function AccountPage() {
   if (isLoadingUser) {
     return (
       <div className="flex flex-col min-h-screen bg-background">
-        <Header />
         <main className="flex-grow container mx-auto px-4 py-8 flex items-center justify-center">
             <Loader2 className="h-16 w-16 animate-spin text-primary" />
         </main>
-        <Footer />
       </div>
     );
   }
 
   return (
      <div className="flex flex-col min-h-screen bg-background">
-      <Header />
       <main className="flex-grow container mx-auto px-4 py-8 flex items-center justify-center">
         {user ? (
           <Card className="w-full max-w-md">
@@ -173,7 +168,6 @@ export default function AccountPage() {
           </Card>
         )}
       </main>
-      <Footer />
     </div>
   );
 }

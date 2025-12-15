@@ -5,8 +5,6 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2, LogOut, User, Building } from 'lucide-react';
-import Header from '@/components/layout/header';
-import Footer from '@/components/layout/footer';
 
 type UserData = {
   Usuari: string;
@@ -43,24 +41,21 @@ export default function DashboardPage() {
   if (isLoading || !user) {
     return (
       <div className="flex flex-col min-h-screen bg-background">
-        <Header />
         <main className="flex-grow container mx-auto px-4 py-8 flex items-center justify-center">
           <Loader2 className="h-16 w-16 animate-spin text-primary" />
         </main>
-        <Footer />
       </div>
     );
   }
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      <Header />
       <main className="flex-grow container mx-auto px-4 py-12 flex items-center justify-center">
         <Card className="w-full max-w-lg">
           <CardHeader className="text-center">
             <CardTitle className="font-headline text-4xl">El Teu Perfil</CardTitle>
             <CardDescription className="text-lg">
-              Benvingut/da al teu espai personal.
+              Benvingut/da a la teva zona privada, {user.Usuari}.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -85,7 +80,6 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       </main>
-      <Footer />
     </div>
   );
 }
