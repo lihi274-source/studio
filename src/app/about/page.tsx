@@ -29,7 +29,7 @@ export default function AboutPage() {
       
       <div className="relative w-full h-80 md:h-[500px] mb-12 rounded-2xl overflow-hidden shadow-2xl">
           <Image
-              src="https://images.unsplash.com/photo-1504150558240-0b4fd23ab684?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0cmF2ZWwlMjBhZ2VuY3l8ZW58MHx8fHwxNzY0NzAxMjMzfDA&ixlib=rb-4.1.0&q=80&w=1080"
+              src="/foto.jpg"
               alt="Equipo de Viajes HICA planificando rutas"
               fill
               className="object-cover"
