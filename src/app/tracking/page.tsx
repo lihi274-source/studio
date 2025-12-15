@@ -53,7 +53,7 @@ export default function TrackingPage() {
     setError(null);
 
     try {
-      const response = await fetch(`https://sheetdb.io/api/v1/8cm3mytzi94ag/search?tracking_code=${data.tracking_code}`);
+      const response = await fetch(`https://sheetdb.io/api/v1/reou400435n4c/search?tracking_code=${data.tracking_code}`);
       if (!response.ok) {
         throw new Error('No se ha podido conectar con el servidor.');
       }
@@ -130,12 +130,12 @@ export default function TrackingPage() {
                     <div className="absolute top-1/2 -translate-y-1/2 w-full h-0.5 bg-border"></div>
                     <div
                         className="absolute top-1/2 -translate-y-1/2 h-0.5 bg-green-500 transition-all duration-500"
-                        style={{ width: `${(currentStatusIndex / (statuses.length - 1)) * 100}%` }}
+                        style={{ width: `${currentStatusIndex >= 0 ? (currentStatusIndex / (statuses.length - 1)) * 100 : 0}%` }}
                     ></div>
                     <div className="relative flex justify-between">
                         {statuses.map((status, index) => {
                             const Icon = statusIcons[status as keyof typeof statusIcons];
-                            const isCompleted = index <= currentStatusIndex;
+                            const isCompleted = currentStatusIndex >=0 && index <= currentStatusIndex;
                             const isActive = index === currentStatusIndex;
 
                             return (
