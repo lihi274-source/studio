@@ -13,14 +13,14 @@ export async function POST(request: Request) {
   }
 
   try {
-    const { missatge } = await request.json();
+    const { message } = await request.json();
 
-    if (!missatge) {
+    if (!message) {
         return NextResponse.json({ error: 'El missatge no pot estar buit.' }, { status: 400 });
     }
     
     // --- LÒGICA DEL PROMPT AMAGAT ---
-    const fullPrompt = `Actua com a expert logístic de l'empresa EnTrans. Parla en català, Sigues corporatiu i breu. La pregunta del client és: "${missatge}"`;
+    const fullPrompt = `Actua com a expert logístic de l'empresa EnTrans. Parla en català, Sigues corporatiu i breu. La pregunta del client és: "${message}"`;
 
     // --- LOGS DE CONTROL (MOLT ÚTILS PER DEPURAR A NETLIFY) ---
     console.log("--- INICI DEPURACIÓ MISTRAL ---");
@@ -38,7 +38,7 @@ export async function POST(request: Request) {
     });
 
     console.log("Resposta rebuda de Mistral!"); 
-    return NextResponse.json({ resposta: chatResponse.choices[0].message.content });
+    return NextResponse.json({ reply: chatResponse.choices[0].message.content });
     
   } catch (error: any) {
     // --- GESTIÓ D'ERRORS MILLORADA ---
