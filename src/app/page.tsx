@@ -2,15 +2,15 @@
 
 import { Suspense, useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Hotel, Map, Plane, Tag, Globe } from 'lucide-react';
+import { Hotel, Map, Plane, Globe, Bot } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import VuelosTab from '@/components/tabs/vuelos-tab';
 import HotelesTab from '@/components/tabs/hoteles-tab';
 import ExcursionesTab from '@/components/tabs/excursiones-tab';
-import PromocionesTab from '@/components/tabs/promociones-tab';
 import DestinosTab from '@/components/tabs/destinos-tab';
+import ItineraryGeneratorTab from '@/components/tabs/itinerary-generator-tab';
 
 function HomePageContent() {
   const searchParams = useSearchParams();
@@ -47,9 +47,9 @@ function HomePageContent() {
               <Map className="mr-2 h-5 w-5" />
               Excursiones
             </TabsTrigger>
-            <TabsTrigger value="promociones" className="py-2.5 text-sm md:text-base sm:col-span-1 md:col-span-1">
-              <Tag className="mr-2 h-5 w-5" />
-              Promociones
+            <TabsTrigger value="itinerarios" className="py-2.5 text-sm md:text-base sm:col-span-1 md:col-span-1">
+              <Bot className="mr-2 h-5 w-5" />
+              Itinerarios IA
             </TabsTrigger>
           </TabsList>
           <TabsContent value="destinos">
@@ -64,8 +64,8 @@ function HomePageContent() {
           <TabsContent value="excursiones">
             <ExcursionesTab />
           </TabsContent>
-          <TabsContent value="promociones">
-            <PromocionesTab />
+          <TabsContent value="itinerarios">
+            <ItineraryGeneratorTab />
           </TabsContent>
         </Tabs>
       </main>
