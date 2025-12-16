@@ -13,35 +13,41 @@ export async function POST(request: Request) {
   }
 
   try {
-    const { message } = await request.json();
+    const { missatge } = await request.json();
 
-    if (!message) {
+    if (!missatge) {
         return NextResponse.json({ error: 'El missatge no pot estar buit.' }, { status: 400 });
     }
     
-    // --- LOGS DE CONTROL ---
+    // --- LÒGICA DEL PROMPT AMAGAT ---
+    const fullPrompt = `Actua com a expert logístic de l'empresa EnTrans. Parla en català, Sigues corporatiu i breu. La pregunta del client és: "${missatge}"`;
+
+    // --- LOGS DE CONTROL (MOLT ÚTILS PER DEPURAR A NETLIFY) ---
     console.log("--- INICI DEPURACIÓ MISTRAL ---");
     console.log("Intentant connectar amb clau...");
     console.log(`Inici de la clau: ${apiKey.substring(0, 4)}...`);
     console.log(`Llargada de la clau: ${apiKey.length} caràcters`);
-    console.log("Prompt a enviar a Mistral:", message);
+    console.log("Full Prompt a enviar a Mistral:", fullPrompt);
     console.log("----------------------------");
 
     const client = new MistralAI(apiKey);
 
     const chatResponse = await client.chat({
       model: 'mistral-small-latest',
-      messages: [{ role: 'user', content: message }],
+      messages: [{ role: 'user', content: fullPrompt }], // Enviem el prompt complet
     });
 
     console.log("Resposta rebuda de Mistral!"); 
-    return NextResponse.json({ reply: chatResponse.choices[0].message.content });
+    return NextResponse.json({ resposta: chatResponse.choices[0].message.content });
     
   } catch (error: any) {
+    // --- GESTIÓ D'ERRORS MILLORADA ---
     console.error("--- ERROR DETALLAT MISTRAL ---");
+    // Imprimeix l'error complet als logs del servidor per a una depuració més profunda
     console.error(JSON.stringify(error, null, 2));
     console.error("-------------------------------");
 
+    // Retorna un missatge d'error més útil al client
     const errorMessage = error.message.includes('401') 
       ? "Error d'autorització. La teva clau d'API de Mistral no és vàlida."
       : "No s'ha pogut contactar amb l'assistent d'IA.";
