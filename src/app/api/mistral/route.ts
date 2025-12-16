@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     }
   } catch (error) {
     console.error('Error a la ruta de Mistral:', error);
-    // Return a more generic error to the client
+    // Aquest comentari és per forçar la detecció de canvis.
     return NextResponse.json({ error: 'Error intern del servidor al processar la sol·licitud.' }, { status: 500 });
   }
 }
