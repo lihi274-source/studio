@@ -9,7 +9,6 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useState } from 'react';
-import { generateItineraryAction } from '@/app/actions';
 import { Loader2, Sparkles } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -40,17 +39,37 @@ const ItineraryGeneratorTab = () => {
   async function onSubmit(values: FormValues) {
     setIsLoading(true);
     setItinerary(null);
-    const result = await generateItineraryAction(values);
-    setIsLoading(false);
 
-    if (result.success) {
-      setItinerary(result.itinerary);
-    } else {
+    const prompt = `Ets un agent de viatges expert. Crea un itinerari de viatge detallat basat en les següents preferències:
+- Destí: ${values.destination}
+- Dates: ${values.dates}
+- Pressupost: ${values.budget}
+- Interessos: ${values.interests}
+
+Proporciona suggeriments de vols, hotels i activitats. Formata la resposta de manera clara i llegible.`;
+
+    try {
+      const response = await fetch('/api/mistral', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: prompt }),
+      });
+
+      if (!response.ok) {
+        throw new Error('La resposta de la xarxa no ha estat correcta.');
+      }
+
+      const data = await response.json();
+      setItinerary(data.reply);
+
+    } catch (error) {
       toast({
         variant: "destructive",
         title: "Error",
-        description: result.error,
-      })
+        description: "Hi ha hagut un error en generar l'itinerari. Si us plau, torna-ho a provar.",
+      });
+    } finally {
+      setIsLoading(false);
     }
   }
 
