@@ -1,5 +1,5 @@
 'use server';
-import MistralAI from '@mistralai/mistralai';
+import MistralClient from '@mistralai/mistralai';
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     console.log("Full Prompt a enviar a Mistral:", fullPrompt);
     console.log("---------------------------------");
 
-    const client = new MistralAI(apiKey);
+    const client = new MistralClient(apiKey);
 
     const chatResponse = await client.chat({
       model: 'mistral-small-latest',
