@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { Suspense, useState, use } from 'react';
@@ -236,12 +237,12 @@ function DestinoPageComponent({ slug }: { slug: string }) {
   );
 }
 
-export default function DestinoPage({ params }: { params: { slug: string } }) {
-    const resolvedParams = use(Promise.resolve(params));
+export default async function DestinoPage({ params }: { params: { slug: string } }) {
     return (
         <Suspense fallback={<div>Loading...</div>}>
-            <DestinoPageComponent slug={resolvedParams.slug} />
+            <DestinoPageComponent slug={params.slug} />
         </Suspense>
     )
 }
     
+
