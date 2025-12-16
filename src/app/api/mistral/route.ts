@@ -14,6 +14,8 @@ export async function POST(req: Request) {
     const mistralApiKey = process.env.MISTRAL_API_KEY;
 
     if (!mistralApiKey) {
+        // Aquest error és clau per a la depuració a Netlify.
+        console.error('MISTRAL_API_KEY no trobada a les variables d\'entorn.');
         return NextResponse.json({ error: 'La clau de la API de Mistral no està configurada' }, { status: 500 });
     }
 
