@@ -9,8 +9,10 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useState } from 'react';
-import { Loader2, Sparkles } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { Loader2, Sparkles, AlertCircle } from 'lucide-react';
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
+import ReactMarkdown from 'react-markdown';
+
 
 const formSchema = z.object({
   destination: z.string().min(1, 'El destino es requerido.'),
@@ -24,7 +26,7 @@ type FormValues = z.infer<typeof formSchema>;
 const ItineraryGeneratorTab = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [itinerary, setItinerary] = useState<string | null>(null);
-  const { toast } = useToast();
+  const [error, setError] = useState<string | null>(null);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -39,6 +41,7 @@ const ItineraryGeneratorTab = () => {
   async function onSubmit(values: FormValues) {
     setIsLoading(true);
     setItinerary(null);
+    setError(null);
 
     const prompt = `Ets un agent de viatges expert. Crea un itinerari de viatge detallat basat en les següents preferències:
 - Destí: ${values.destination}
@@ -46,7 +49,7 @@ const ItineraryGeneratorTab = () => {
 - Pressupost: ${values.budget}
 - Interessos: ${values.interests}
 
-Proporciona suggeriments de vols, hotels i activitats. Formata la resposta de manera clara i llegible.`;
+Proporciona suggeriments de vols, hotels i activitats. Formata la resposta de manera clara i llegible, utilitzant Markdown per a títols i llistes.`;
 
     try {
       const response = await fetch('/api/mistral', {
@@ -54,20 +57,17 @@ Proporciona suggeriments de vols, hotels i activitats. Formata la resposta de ma
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: prompt }),
       });
+      
+      const data = await response.json();
 
       if (!response.ok) {
-        throw new Error('La resposta de la xarxa no ha estat correcta.');
+        throw new Error(data.error || 'Hi ha hagut un error en generar l\'itinerari.');
       }
 
-      const data = await response.json();
       setItinerary(data.reply);
 
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "Hi ha hagut un error en generar l'itinerari. Si us plau, torna-ho a provar.",
-      });
+    } catch (error: any) {
+      setError(error.message);
     } finally {
       setIsLoading(false);
     }
@@ -175,11 +175,19 @@ Proporciona suggeriments de vols, hotels i activitats. Formata la resposta de ma
                 </div>
               </div>
             )}
-            {itinerary ? (
+            {error && (
+              <Alert variant="destructive">
+                <AlertCircle className="h-4 w-4" />
+                <AlertTitle>Error</AlertTitle>
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
+            {itinerary && (
               <div className="prose prose-sm dark:prose-invert max-w-none">
-                 <div className="whitespace-pre-wrap font-body text-foreground">{itinerary}</div>
+                 <ReactMarkdown className="whitespace-pre-wrap font-body text-foreground">{itinerary}</ReactMarkdown>
               </div>
-            ) : !isLoading && (
+            )}
+            {!isLoading && !itinerary && !error && (
                <div className="text-center text-muted-foreground py-16">
                   <p>Tu itinerario aparecerá aquí.</p>
                   <p className="text-sm">Rellena el formulario para empezar.</p>

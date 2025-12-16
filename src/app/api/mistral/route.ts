@@ -1,39 +1,51 @@
-import MistralClient from '@mistralai/mistralai';
+'use server';
+import MistralAI from '@mistralai/mistralai';
 import { NextResponse } from 'next/server';
 
-export const runtime = 'edge';
+export async function POST(request: Request) {
+  // 1. Llegir la clau des de les variables d'entorn (MAI directament al codi)
+  const apiKey = process.env.MISTRAL_API_KEY;
 
-export async function POST(req: Request) {
+  // 2. Comprovació de seguretat: si la clau no existeix, aturar l'execució.
+  if (!apiKey) {
+    console.error("MISTRAL_API_KEY no està configurada a les variables d'entorn.");
+    return NextResponse.json({ error: "Error de configuració del servidor: Manca la clau d'API." }, { status: 500 });
+  }
+
   try {
-    const { message } = await req.json();
+    const { message } = await request.json();
 
     if (!message) {
-      return NextResponse.json({ error: 'El missatge és requerit' }, { status: 400 });
+        return NextResponse.json({ error: 'El missatge no pot estar buit.' }, { status: 400 });
     }
+    
+    // --- LOGS DE CONTROL ---
+    console.log("--- INICI DEPURACIÓ MISTRAL ---");
+    console.log("Intentant connectar amb clau...");
+    console.log(`Inici de la clau: ${apiKey.substring(0, 4)}...`);
+    console.log(`Llargada de la clau: ${apiKey.length} caràcters`);
+    console.log("Prompt a enviar a Mistral:", message);
+    console.log("----------------------------");
 
-    const mistralApiKey = process.env.MISTRAL_API_KEY;
-
-    if (!mistralApiKey) {
-        // Aquest error és clau per a la depuració a Netlify.
-        console.error('MISTRAL_API_KEY no trobada a les variables d\'entorn.');
-        return NextResponse.json({ error: 'La clau de la API de Mistral no està configurada' }, { status: 500 });
-    }
-
-    const client = new MistralClient(mistralApiKey);
+    const client = new MistralAI(apiKey);
 
     const chatResponse = await client.chat({
       model: 'mistral-small-latest',
       messages: [{ role: 'user', content: message }],
     });
 
-    if (chatResponse.choices && chatResponse.choices.length > 0) {
-      const reply = chatResponse.choices[0].message.content;
-      return NextResponse.json({ reply });
-    } else {
-      return NextResponse.json({ error: 'No s\'ha rebut cap resposta de l\'assistent' }, { status: 500 });
-    }
-  } catch (error) {
-    console.error('Error a la ruta de Mistral:', error);
-    return NextResponse.json({ error: 'Error intern del servidor al processar la sol·licitud.' }, { status: 500 });
+    console.log("Resposta rebuda de Mistral!"); 
+    return NextResponse.json({ reply: chatResponse.choices[0].message.content });
+    
+  } catch (error: any) {
+    console.error("--- ERROR DETALLAT MISTRAL ---");
+    console.error(JSON.stringify(error, null, 2));
+    console.error("-------------------------------");
+
+    const errorMessage = error.message.includes('401') 
+      ? "Error d'autorització. La teva clau d'API de Mistral no és vàlida."
+      : "No s'ha pogut contactar amb l'assistent d'IA.";
+
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }

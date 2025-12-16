@@ -6,13 +6,15 @@ import { notFound, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft, Bot, Send, Loader2, User } from 'lucide-react';
+import { ArrowLeft, Bot, Send, Loader2, User, AlertCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { cn } from '@/lib/utils';
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
+import ReactMarkdown from 'react-markdown';
 
 
 // Helper function to parse text with asterisks for bolding
@@ -71,6 +73,7 @@ const DestinationChat = ({ destinationTitle }: { destinationTitle: string }) => 
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -81,8 +84,10 @@ const DestinationChat = ({ destinationTitle }: { destinationTitle: string }) => 
     
     const prompt = `Ets un expert en viatges. Respon a la següent pregunta sobre ${destinationTitle}:\n\n${input}`;
     
+    const currentInput = input;
     setInput('');
     setIsLoading(true);
+    setError(null);
 
     try {
       const response = await fetch('/api/mistral', {
@@ -91,15 +96,14 @@ const DestinationChat = ({ destinationTitle }: { destinationTitle: string }) => 
         body: JSON.stringify({ message: prompt }),
       });
 
-      if (!response.ok) throw new Error('Error en la resposta de la xarxa.');
-
       const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Error en la resposta de la xarxa.');
+
       const assistantMessage: Message = { role: 'assistant', content: data.reply };
       setMessages((prev) => [...prev, assistantMessage]);
 
-    } catch (error) {
-      const errorMessage: Message = { role: 'assistant', content: 'Hi ha hagut un error en processar la teva sol·licitud.' };
-      setMessages((prev) => [...prev, errorMessage]);
+    } catch (error: any) {
+      setError(error.message);
     } finally {
       setIsLoading(false);
     }
@@ -128,7 +132,7 @@ const DestinationChat = ({ destinationTitle }: { destinationTitle: string }) => 
                       <Avatar className="w-8 h-8 border-2 border-primary"><AvatarFallback>IA</AvatarFallback></Avatar>
                     )}
                     <div className={cn('max-w-md rounded-lg p-3 text-sm', message.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted')}>
-                      <p className="whitespace-pre-wrap">{message.content}</p>
+                      <ReactMarkdown className="prose prose-sm dark:prose-invert max-w-none">{message.content}</ReactMarkdown>
                     </div>
                      {message.role === 'user' && (
                       <Avatar className="w-8 h-8"><AvatarFallback>TU</AvatarFallback></Avatar>
@@ -142,6 +146,13 @@ const DestinationChat = ({ destinationTitle }: { destinationTitle: string }) => 
                         <p className="text-sm">Pensant...</p>
                     </div>
                   </div>
+                )}
+                {error && (
+                    <Alert variant="destructive" className="mt-4">
+                      <AlertCircle className="h-4 w-4" />
+                      <AlertTitle>Error</AlertTitle>
+                      <AlertDescription>{error}</AlertDescription>
+                    </Alert>
                 )}
               </div>
             </ScrollArea>

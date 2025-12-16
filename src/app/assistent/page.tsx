@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Bot, User, Send, Loader, CornerDownLeft } from 'lucide-react';
+import { Bot, User, Send, Loader, CornerDownLeft, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -9,6 +9,9 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import ReactMarkdown from 'react-markdown';
+
 
 type Message = {
   role: 'user' | 'assistant';
@@ -19,6 +22,7 @@ export default function AssistentPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,6 +30,8 @@ export default function AssistentPage() {
 
     const userMessage: Message = { role: 'user', content: input };
     setMessages((prev) => [...prev, userMessage]);
+    setError(null);
+    const currentInput = input;
     setInput('');
     setIsLoading(true);
 
@@ -35,20 +41,20 @@ export default function AssistentPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: input }),
+        body: JSON.stringify({ message: currentInput }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('La resposta de la xarxa no ha estat correcta.');
+        throw new Error(data.error || 'La resposta de la xarxa no ha estat correcta.');
       }
 
-      const data = await response.json();
       const assistantMessage: Message = { role: 'assistant', content: data.reply };
       setMessages((prev) => [...prev, assistantMessage]);
 
-    } catch (error) {
-      const errorMessage: Message = { role: 'assistant', content: 'Hi ha hagut un error al processar la teva sol·licitud.' };
-      setMessages((prev) => [...prev, errorMessage]);
+    } catch (error: any) {
+      setError(error.message);
     } finally {
       setIsLoading(false);
     }
@@ -99,7 +105,7 @@ export default function AssistentPage() {
                           : 'bg-card'
                       )}
                     >
-                      <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                      <ReactMarkdown className="prose prose-sm dark:prose-invert max-w-none">{message.content}</ReactMarkdown>
                     </div>
                      {message.role === 'user' && (
                       <Avatar className="w-8 h-8">
@@ -119,6 +125,13 @@ export default function AssistentPage() {
                     </div>
                   </div>
                 )}
+                 {error && (
+                    <Alert variant="destructive" className="mt-4">
+                      <AlertCircle className="h-4 w-4" />
+                      <AlertTitle>Error</AlertTitle>
+                      <AlertDescription>{error}</AlertDescription>
+                    </Alert>
+                  )}
               </div>
             </ScrollArea>
             <div className="p-4 border-t">
