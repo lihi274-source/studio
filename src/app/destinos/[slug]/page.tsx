@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useState, use } from 'react';
+import { Suspense, useState } from 'react';
 import { notFound, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
@@ -235,6 +235,7 @@ function DestinoPageComponent({ slug }: { slug: string }) {
   );
 }
 
+// Server Component Wrapper
 export default function DestinoPage({ params }: { params: { slug: string } }) {
     return (
         <Suspense fallback={<div>Loading...</div>}>
@@ -243,5 +244,6 @@ export default function DestinoPage({ params }: { params: { slug: string } }) {
     )
 }
     
+
 
 
