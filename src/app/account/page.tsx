@@ -14,14 +14,14 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 const formSchema = z.object({
-  Usuari: z.string().min(1, 'El camp usuari és requerit.'),
-  Contrasenya: z.string().min(1, 'La contrasenya és requerida.'),
+  usuari: z.string().min(1, 'El camp usuari és requerit.'),
+  password: z.string().min(1, 'La contrasenya és requerida.'),
 });
 
 type FormValues = z.infer<typeof formSchema>;
 type UserData = {
-  Usuari: string;
-  Empresa: string;
+  usuari: string;
+  empresa: string;
 }
 
 export default function AccountPage() {
@@ -47,27 +47,27 @@ export default function AccountPage() {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      Usuari: '',
-      Contrasenya: '',
+      usuari: '',
+      password: '',
     },
   });
 
   const handleLogin = async (values: FormValues) => {
     setIsSubmitting(true);
     try {
-      const response = await fetch(`https://sheetdb.io/api/v1/reou400435n4c/search?sheet=usuaris&Usuari=${values.Usuari}&Contrasenya=${values.Contrasenya}`);
+      const response = await fetch(`https://sheetdb.io/api/v1/reou400435n4c/search?sheet=usuaris&usuari=${values.usuari}&password=${values.password}`);
       const data = await response.json();
 
       if (data.length > 0) {
         const userData: UserData = {
-          Usuari: data[0].Usuari,
-          Empresa: data[0].Empresa,
+          usuari: data[0].usuari,
+          empresa: data[0].empresa,
         };
         localStorage.setItem('user', JSON.stringify(userData));
         setUser(userData);
         toast({
           title: 'Sessió iniciada correctament',
-          description: `Benvingut/da, ${userData.Usuari}!`,
+          description: `Benvingut/da, ${userData.usuari}!`,
         });
         router.push('/dashboard');
       } else {
@@ -122,7 +122,7 @@ export default function AccountPage() {
                 <form onSubmit={form.handleSubmit(handleLogin)} className="space-y-6">
                   <FormField
                     control={form.control}
-                    name="Usuari"
+                    name="usuari"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Usuari</FormLabel>
@@ -138,7 +138,7 @@ export default function AccountPage() {
                   />
                   <FormField
                     control={form.control}
-                    name="Contrasenya"
+                    name="password"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Contrasenya</FormLabel>

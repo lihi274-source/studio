@@ -7,8 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Loader2, LogOut, User, Building } from 'lucide-react';
 
 type UserData = {
-  Usuari: string;
-  Empresa: string;
+  usuari: string;
+  empresa: string;
 };
 
 export default function DashboardPage() {
@@ -55,7 +55,7 @@ export default function DashboardPage() {
           <CardHeader className="text-center">
             <CardTitle className="font-headline text-4xl">El Teu Perfil</CardTitle>
             <CardDescription className="text-lg">
-              Benvingut/da a la teva zona privada, {user.Usuari}.
+              Benvingut/da a la teva zona privada, {user.usuari}.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -63,14 +63,14 @@ export default function DashboardPage() {
                 <User className="h-6 w-6 text-primary" />
                 <div>
                     <p className="text-sm text-muted-foreground">Usuari</p>
-                    <p className="font-semibold text-lg">{user.Usuari}</p>
+                    <p className="font-semibold text-lg">{user.usuari}</p>
                 </div>
             </div>
              <div className="flex items-center gap-4 p-4 border rounded-md">
                 <Building className="h-6 w-6 text-primary" />
                 <div>
                     <p className="text-sm text-muted-foreground">Empresa</p>
-                    <p className="font-semibold text-lg">{user.Empresa}</p>
+                    <p className="font-semibold text-lg">{user.empresa}</p>
                 </div>
             </div>
             <Button onClick={handleLogout} variant="destructive" className="w-full">
