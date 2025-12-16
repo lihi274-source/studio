@@ -1,16 +1,19 @@
-import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { notFound } from 'next/navigation';
+
+'use client';
+
+import { Suspense, useState } from 'react';
+import { notFound, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import { ArrowLeft, Bot, Send, Loader2, User } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Input } from '@/components/ui/input';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { cn } from '@/lib/utils';
 
-export async function generateStaticParams() {
-  return PlaceHolderImages.map((p) => ({
-    slug: p.id,
-  }));
-}
 
 // Helper function to parse text with asterisks for bolding
 const parseBold = (text: string) => {
@@ -59,8 +62,109 @@ const DetailsContent = ({ content }: { content: string }) => {
     return <>{renderedContent}</>;
 };
 
-export default function DestinoPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+type Message = {
+  role: 'user' | 'assistant';
+  content: string;
+};
+
+const DestinationChat = ({ destinationTitle }: { destinationTitle: string }) => {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSendMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+
+    const userMessage: Message = { role: 'user', content: input };
+    setMessages((prev) => [...prev, userMessage]);
+    
+    const prompt = `Ets un expert en viatges. Respon a la següent pregunta sobre ${destinationTitle}:\n\n${input}`;
+    
+    setInput('');
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('/api/mistral', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: prompt }),
+      });
+
+      if (!response.ok) throw new Error('Error en la resposta de la xarxa.');
+
+      const data = await response.json();
+      const assistantMessage: Message = { role: 'assistant', content: data.reply };
+      setMessages((prev) => [...prev, assistantMessage]);
+
+    } catch (error) {
+      const errorMessage: Message = { role: 'assistant', content: 'Hi ha hagut un error en processar la teva sol·licitud.' };
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <Card className="mt-12 bg-card/80 backdrop-blur-sm border border-primary/10">
+        <CardHeader>
+            <CardTitle className="font-headline text-2xl flex items-center">
+                <Bot className="mr-3 h-7 w-7 text-primary"/>
+                Tens preguntes sobre {destinationTitle}?
+            </CardTitle>
+            <CardDescription>
+                Pregunta al nostre assistent virtual sobre aquest destí.
+            </CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col h-[400px]">
+             <ScrollArea className="flex-grow h-0 pr-4 -mr-4">
+              <div className="space-y-4">
+                {messages.map((message, index) => (
+                  <div
+                    key={index}
+                    className={cn('flex items-start gap-3', message.role === 'user' ? 'justify-end' : 'justify-start')}
+                  >
+                    {message.role === 'assistant' && (
+                      <Avatar className="w-8 h-8 border-2 border-primary"><AvatarFallback>IA</AvatarFallback></Avatar>
+                    )}
+                    <div className={cn('max-w-md rounded-lg p-3 text-sm', message.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted')}>
+                      <p className="whitespace-pre-wrap">{message.content}</p>
+                    </div>
+                     {message.role === 'user' && (
+                      <Avatar className="w-8 h-8"><AvatarFallback>TU</AvatarFallback></Avatar>
+                    )}
+                  </div>
+                ))}
+                {isLoading && (
+                  <div className="flex items-start gap-3"><Avatar className="w-8 h-8 border-2 border-primary"><AvatarFallback>IA</AvatarFallback></Avatar>
+                    <div className="max-w-md rounded-lg p-3 bg-muted flex items-center space-x-2">
+                        <Loader2 className="h-5 w-5 animate-spin" />
+                        <p className="text-sm">Pensant...</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </ScrollArea>
+             <div className="mt-4">
+              <form onSubmit={handleSendMessage} className="flex items-center gap-2">
+                <Input
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder="Escriu la teva pregunta..."
+                  disabled={isLoading}
+                />
+                <Button type="submit" size="icon" disabled={isLoading || !input.trim()} className="bg-accent hover:bg-accent/90">
+                  <Send className="h-5 w-5" /><span className="sr-only">Enviar</span>
+                </Button>
+              </form>
+            </div>
+        </CardContent>
+    </Card>
+  );
+}
+
+
+function DestinoPageComponent({ slug }: { slug: string }) {
   const destination = PlaceHolderImages.find(p => p.id === slug);
 
   if (!destination) {
@@ -114,8 +218,18 @@ export default function DestinoPage({ params }: { params: { slug: string } }) {
             </div>
         </CardContent>
       </Card>
+      
+      {destination.title && <DestinationChat destinationTitle={destination.title} />}
 
     </div>
   );
+}
+
+export default function DestinoPage({ params }: { params: { slug: string } }) {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <DestinoPageComponent slug={params.slug} />
+        </Suspense>
+    )
 }
     
