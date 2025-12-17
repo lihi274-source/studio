@@ -36,7 +36,7 @@ export default function TestPage() {
     setIsLoading(true);
 
     try {
-      // Cridem a la nostra nova API route unificada
+      // Cridem a la nostra API route unificada
       const response = await fetch('/api/ai/mistral', {
         method: 'POST',
         headers: {
