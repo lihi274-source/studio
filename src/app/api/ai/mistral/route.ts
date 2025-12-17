@@ -11,19 +11,17 @@ export async function POST(request: Request) {
   }
 
   try {
-    const { message } = await request.json();
+    const { message, prompt: customPrompt } = await request.json();
 
     if (!message) {
         return NextResponse.json({ error: 'El missatge no pot estar buit.' }, { status: 400 });
     }
     
-    const fullPrompt = `Actua com a expert logístic de l'empresa EnTrans. Parla en català, Sigues corporatiu i breu. La pregunta del client és: "${message}"`;
+    const fullPrompt = customPrompt || `Ets un assistent virtual. Respon de manera breu i útil. La pregunta és: "${message}"`;
 
     console.log("--- INICI DEPURACIÓ MISTRAL ---");
-    console.log("Intentant connectar amb clau...");
-    console.log(`Inici de la clau: ${apiKey.substring(0, 4)}...`);
-    console.log(`Llargada de la clau: ${apiKey.length} caràcters`);
-    console.log("Full Prompt a enviar a Mistral:", fullPrompt);
+    console.log(`Clau utilitzada: ${apiKey.substring(0, 4)}...`);
+    console.log("Prompt a enviar:", fullPrompt);
     console.log("----------------------------");
 
     const client = new MistralAI(apiKey);
@@ -33,7 +31,7 @@ export async function POST(request: Request) {
       messages: [{ role: 'user', content: fullPrompt }],
     });
 
-    console.log("Resposta rebuda de Mistral!"); 
+    console.log("Resposta rebuda de Mistral.");
     return NextResponse.json({ reply: chatResponse.choices[0].message.content });
     
   } catch (error: any) {

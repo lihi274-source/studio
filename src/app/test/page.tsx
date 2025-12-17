@@ -36,13 +36,13 @@ export default function TestPage() {
     setIsLoading(true);
 
     try {
-      // Cridem a la nostra nova API route
-      const response = await fetch('/api/test', {
+      // Cridem a la nostra nova API route unificada
+      const response = await fetch('/api/ai/mistral', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: currentInput }),
+        body: JSON.stringify({ message: currentInput }), // Enviem només el missatge, la ruta API utilitzarà un prompt per defecte
       });
 
       const data = await response.json();
@@ -80,7 +80,7 @@ export default function TestPage() {
               Pàgina de Test IA
             </CardTitle>
             <CardDescription>
-              Aquesta pàgina utilitza /api/test per comunicar-se amb la IA.
+              Aquesta pàgina utilitza /api/ai/mistral per comunicar-se amb la IA.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex-grow flex flex-col p-0">

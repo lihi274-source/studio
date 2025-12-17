@@ -36,12 +36,14 @@ export default function AssistentPage() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/mistral', {
+      const fullPrompt = `Actua com a expert logístic de l'empresa EnTrans. Parla en català, Sigues corporatiu i breu. La pregunta del client és: "${currentInput}"`;
+
+      const response = await fetch('/api/ai/mistral', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: currentInput }),
+        body: JSON.stringify({ message: currentInput, prompt: fullPrompt }),
       });
 
       const data = await response.json();
