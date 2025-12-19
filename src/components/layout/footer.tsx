@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-200">
+    <footer className="bg-[#222538] text-gray-200">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           
@@ -23,7 +23,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Mail className="mr-3 h-5 w-5 text-primary" />
-                <a href="mailto:contacto@viajeshica.com" className="hover:text-white transition-colors">📧 contacto@viajeshica.com</a>
+                <a href="mailto:contacto@viajeshica.com" className="hover:text-white transition-colors">contacto@viajeshica.com</a>
               </li>
                <li className="flex items-start">
                 <MapPin className="mr-3 h-5 w-5 text-primary flex-shrink-0 mt-1" />
