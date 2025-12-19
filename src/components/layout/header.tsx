@@ -20,7 +20,7 @@ const Header = () => {
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <Image src="/logo-Lidia_Hidalgo.png" alt="Viajes HICA Logo" width={120} height={120} className="mr-3" />
+              <Image src="/logo-Lidia_Hidalgo.png" alt="Viajes HICA Logo" width={150} height={150} className="mr-3" />
               <div>
                 <h1 className="text-2xl md:text-3xl font-headline text-primary-foreground">
                   Viajes HICA
@@ -51,7 +51,7 @@ const Header = () => {
             <SheetContent side="right">
               <div className="flex flex-col space-y-4 p-4">
                 <Link href="/" className="flex items-center mb-4">
-                    <Image src="/logo-Lidia_Hidalgo.png" alt="Viajes HICA Logo" width={120} height={120} className="mr-3" />
+                    <Image src="/logo-Lidia_Hidalgo.png" alt="Viajes HICA Logo" width={150} height={150} className="mr-3" />
                     <div>
                         <h2 className="text-2xl font-headline">Viajes HICA</h2>
                         <p className="text-sm text-muted-foreground">Tu agencia de viajes para explorar el mundo.</p>
