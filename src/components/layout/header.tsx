@@ -25,7 +25,7 @@ const Header = () => {
                 <h1 className="text-2xl md:text-3xl font-headline text-primary-foreground">
                   Viajes HICA
                 </h1>
-                <p className="text-sm text-muted-foreground hidden sm:block">viajeshica.com</p>
+                <p className="text-sm text-muted-foreground hidden sm:block">Tu agencia de viajes para explorar el mundo</p>
               </div>
             </Link>
         </div>
@@ -54,7 +54,7 @@ const Header = () => {
                     <Image src="/logo-Lidia_Hidalgo.png" alt="Viajes HICA Logo" width={150} height={150} className="mr-3" />
                     <div>
                         <h2 className="text-2xl font-headline">Viajes HICA</h2>
-                        <p className="text-sm text-muted-foreground">viajeshica.com</p>
+                        <p className="text-sm text-muted-foreground">Tu agencia de viajes para explorar el mundo</p>
                     </div>
                 </Link>
                 <nav>
