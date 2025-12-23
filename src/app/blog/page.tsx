@@ -63,15 +63,6 @@ export default function BlogPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {tip1 && (
               <Card className="flex flex-col overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl bg-card/80 backdrop-blur-sm">
-                <div className="relative w-full h-60">
-                  <Image
-                    src={tip1.imageUrl}
-                    alt={tip1.title || tip1.imageHint}
-                    fill
-                    className="object-cover"
-                    data-ai-hint={tip1.imageHint}
-                  />
-                </div>
                 <CardHeader>
                   <CardTitle className="font-headline text-2xl">{tip1.title}</CardTitle>
                 </CardHeader>
@@ -87,15 +78,6 @@ export default function BlogPage() {
             )}
             {tip2 && (
                <Card className="flex flex-col overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl bg-card/80 backdrop-blur-sm">
-                  <div className="relative w-full h-60">
-                      <Image
-                      src={tip2.imageUrl}
-                      alt={tip2.title || tip2.imageHint}
-                      fill
-                      className="object-cover"
-                      data-ai-hint={tip2.imageHint}
-                      />
-                  </div>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">{tip2.title}</CardTitle>
                   </CardHeader>
