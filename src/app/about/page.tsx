@@ -70,7 +70,7 @@ export default function AboutPage() {
           En Viajes HICA, hemos puesto todo nuestro esfuerzo en crear una plataforma que no solo funcione bien, sino que también te inspire. Tu próxima great aventura empieza con una experiencia web excepcional. ¡Feliz viaje!
         </p>
         <div className="text-center mt-10">
-          <Button asChild>
+          <Button asChild style={{ backgroundColor: '#222538', color: 'white' }}>
             <Link href="/">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Volver al inicio
