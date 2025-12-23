@@ -26,16 +26,6 @@ export default function AboutPage() {
             </Button>
         </div>
       </div>
-      
-      <div className="relative w-full h-80 md:h-[500px] mb-12 rounded-2xl overflow-hidden shadow-2xl">
-          <Image
-              src="/foto.jpg"
-              alt="Equipo de Viajes HICA planificando rutas"
-              fill
-              className="object-cover"
-              data-ai-hint="travel agency team"
-          />
-      </div>
 
       <div className="grid md:grid-cols-3 gap-8 text-center mb-16">
         <div className="bg-card p-6 rounded-lg shadow-lg">
