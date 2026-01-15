@@ -156,22 +156,22 @@
     },
     {
       "id": "blog-featured",
-      "title": "10 Destinos Imprescindibles para 2026",
-      "description": "Descubre nuestra selección de los 10 mejores destinos para viajar este año. Desde playas paradisíacas hasta ciudades vibrantes, ¡inspírate para tu próxima gran aventura!",
+      "title": "10 Destinacions Imprescindibles per al 2026",
+      "description": "Descobreix la nostra selecció de les 10 millors destinacions per viatjar aquest any. Des de platges paradisíaques fins a ciutats vibrants, inspira't per a la teva propera gran aventura!",
       "imageUrl": "https://images.unsplash.com/photo-1473625247510-8ceb1760943f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0cmF2ZWwlMjBkc2V0aW5hdGlvbnxlbnwwfHx8fDE3NjQ3MDIxOTJ8MA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "travel destination map"
     },
     {
       "id": "blog-tip1",
-      "title": "Cómo hacer la maleta como un profesional",
-      "description": "Aprende a optimizar el espacio en tu maleta con estos sencillos trucos. Viaja más ligero y evita las tasas por exceso de equipaje.",
+      "title": "Com fer la maleta com un professional",
+      "description": "Aprèn a optimitzar l'espai a la teva maleta amb aquests senzills trucs. Viatja més lleuger i evita les taxes per excés d'equipatge.",
       "imageUrl": "/maleta.jpg",
       "imageHint": "packing suitcase"
     },
     {
       "id": "blog-tip2",
-      "title": "Los mejores gadgets de viaje que necesitas",
-      "description": "Desde adaptadores universales hasta baterías portátiles, te mostramos los gadgets que no pueden faltar en tu mochila.",
+      "title": "Els millors gadgets de viatge que necessites",
+      "description": "Des d'adaptadors universals fins a bateries portàtils, et mostrem els gadgets que no poden faltar a la teva motxilla.",
       "imageUrl": "/gadgets.jpg",
       "imageHint": "travel gadgets"
     }

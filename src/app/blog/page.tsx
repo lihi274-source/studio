@@ -34,11 +34,11 @@ export default function BlogPage() {
                 <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-3">
                     <div className="flex items-center">
                         <Tag className="mr-2 h-4 w-4" />
-                        <span>Destinos</span>
+                        <span>Destinacions</span>
                     </div>
                     <div className="flex items-center">
                         <Calendar className="mr-2 h-4 w-4" />
-                        <span>{new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                        <span>{new Date().toLocaleDateString('ca-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                     </div>
                 </div>
                 <h1 className="font-headline text-3xl md:text-4xl text-primary-foreground mb-4">
@@ -49,7 +49,7 @@ export default function BlogPage() {
                 </p>
                 <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
                   <Link href="#">
-                    Leer más <ArrowRight className="ml-2 h-4 w-4" />
+                    Llegir més <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </div>
@@ -59,7 +59,7 @@ export default function BlogPage() {
 
         {/* Consejos Section */}
         <section>
-          <h2 className="font-headline text-3xl text-center text-white mb-10">Consejos para tu Viaje</h2>
+          <h2 className="font-headline text-3xl text-center text-white mb-10">Consells per al teu Viatge</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {tip1 && (
               <Card className="flex flex-col overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl bg-card/80 backdrop-blur-sm">
@@ -71,7 +71,7 @@ export default function BlogPage() {
                 </CardContent>
                 <div className="p-6 pt-0">
                   <Button variant="link" asChild className="p-0 text-primary">
-                    <Link href="#">Leer más...</Link>
+                    <Link href="#">Llegir més...</Link>
                   </Button>
                 </div>
               </Card>
@@ -86,7 +86,7 @@ export default function BlogPage() {
                   </CardContent>
                   <div className="p-6 pt-0">
                       <Button variant="link" asChild className="p-0 text-primary">
-                          <Link href="#">Leer más...</Link>
+                          <Link href="#">Llegir més...</Link>
                       </Button>
                   </div>
               </Card>
