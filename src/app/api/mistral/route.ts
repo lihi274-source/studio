@@ -1,5 +1,8 @@
+'use server';
 import MistralClient from '@mistralai/mistralai';
 import { NextResponse } from 'next/server';
+
+export const runtime = 'nodejs';
 
 const mistral = new MistralClient(process.env.MISTRAL_API_KEY);
 
