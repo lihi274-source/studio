@@ -11,7 +11,6 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import ReactMarkdown from 'react-markdown';
-import { ai } from '@/ai/genkit';
 
 
 type Message = {
@@ -37,16 +36,30 @@ export default function AssistentPage() {
     setIsLoading(true);
 
     try {
-      const fullPrompt = `Ets un assistent de viatges expert de l'agència Viajes HICA. La teva tasca és respondre preguntes dels usuaris sobre destinacions, consells de viatge i ajudar-los a planificar les seves vacances. Respon en català, de manera amable i concisa. La pregunta de l'usuari és: "${currentInput}"`;
+      const response = await fetch('/api/mistral', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: currentInput }),
+      });
 
-      const response = await ai.generate({ prompt: fullPrompt });
-      const reply = response.text;
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "No s'ha pogut contactar amb l'assistent d'IA.");
+      }
 
-      const assistantMessage: Message = { role: 'assistant', content: reply };
+      const data = await response.json();
+
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      const assistantMessage: Message = { role: 'assistant', content: data.reply };
       setMessages((prev) => [...prev, assistantMessage]);
 
     } catch (error: any) {
-      setError(error.message || "No s'ha pogut contactar amb l'assistent d'IA.");
+      setError(error.message || "Hi ha hagut un error desconegut.");
     } finally {
       setIsLoading(false);
     }
@@ -67,7 +80,7 @@ export default function AssistentPage() {
           <CardHeader className="text-center">
             <CardTitle className="font-headline text-3xl flex items-center justify-center">
               <Bot className="mr-2 h-8 w-8 text-primary" />
-              Assistent Virtual IA
+              Assistent Virtual (Mistral AI)
             </CardTitle>
             <CardDescription>
               Fes-me qualsevol pregunta sobre viatges i t'ajudaré a planificar la teva pròxima aventura.
