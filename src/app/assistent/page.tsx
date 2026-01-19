@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import ReactMarkdown from 'react-markdown';
+import { ai } from '@/ai/genkit';
 
 
 type Message = {
@@ -36,27 +37,16 @@ export default function AssistentPage() {
     setIsLoading(true);
 
     try {
-      const fullPrompt = `Actua com a expert logístic de l'empresa EnTrans. Parla en català, Sigues corporatiu i breu. La pregunta del client és: "${currentInput}"`;
+      const fullPrompt = `Ets un assistent de viatges expert de l'agència Viajes HICA. La teva tasca és respondre preguntes dels usuaris sobre destinacions, consells de viatge i ajudar-los a planificar les seves vacances. Respon en català, de manera amable i concisa. La pregunta de l'usuari és: "${currentInput}"`;
 
-      const response = await fetch('/api/ai/mistral', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: currentInput, prompt: fullPrompt }),
-      });
+      const response = await ai.generate({ prompt: fullPrompt });
+      const reply = response.text;
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'La resposta de la xarxa no ha estat correcta.');
-      }
-
-      const assistantMessage: Message = { role: 'assistant', content: data.reply };
+      const assistantMessage: Message = { role: 'assistant', content: reply };
       setMessages((prev) => [...prev, assistantMessage]);
 
     } catch (error: any) {
-      setError(error.message);
+      setError(error.message || "No s'ha pogut contactar amb l'assistent d'IA.");
     } finally {
       setIsLoading(false);
     }

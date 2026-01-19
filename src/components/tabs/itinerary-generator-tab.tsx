@@ -12,13 +12,14 @@ import { useState } from 'react';
 import { Loader2, Sparkles, AlertCircle } from 'lucide-react';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import ReactMarkdown from 'react-markdown';
+import { generateItinerary, type GenerateItineraryInput } from '@/ai/flows/generate-itinerary-flow';
 
 
 const formSchema = z.object({
-  destination: z.string().min(1, 'El destino es requerido.'),
-  dates: z.string().min(1, 'Las fechas son requeridas.'),
-  budget: z.string().min(1, 'El presupuesto es requerido.'),
-  interests: z.string().min(1, 'Los intereses son requeridos.'),
+  destination: z.string().min(1, 'El destí és requerit.'),
+  dates: z.string().min(1, 'Les dates són requerides.'),
+  budget: z.string().min(1, 'El pressupost és requerit.'),
+  interests: z.string().min(10, 'Descriu els teus interessos amb una mica més de detall.'),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -43,31 +44,12 @@ const ItineraryGeneratorTab = () => {
     setItinerary(null);
     setError(null);
 
-    const prompt = `Ets un agent de viatges expert. Crea un itinerari de viatge detallat basat en les següents preferències:
-- Destí: ${values.destination}
-- Dates: ${values.dates}
-- Pressupost: ${values.budget}
-- Interessos: ${values.interests}
-
-Proporciona suggeriments de vols, hotels i activitats. Formata la resposta de manera clara i llegible, utilitzant Markdown per a títols i llistes.`;
-
     try {
-      const response = await fetch('/api/ai/mistral', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: `Generar itinerari per a ${values.destination}`, prompt: prompt }),
-      });
-      
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Hi ha hagut un error en generar l\'itinerari.');
-      }
-
-      setItinerary(data.reply);
+      const result = await generateItinerary(values);
+      setItinerary(result);
 
     } catch (error: any) {
-      setError(error.message);
+      setError(error.message || "Hi ha hagut un error en generar l'itinerari.");
     } finally {
       setIsLoading(false);
     }
