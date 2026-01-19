@@ -48,7 +48,7 @@ export default function BlogPage() {
                   {featuredPost.description}
                 </p>
                 <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                  <Link href="#">
+                  <Link href={`/blog/${featuredPost.id}`}>
                     Llegir més <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -71,7 +71,7 @@ export default function BlogPage() {
                 </CardContent>
                 <div className="p-6 pt-0">
                   <Button variant="link" asChild className="p-0 text-primary">
-                    <Link href="#">Llegir més...</Link>
+                    <Link href={`/blog/${tip1.id}`}>Llegir més...</Link>
                   </Button>
                 </div>
               </Card>
@@ -86,7 +86,7 @@ export default function BlogPage() {
                   </CardContent>
                   <div className="p-6 pt-0">
                       <Button variant="link" asChild className="p-0 text-primary">
-                          <Link href="#">Llegir més...</Link>
+                          <Link href={`/blog/${tip2.id}`}>Llegir més...</Link>
                       </Button>
                   </div>
               </Card>
@@ -97,4 +97,5 @@ export default function BlogPage() {
     </div>
   );
 }
+    
     

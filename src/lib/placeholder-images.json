@@ -159,21 +159,24 @@
       "title": "10 Destinacions Imprescindibles per al 2026",
       "description": "Descobreix la nostra selecció de les 10 millors destinacions per viatjar aquest any. Des de platges paradisíaques fins a ciutats vibrants, inspira't per a la teva propera gran aventura!",
       "imageUrl": "https://images.unsplash.com/photo-1473625247510-8ceb1760943f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0cmF2ZWwlMjBkc2V0aW5hdGlvbnxlbnwwfHx8fDE3NjQ3MDIxOTJ8MA&ixlib.rb-4.1.0&q=80&w=1080",
-      "imageHint": "travel destination map"
+      "imageHint": "travel destination map",
+      "details": "### Introducció a les noves tendències\n\nEl món dels viatges està en constant evolució. Aquest 2026, veurem un augment en la cerca d'experiències autèntiques i sostenibles. Els viatgers ja no es conformen amb visitar els llocs típics; busquen connexions reals amb la cultura local.\n\n### Destinacions en Auge\n\n*   **Sud-est Asiàtic menys conegut:** Explora les illes remotes de Filipines o les selves de Borneo.\n*   **Turisme regeneratiu a Costa Rica:** Participa en projectes de conservació mentre gaudeixes de la natura.\n*   **Rutes culturals per l'Àsia Central:** Segueix la Ruta de la Seda i descobreix ciutats mil·lenàries."
     },
     {
       "id": "blog-tip1",
       "title": "Com fer la maleta com un professional",
       "description": "Aprèn a optimitzar l'espai a la teva maleta amb aquests senzills trucs. Viatja més lleuger i evita les taxes per excés d'equipatge.",
       "imageUrl": "/maleta.jpg",
-      "imageHint": "packing suitcase"
+      "imageHint": "packing suitcase",
+      "details": "### La tècnica del 'rolling'\n\nEn lloc de doblegar la roba, enrotlla-la. Aquesta tècnica no només estalvia espai, sinó que també ajuda a prevenir les arrugues. És ideal per a samarretes, pantalons i altres peces de roba casual.\n\n### Utilitza cubs organitzadors\n\n*   **Separa per categories:** Un cub per a samarretes, un altre per a pantalons, etc.\n*   **Comprimeix:** Molts cubs organitzadors tenen una cremallera de compressió que redueix el volum.\n\n### Aprofita cada racó\n\nOmple els espais buits, com l'interior de les sabates, amb mitjons o objectes petits per maximitzar l'espai."
     },
     {
       "id": "blog-tip2",
       "title": "Els millors gadgets de viatge que necessites",
       "description": "Des d'adaptadors universals fins a bateries portàtils, et mostrem els gadgets que no poden faltar a la teva motxilla.",
       "imageUrl": "/gadgets.jpg",
-      "imageHint": "travel gadgets"
+      "imageHint": "travel gadgets",
+      "details": "### Imprescindibles per a qualsevol viatge\n\n*   **Adaptador universal:** Un sol dispositiu per a tots els països. Busca'n un amb ports USB per carregar diversos aparells alhora.\n*   **Bateria externa (Power Bank):** Per no quedar-te mai sense bateria al mòbil o la càmera. Una de 10.000 mAh és un bon equilibri entre mida i capacitat.\n*   **Auriculars amb cancel·lació de soroll:** Perfectes per a vols llargs o per aïllar-te del soroll en llocs concorreguts.\n\n### Gadgets per a l'aventura\n\n*   **Filtre d'aigua portàtil:** Si fas senderisme o visites llocs amb aigua no potable, és un accessori essencial.\n*   **Localitzador GPS (com un AirTag):** Posa'n un a la maleta facturada per tenir-la sempre localitzada."
     }
   ]
 }
