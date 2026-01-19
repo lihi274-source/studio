@@ -52,10 +52,10 @@ const ItineraryGeneratorTab = () => {
 Proporciona suggeriments de vols, hotels i activitats. Formata la resposta de manera clara i llegible, utilitzant Markdown per a títols i llistes.`;
 
     try {
-      const response = await fetch('/api/mistral', {
+      const response = await fetch('/api/ai/mistral', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: prompt }),
+        body: JSON.stringify({ message: `Generar itinerari per a ${values.destination}`, prompt: prompt }),
       });
       
       const data = await response.json();
