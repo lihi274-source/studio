@@ -1,5 +1,3 @@
-import Footer from "@/components/layout/footer";
-import Header from "@/components/layout/header";
 
 export default function BlogPostLayout({
     children,
@@ -7,14 +5,8 @@ export default function BlogPostLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="flex flex-col min-h-screen bg-background">
-            <Header />
-            <main className="flex-grow">
-                {children}
-            </main>
-            <Footer />
-        </div>
+        <>
+            {children}
+        </>
     );
 }
-
-    
