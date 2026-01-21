@@ -391,8 +391,12 @@ export default function DocumentsPage() {
             </CardContent>
         </Card>
         
-        {/* Hidden container for the invoice to be printed */}
-        <div className="hidden">
+        {/*
+          Hidden container for the invoice to be printed.
+          It's kept in the DOM but made invisible on screen.
+          The print-specific CSS in globals.css will make it visible for printing.
+        */}
+        <div className="invisible h-0 overflow-hidden">
             {invoiceToPrint && (
                 <div id="zona-factura">
                     <InvoiceDetail invoice={invoiceToPrint} />
