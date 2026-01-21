@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2, LogOut, User, Building } from 'lucide-react';
+import { Loader2, LogOut, User, Building, FileText } from 'lucide-react';
 
 type UserData = {
   usuari: string;
@@ -73,6 +73,10 @@ export default function DashboardPage() {
                     <p className="font-semibold text-lg">{user.empresa}</p>
                 </div>
             </div>
+            <Button onClick={() => router.push('/documents')} className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+              <FileText className="mr-2 h-4 w-4" />
+              Veure les meves factures
+            </Button>
             <Button onClick={handleLogout} variant="destructive" className="w-full">
               <LogOut className="mr-2 h-4 w-4" />
               Tancar Sessió
