@@ -11,7 +11,6 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import ReactMarkdown from 'react-markdown';
-import { ai } from '@/ai/genkit';
 
 
 type Message = {
@@ -37,15 +36,30 @@ export default function TestPage() {
     setIsLoading(true);
 
     try {
-      const prompt = `Ets un assistent virtual. Respon de manera breu i útil. La pregunta és: "${currentInput}"`;
-      const response = await ai.generate({ prompt });
-      const reply = response.text;
+      const response = await fetch('/api/genkit-test', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: currentInput }),
+      });
 
-      const assistantMessage: Message = { role: 'assistant', content: reply };
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "No s'ha pogut contactar amb l'assistent d'IA.");
+      }
+
+      const data = await response.json();
+
+      if (data.error) {
+        throw new Error(data.error);
+      }
+      
+      const assistantMessage: Message = { role: 'assistant', content: data.reply };
       setMessages((prev) => [...prev, assistantMessage]);
 
     } catch (error: any) {
-      setError(error.message || 'No s\'ha pogut contactar amb l\'assistent d\'IA.');
+      setError(error.message || 'Hi ha hagut un error desconegut.');
     } finally {
       setIsLoading(false);
     }
