@@ -9,6 +9,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Loader2, Printer, AlertCircle, FileText, Building, User, Phone, MapPin } from 'lucide-react';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
+
 
 // --- TYPE DEFINITIONS ---
 
@@ -23,6 +25,7 @@ type DocumentLine = {
   iva: string;
   dte: string;
   albara: string;
+  estat: 'Pagada' | 'Pendent' | string;
 };
 
 type ClientData = {
@@ -63,6 +66,26 @@ type GroupedInvoice = {
   client: ClientData;
   lines: DocumentLine[];
   totals: InvoiceTotals;
+  estat: 'Pagada' | 'Pendent' | string;
+};
+
+
+// --- STATUS BADGE COMPONENT ---
+const StatusBadge = ({ status }: { status: string }) => {
+  const isPaid = status?.toLowerCase() === 'pagada';
+  const badgeClasses = cn(
+    'px-2.5 py-0.5 rounded-full text-xs font-semibold inline-block',
+    {
+      'bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300': isPaid,
+      'bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300': !isPaid,
+    }
+  );
+
+  return (
+    <span className={badgeClasses}>
+      {status || 'Pendent'}
+    </span>
+  );
 };
 
 
@@ -84,9 +107,12 @@ const InvoiceDetail = ({ invoice }: { invoice: GroupedInvoice }) => (
         </div>
         <div className="text-right">
           <h1 className="text-3xl font-bold uppercase text-gray-700">Factura</h1>
-          <p>
-            <span className="font-semibold">Nº:</span> {invoice.num_factura}
-          </p>
+           <div className="flex items-center justify-end gap-4 my-1">
+             <p>
+                <span className="font-semibold">Nº:</span> {invoice.num_factura}
+             </p>
+             <StatusBadge status={invoice.estat} />
+           </div>
           <p>
             <span className="font-semibold">Data:</span> {new Date(invoice.data).toLocaleDateString('ca-ES')}
           </p>
@@ -302,6 +328,7 @@ export default function DocumentsPage() {
         client: clientInfo,
         lines: data.lines,
         totals,
+        estat: firstLine.estat
       };
     }).sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime());
 
@@ -359,15 +386,18 @@ export default function DocumentsPage() {
                              <AccordionItem value={invoice.num_factura} key={invoice.num_factura}>
                                  <AccordionTrigger>
                                      <div className="flex justify-between items-center w-full pr-4">
-                                         <div className="text-left">
+                                         <div className="flex items-center gap-4 text-left">
                                              <p className="font-bold text-lg text-primary">Factura #{invoice.num_factura}</p>
                                              <p className="text-sm text-muted-foreground">
                                                 Data: {new Date(invoice.data).toLocaleDateString('ca-ES')}
                                              </p>
                                          </div>
-                                         <div className="text-right">
-                                             <p className="font-bold text-xl">{invoice.totals.grandTotal.toFixed(2)} €</p>
-                                             {userRole !== 'client' && <p className="text-sm text-muted-foreground">{invoice.client.empresa}</p>}
+                                         <div className="flex items-center gap-4">
+                                              <StatusBadge status={invoice.estat} />
+                                             <div className="text-right">
+                                                 <p className="font-bold text-xl">{invoice.totals.grandTotal.toFixed(2)} €</p>
+                                                 {userRole !== 'client' && <p className="text-sm text-muted-foreground">{invoice.client.empresa}</p>}
+                                             </div>
                                          </div>
                                      </div>
                                  </AccordionTrigger>
