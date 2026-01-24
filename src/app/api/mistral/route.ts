@@ -1,4 +1,3 @@
-'use server';
 import MistralClient from '@mistralai/mistralai';
 import { NextResponse } from 'next/server';
 
