@@ -83,36 +83,3 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
-import type { NextConfig } from 'next';
-
-const nextConfig: NextConfig = {
-  // Arreglo para el error de Mistral/Genkit
-  serverExternalPackages: ['@mistralai/mistralai', 'genkit', '@genkit-ai/core', '@genkit-ai/ai'],
-  
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  images: {
-    remotePatterns: [
-      { protocol: 'https', hostname: 'placehold.co', pathname: '/**' },
-      { protocol: 'https', hostname: 'images.unsplash.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'picsum.photos', pathname: '/**' },
-      { protocol: 'https', hostname: 'www.shutterstock.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'cdn-imgix.headout.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'res.cloudinary.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'www.gastronomistas.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'www.civitatis.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'www.sortiraparis.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'www.stage-entertainment.es', pathname: '/**' },
-      { protocol: 'https', hostname: 'www.renfe.com', pathname: '/**' }
-    ],
-  },
-};
-
-export default nextConfig;
-
-    
-    

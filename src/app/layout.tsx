@@ -6,6 +6,9 @@ import { FirebaseClientProvider } from '@/firebase';
 export const metadata: Metadata = {
   title: 'Viajes HICA',
   description: 'Tu agencia de viajes para explorar el mundo.',
+  icons: {
+    icon: '/logo.blau.png',
+  },
 };
 
 export default function RootLayout({
