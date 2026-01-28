@@ -11,7 +11,7 @@ const navLinks = [
   { href: '/tracking', label: 'Seguimiento', icon: PackageSearch },
   { href: '/documents', label: 'Documents', icon: FileText },
   { href: '/contacto', label: 'Contacto', icon: MessageSquare },
-  { href: '/account', label: 'Mi Cuenta', icon: Home },
+  { href: '/account', label: 'Mi Cuenta', icon: User },
 ];
 
 
@@ -35,7 +35,11 @@ const Header = () => {
         <nav className="hidden md:flex">
           <ul className="flex items-center space-x-8">
             {navLinks.map(link => (
-                 <li key={link.href}><Link href={link.href} className="text-base font-bold text-foreground hover:text-primary transition-colors">{link.label}</Link></li>
+                 <li key={link.href}>
+                    <Link href={link.href} className="text-base font-bold text-foreground hover:text-primary transition-colors flex items-center">
+                      {link.href === '/account' ? <link.icon className="h-6 w-6" /> : link.label}
+                    </Link>
+                 </li>
             ))}
           </ul>
         </nav>
