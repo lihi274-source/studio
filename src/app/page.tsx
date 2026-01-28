@@ -30,24 +30,24 @@ function HomePageContent() {
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 h-auto bg-card rounded-lg">
-            <TabsTrigger value="destinos" className="py-2.5 text-sm md:text-base">
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 h-auto bg-background rounded-lg">
+            <TabsTrigger value="destinos" className="py-2.5 text-sm md:text-base text-accent">
               <Globe className="mr-2 h-5 w-5" />
               Destinos
             </TabsTrigger>
-            <TabsTrigger value="vuelos" className="py-2.5 text-sm md:text-base">
+            <TabsTrigger value="vuelos" className="py-2.5 text-sm md:text-base text-accent">
               <Plane className="mr-2 h-5 w-5" />
               Vuelos
             </TabsTrigger>
-            <TabsTrigger value="hoteles" className="py-2.5 text-sm md:text-base">
+            <TabsTrigger value="hoteles" className="py-2.5 text-sm md:text-base text-accent">
               <Hotel className="mr-2 h-5 w-5" />
               Hoteles
             </TabsTrigger>
-            <TabsTrigger value="excursiones" className="py-2.5 text-sm md:text-base">
+            <TabsTrigger value="excursiones" className="py-2.5 text-sm md:text-base text-accent">
               <Map className="mr-2 h-5 w-5" />
               Excursiones
             </TabsTrigger>
-            <TabsTrigger value="itinerarios" className="py-2.5 text-sm md:text-base sm:col-span-1 md:col-span-1">
+            <TabsTrigger value="itinerarios" className="py-2.5 text-sm md:text-base sm:col-span-1 md:col-span-1 text-accent">
               <Bot className="mr-2 h-5 w-5" />
               Itinerarios IA
             </TabsTrigger>
