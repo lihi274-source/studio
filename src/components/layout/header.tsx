@@ -18,7 +18,7 @@ const navLinks = [
 const Header = () => {
   return (
     <header className="py-4 bg-transparent backdrop-blur-sm border-b border-border/50 sticky top-0 z-40">
-      <div className="container mx-auto flex items-center justify-between">
+      <div className="flex w-full items-center justify-between px-6 lg:px-10">
         <div className="flex items-center">
             <Link href="/" className="flex items-center">
               <Image src="/log.png" alt="Viajes HICA Logo" width={200} height={200} className="mr-3" />
@@ -33,7 +33,7 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex">
-          <ul className="flex items-center space-x-6">
+          <ul className="flex items-center space-x-8">
             {navLinks.map(link => (
                  <li key={link.href}><Link href={link.href} className="text-base font-bold text-foreground hover:text-primary transition-colors">{link.label}</Link></li>
             ))}
