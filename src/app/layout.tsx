@@ -9,11 +9,8 @@ export const metadata: Metadata = {
   themeColor: '#0a0a0a',
   manifest: '/manifest.json?v=2',
   icons: {
-    icon: [
-      { url: '/logo.blau.png?v=2', sizes: '32x32', type: 'image/png' },
-      { url: '/logo.blau.png?v=2', sizes: '192x192', type: 'image/png' },
-    ],
-    apple: '/logo.blau.png?v=2',
+    icon: '/logo.blau.png',
+    apple: '/logo.blau.png',
   },
 };
 
