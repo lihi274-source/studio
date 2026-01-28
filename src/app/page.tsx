@@ -30,7 +30,7 @@ function HomePageContent() {
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 h-auto bg-primary/10 rounded-lg">
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 h-auto bg-card rounded-lg">
             <TabsTrigger value="destinos" className="py-2.5 text-sm md:text-base">
               <Globe className="mr-2 h-5 w-5" />
               Destinos
