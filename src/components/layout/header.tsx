@@ -7,11 +7,11 @@ import { Menu, Plane, Hotel, Map, Tag, Globe, Home, Newspaper, User, Info, Messa
 const navLinks = [
   { href: '/', label: 'Inicio', icon: Home },
   { href: '/about', label: 'Sobre nosotros', icon: Info },
-  { href: '/blog', label: 'BLOG', icon: Newspaper },
+  { href: '/blog', label: 'Blog', icon: Newspaper },
   { href: '/tracking', label: 'Seguimiento', icon: PackageSearch },
   { href: '/documents', label: 'Documents', icon: FileText },
   { href: '/contacto', label: 'Contacto', icon: MessageSquare },
-  { href: '/account', label: 'Mi Cuenta', icon: User },
+  { href: '/account', label: 'Mi Cuenta', icon: Home },
 ];
 
 
