@@ -84,33 +84,28 @@
 }
 
 @media print {
-  /* Hide non-essential layout elements completely */
-  header, footer {
-      display: none !important;
-  }
-
-  /* Reset layout constraints on the main content area */
-  main {
-      min-height: 0 !important;
-      padding: 0 !important;
-      margin: 0 !important;
-  }
-  
-  /* Hide all content by default using visibility */
+  /* Hide everything on the page by default */
   body * {
     visibility: hidden;
   }
-
-  /* Make only the invoice and its children visible */
-  #zona-factura, #zona-factura * {
+  /* Then, make ONLY the invoice printing area and its contents visible */
+  #zona-factura,
+  #zona-factura * {
     visibility: visible;
   }
-
-  /* Position the invoice at the top-left of the print page */
+  /* Position the invoice at the very top of the page, taking up the full width */
   #zona-factura {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  /* Hide the main layout elements that cause the extra page. */
+  header,
+  footer,
+  main {
+    display: none !important;
   }
 }
