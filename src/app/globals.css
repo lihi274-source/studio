@@ -84,20 +84,33 @@
 }
 
 @media print {
+  /* Hide non-essential layout elements completely */
+  header, footer {
+      display: none !important;
+  }
+
+  /* Reset layout constraints on the main content area */
+  main {
+      min-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+  }
+  
+  /* Hide all content by default using visibility */
   body * {
     visibility: hidden;
   }
+
+  /* Make only the invoice and its children visible */
   #zona-factura, #zona-factura * {
     visibility: visible;
   }
+
+  /* Position the invoice at the top-left of the print page */
   #zona-factura {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
-    margin: 0;
-    padding: 0;
-    border: none;
-    box-shadow: none;
   }
 }
