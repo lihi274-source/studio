@@ -6,8 +6,10 @@ import { FirebaseClientProvider } from '@/firebase';
 export const metadata: Metadata = {
   title: 'Viajes HICA',
   description: 'Tu agencia de viajes para explorar el mundo.',
+  themeColor: '#0a0a0a',
   icons: {
     icon: '/logo.blau.png',
+    apple: '/logo.blau.png',
   },
 };
 
@@ -18,8 +20,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <head>
-      </head>
       <body className="font-body antialiased">
         <FirebaseClientProvider>
           {children}
