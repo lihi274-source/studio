@@ -84,28 +84,36 @@
 }
 
 @media print {
-  /* Hide everything on the page by default */
-  body * {
-    visibility: hidden;
+  /* Hide elements we don't want to print by giving them display: none */
+  header, footer, [data-id="documents-accordion-card"] {
+    display: none !important;
   }
-  /* Then, make ONLY the invoice printing area and its contents visible */
-  #zona-factura,
-  #zona-factura * {
-    visibility: visible;
+
+  /* Reset body and main layout styles to prevent them from adding extra space */
+  body, main {
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: auto !important;
   }
-  /* Position the invoice at the very top of the page, taking up the full width */
+
+  /*
+    The .print-area is normally hidden on screen with the 'invisible' class.
+    For printing, we override this to make it visible.
+  */
+  .print-area {
+    visibility: visible !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /*
+    Position the actual invoice content at the top-left of the printed page.
+    This takes it out of the normal flow, which helps prevent blank pages.
+  */
   #zona-factura {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  /* Hide the main layout elements that cause the extra page. */
-  header,
-  footer,
-  main {
-    display: none !important;
   }
 }

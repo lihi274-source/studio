@@ -367,7 +367,7 @@ export default function DocumentsPage() {
 
   return (
     <div>
-        <Card>
+        <Card data-id="documents-accordion-card">
             <CardHeader>
                 <CardTitle className="font-headline text-4xl flex items-center">
                     <FileText className="mr-4 h-8 w-8 text-primary"/>
@@ -426,7 +426,7 @@ export default function DocumentsPage() {
           It's kept in the DOM but made invisible on screen.
           The print-specific CSS in globals.css will make it visible for printing.
         */}
-        <div className="invisible h-0 overflow-hidden">
+        <div className="invisible h-0 overflow-hidden print-area">
             {invoiceToPrint && (
                 <div id="zona-factura">
                     <InvoiceDetail invoice={invoiceToPrint} />
