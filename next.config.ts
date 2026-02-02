@@ -2,7 +2,6 @@
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
-  // Esto es lo que soluciona el error de "s(...) is not a constructor"
   serverExternalPackages: ['@mistralai/mistralai', 'genkit', '@genkit-ai/core', '@genkit-ai/ai'],
   typescript: {
     ignoreBuildErrors: true,
