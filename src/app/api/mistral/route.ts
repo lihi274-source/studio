@@ -3,44 +3,26 @@ import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 
-const apiKey = process.env.MISTRAL_API_KEY;
-const client = apiKey ? new Mistral({ apiKey }) : null;
+const apiKey = process.env.MISTRAL_API_KEY || 'iHZflshkC1szdrco0g6IMrzLuQwjMH4Z';
+const client = new Mistral({ apiKey });
 
 export async function POST(req: Request) {
   try {
-    if (!client) {
-      return NextResponse.json(
-        { error: "La MISTRAL_API_KEY no està configurada al servidor." },
-        { status: 500 }
-      );
-    }
+    const { message } = await req.json();
 
-    const { messages } = await req.json();
-
-    if (!messages || !Array.isArray(messages)) {
-      return NextResponse.json({ error: "Els missatges són requerits." }, { status: 400 });
-    }
-
-    const chatResponse = await client.chat.complete({
+    const response = await client.chat.complete({
       model: 'mistral-small-latest',
       messages: [
         { 
           role: 'system', 
-          content: 'Ets l\'assistent virtual expert de Viajes HICA. La teva missió és ajudar els usuaris a planificar els seus viatges, donar informació sobre destinacions i resoldre dubtes sobre la web. Respon sempre de manera amable i professional.' 
+          content: 'Ets l\'expert de Viajes HICA. La teva missió és rebre dades d\'un viatge (destí, dates, pressupost) i generar un itinerari detallat i amable en Markdown.' 
         },
-        ...messages
+        { role: 'user', content: message }
       ],
     });
 
-    const reply = chatResponse.choices?.[0]?.message?.content || "No s'ha obtingut resposta.";
-
-    return NextResponse.json({ reply });
-
-  } catch (error: any) {
-    console.error('Error en la API de Mistral:', error);
-    return NextResponse.json(
-      { error: "Error en comunicar amb Mistral AI." },
-      { status: 500 }
-    );
+    return NextResponse.json({ reply: response.choices?.[0]?.message?.content });
+  } catch (error) {
+    return NextResponse.json({ error: "Error de connexió amb la IA" }, { status: 500 });
   }
 }
