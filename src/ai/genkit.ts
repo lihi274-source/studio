@@ -1,7 +1,9 @@
-import {genkit} from 'genkit';
-import {googleAI} from '@genkit-ai/google-genai';
+import { genkit } from 'genkit';
+import { mistral } from '@genkit-ai/mistral'; // Cambiado de googleAI a mistral
 
 export const ai = genkit({
-  plugins: [googleAI({apiKey: process.env.GEMINI_API_KEY})],
-  model: 'googleai/gemini-2.5-flash',
+  plugins: [
+    mistral({ apiKey: process.env.MISTRAL_API_KEY || 'iHZflshkC1szdrco0g6IMrzLuQwjMH4Z' })
+  ],
+  model: 'mistral/mistral-small-latest', // Usamos el modelo de Mistral
 });
