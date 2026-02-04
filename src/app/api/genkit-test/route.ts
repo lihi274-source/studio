@@ -8,17 +8,30 @@ export async function POST(req: Request) {
     const { message } = await req.json();
 
     if (!message) {
-      return NextResponse.json({ error: "El missatge és requerit." }, { status: 400 });
+      return NextResponse.json({ error: "Falten dades per generar l'itinerari." }, { status: 400 });
     }
 
-    const prompt = `Ets un assistent virtual. Respon de manera breu i útil. La pregunta és: "${message}"`;
-    const response = await ai.generate({ prompt });
-    const reply = response.text;
+    // Le pedimos a Genkit que genere la respuesta usando tu modelo configurado
+    const response = await ai.generate({
+      prompt: `Ets l'assistent expert de l'agència "Viajes HICA". 
+      
+      DADES DEL VIATGE:
+      ${message}
+      
+      INSTRUCCIONS:
+      1. Genera un itinerari detallat dia per dia.
+      2. Usa un to amable, professional i expert.
+      3. Destaca experiències úniques (som especialistes en Japó, Islàndia i Europa).
+      4. Respon sempre en Markdown amb negretes i llistes.`,
+    });
 
-    return NextResponse.json({ reply });
+    return NextResponse.json({ reply: response.text });
 
   } catch (error: any) {
     console.error('Error en /api/genkit-test:', error);
-    return NextResponse.json({ error: "No s'ha pogut contactar amb l'assistent d'IA." }, { status: 500 });
+    return NextResponse.json(
+      { error: "Error de connexió amb la IA. Revisa la configuració de Genkit." }, 
+      { status: 500 }
+    );
   }
 }

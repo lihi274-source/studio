@@ -24,7 +24,7 @@ export default function AssistentPage() {
   const [isLoading, setIsLoading] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to bottom
+  // Auto-scroll al final
   useEffect(() => {
     if (scrollAreaRef.current) {
       const scrollContainer = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]');
@@ -44,22 +44,25 @@ export default function AssistentPage() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/mistral', {
+      // ACTUALIZADO: Apuntamos a la ruta de Genkit que creamos antes
+      const response = await fetch('/api/genkit-test', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
-          messages: [...messages, userMessage].map(m => ({ role: m.role, content: m.content })) 
+          message: input // Enviamos el mensaje actual
         }),
       });
 
       const data = await response.json();
-      if (data.error) throw new Error(data.error);
+      
+      if (!response.ok) throw new Error(data.error || "Error en la comunicació");
 
+      // Añadimos la respuesta de la IA (Genkit devuelve 'reply')
       setMessages((prev) => [...prev, { role: 'assistant', content: data.reply }]);
     } catch (error: any) {
       setMessages((prev) => [...prev, { 
         role: 'assistant', 
-        content: `Huy! He tingut un problema: ${error.message}. Si us plau, revisa la configuració de la clau API.` 
+        content: `Ui! He tingut un problema: ${error.message}. Si us plau, torna-ho a provar en un moment.` 
       }]);
     } finally {
       setIsLoading(false);
@@ -93,7 +96,7 @@ export default function AssistentPage() {
             </div>
             <div>
               <CardTitle className="text-xl">Assistent Viatger HICA</CardTitle>
-              <CardDescription>Mistral AI al teu servei</CardDescription>
+              <CardDescription>Intel·ligència Artificial al teu servei</CardDescription>
             </div>
           </div>
         </CardHeader>
@@ -140,7 +143,7 @@ export default function AssistentPage() {
                   </Avatar>
                   <div className="max-w-[80%] rounded-2xl p-4 shadow-sm bg-slate-100 flex items-center gap-2">
                     <Loader2 className="h-4 w-4 animate-spin text-primary" />
-                    <span className="text-sm italic">Escrivint...</span>
+                    <span className="text-sm italic">Preparant el teu viatge...</span>
                   </div>
                 </div>
               )}
@@ -153,7 +156,7 @@ export default function AssistentPage() {
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Pregunta'm sobre el teu proper viatge..."
+              placeholder="Escriu on vols anar o quin viatge busques..."
               className="flex-grow bg-white"
               disabled={isLoading}
             />
@@ -165,7 +168,7 @@ export default function AssistentPage() {
       </Card>
       
       <p className="mt-4 text-xs text-muted-foreground text-center max-w-md">
-        Aquest assistent utilitza intel·ligència artificial. Revisa la informació crítica sobre vols i reserves amb el nostre equip humà.
+        Recorda que sóc una IA. Revisa sempre els detalls finals amb el nostre equip.
       </p>
     </div>
   );
