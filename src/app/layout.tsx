@@ -7,10 +7,13 @@ export const metadata: Metadata = {
   title: 'Viajes HICA',
   description: 'Tu agencia de viajes para explorar el mundo.',
   themeColor: '#0a0a0a',
-  manifest: '/manifest.json?v=5',
+  manifest: '/manifest.json?v=6',
   icons: {
-    icon: '/logo.blau.png?v=5',
-    apple: '/logo.blau.png?v=5',
+    icon: [
+      { url: '/logo.blau.png?v=6', sizes: '32x32', type: 'image/png' },
+      { url: '/logo.blau.png?v=6', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: '/logo.blau.png?v=6',
   },
 };
 
