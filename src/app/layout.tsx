@@ -6,12 +6,12 @@ import { FirebaseClientProvider } from '@/firebase';
 export const metadata: Metadata = {
   title: 'Viajes HICA',
   description: 'Tu agencia de viajes para explorar el mundo.',
-  manifest: '/manifest.json?v=7',
+  manifest: '/manifest.json?v=8',
   icons: {
     icon: [
-      { url: '/logo.blau.png?v=7', sizes: 'any', type: 'image/png' },
+      { url: '/logo.blau.png?v=8', sizes: 'any', type: 'image/png' },
     ],
-    apple: '/logo.blau.png?v=7',
+    apple: '/logo.blau.png?v=8',
   },
 };
 
