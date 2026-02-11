@@ -1,7 +1,14 @@
+'use client';
+
 import { Mail, Phone, Twitter, Instagram, Facebook, MapPin } from 'lucide-react';
 import Link from 'next/link';
+import { useLocale } from '@/contexts/locale-context';
+import { translations } from '@/lib/translations';
 
 const Footer = () => {
+  const { locale } = useLocale();
+  const t = translations[locale];
+
   return (
     <footer className="bg-[#222538] text-gray-200">
       <div className="container mx-auto px-4 py-12">
@@ -10,12 +17,12 @@ const Footer = () => {
           <div className="sm:col-span-2">
             <h3 className="text-2xl font-headline text-white mb-4">Viajes HICA</h3>
             <p className="text-gray-400 max-w-md">
-              Tu agencia de viajes de confianza. Hacemos que la planificación de tu próxima aventura sea emocionante y sencilla. Explora el mundo con nosotros.
+              {t.footer.tagline}
             </p>
           </div>
 
           <div>
-            <h4 className="font-bold text-lg text-white mb-4">Contacto</h4>
+            <h4 className="font-bold text-lg text-white mb-4">{t.footer.contact}</h4>
             <ul className="space-y-3 text-gray-400">
               <li className="flex items-center">
                 <Phone className="mr-3 h-5 w-5 text-primary" />
@@ -33,7 +40,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-bold text-lg text-white mb-4">Síguenos</h4>
+            <h4 className="font-bold text-lg text-white mb-4">{t.footer.follow}</h4>
             <div className="flex space-x-4">
               <Link href="#" className="text-gray-400 hover:text-white transition-colors">
                 <Twitter className="h-6 w-6" />
@@ -52,11 +59,11 @@ const Footer = () => {
           
         </div>
         <div className="mt-10 pt-8 border-t border-gray-700 text-center text-gray-500">
-          <p className="mb-4">&copy; {new Date().getFullYear()} Viajes HICA. Todos los derechos reservados.</p>
+          <p className="mb-4">&copy; {new Date().getFullYear()} Viajes HICA. {t.footer.rights}</p>
           <div className="flex justify-center space-x-6">
-              <Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">Aviso legal</Link>
-              <Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">Privacidad</Link>
-              <Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">Cookies</Link>
+              <Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">{t.footer.legal}</Link>
+              <Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">{t.footer.privacy}</Link>
+              <Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">{t.footer.cookies}</Link>
           </div>
         </div>
       </div>

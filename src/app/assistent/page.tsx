@@ -10,6 +10,8 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
+import { useLocale } from '@/contexts/locale-context';
+import { translations } from '@/lib/translations';
 
 type Message = {
   role: 'user' | 'assistant';
@@ -17,12 +19,22 @@ type Message = {
 };
 
 export default function AssistentPage() {
+  const { locale } = useLocale();
+  const t = translations[locale];
+  
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: 'Hola! Sóc l\'assistent de **Viajes HICA**. Com et puc ajudar avui amb el teu proper viatge?' }
+    { role: 'assistant', content: t.assistent.welcome }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+
+  // Update welcome message if locale changes and no other messages exist
+  useEffect(() => {
+    if (messages.length === 1) {
+      setMessages([{ role: 'assistant', content: t.assistent.welcome }]);
+    }
+  }, [locale]);
 
   // Auto-scroll al final
   useEffect(() => {
@@ -44,12 +56,11 @@ export default function AssistentPage() {
     setIsLoading(true);
 
     try {
-      // ACTUALIZADO: Apuntamos a la ruta de Genkit que creamos antes
       const response = await fetch('/api/genkit-test', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
-          message: input // Enviamos el mensaje actual
+          message: `${input} (Respon en l'idioma: ${locale === 'ca' ? 'Català' : locale === 'en' ? 'Anglès' : 'Castellà'})` 
         }),
       });
 
@@ -57,7 +68,6 @@ export default function AssistentPage() {
       
       if (!response.ok) throw new Error(data.error || "Error en la comunicació");
 
-      // Añadimos la respuesta de la IA (Genkit devuelve 'reply')
       setMessages((prev) => [...prev, { role: 'assistant', content: data.reply }]);
     } catch (error: any) {
       setMessages((prev) => [...prev, { 
@@ -70,7 +80,7 @@ export default function AssistentPage() {
   };
 
   const resetChat = () => {
-    setMessages([{ role: 'assistant', content: 'Hola! Sóc l\'assistent de **Viajes HICA**. Com et puc ajudar avui amb el teu proper viatge?' }]);
+    setMessages([{ role: 'assistant', content: t.assistent.welcome }]);
   };
 
   return (
@@ -79,12 +89,12 @@ export default function AssistentPage() {
         <Button asChild variant="ghost">
           <Link href="/">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Tornar
+            {t.assistent.back}
           </Link>
         </Button>
         <Button variant="outline" size="sm" onClick={resetChat} className="text-muted-foreground">
           <RefreshCcw className="mr-2 h-4 w-4" />
-          Reiniciar xat
+          {t.assistent.reset}
         </Button>
       </div>
 
@@ -95,8 +105,8 @@ export default function AssistentPage() {
               <Bot className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
-              <CardTitle className="text-xl">Assistent Viatger HICA</CardTitle>
-              <CardDescription>Intel·ligència Artificial al teu servei</CardDescription>
+              <CardTitle className="text-xl">{t.assistent.title}</CardTitle>
+              <CardDescription>{t.assistent.subtitle}</CardDescription>
             </div>
           </div>
         </CardHeader>
@@ -143,7 +153,7 @@ export default function AssistentPage() {
                   </Avatar>
                   <div className="max-w-[80%] rounded-2xl p-4 shadow-sm bg-slate-100 flex items-center gap-2">
                     <Loader2 className="h-4 w-4 animate-spin text-primary" />
-                    <span className="text-sm italic">Preparant el teu viatge...</span>
+                    <span className="text-sm italic">{t.assistent.thinking}</span>
                   </div>
                 </div>
               )}
@@ -156,7 +166,7 @@ export default function AssistentPage() {
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Escriu on vols anar o quin viatge busques..."
+              placeholder={t.assistent.placeholder}
               className="flex-grow bg-white"
               disabled={isLoading}
             />
@@ -168,7 +178,7 @@ export default function AssistentPage() {
       </Card>
       
       <p className="mt-4 text-xs text-muted-foreground text-center max-w-md">
-        Recorda que sóc una IA. Revisa sempre els detalls finals amb el nostre equip.
+        {t.assistent.disclaimer}
       </p>
     </div>
   );

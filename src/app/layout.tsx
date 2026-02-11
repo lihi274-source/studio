@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 import { FirebaseClientProvider } from '@/firebase';
+import { LocaleProvider } from '@/contexts/locale-context';
 
 export const metadata: Metadata = {
   title: 'Viajes HICA',
@@ -23,9 +24,11 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className="font-body antialiased">
-        <FirebaseClientProvider>
-          {children}
-        </FirebaseClientProvider>
+        <LocaleProvider>
+          <FirebaseClientProvider>
+            {children}
+          </FirebaseClientProvider>
+        </LocaleProvider>
         <Toaster />
       </body>
     </html>
