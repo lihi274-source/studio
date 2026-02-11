@@ -145,6 +145,17 @@ export const translations = {
       subtitle: "Inteligencia Artificial a tu servicio",
       disclaimer: "Recuerda que soy una IA. Revisa siempre los detalles finales con nuestro equipo."
     },
+    blog: {
+      title: "Nuestro Blog",
+      subtitle: "Consejos, noticias y destinos para tu próximo viaje.",
+      featured: "Artículo Destacado",
+      readMore: "Leer más",
+      back: "Volver al Blog",
+      tips: "Consejos para tu Viaje",
+      categories: "Categorías",
+      destinations: "Destinos",
+      noContent: "El contenido completo de este artículo estará disponible próximamente."
+    },
     forms: {
       origin: "Origen",
       destination: "Destino",
@@ -159,7 +170,8 @@ export const translations = {
       generate: "Generar Itinerario",
       booking: "Reservar ahora",
       chooseDate: "Elige una fecha",
-      chooseRange: "Elige un rango de fechas"
+      chooseRange: "Elige un rango de fechas",
+      learnMore: "Saber más"
     }
   },
   ca: {
@@ -306,6 +318,17 @@ export const translations = {
       subtitle: "Intel·ligència Artificial al teu servei",
       disclaimer: "Recorda que sóc una IA. Revisa sempre els detalls finals amb el nostre equip."
     },
+    blog: {
+      title: "El Nostre Blog",
+      subtitle: "Consells, notícies i destins per al teu proper viatge.",
+      featured: "Article Destacat",
+      readMore: "Llegir més",
+      back: "Tornar al Blog",
+      tips: "Consells per al teu Viatge",
+      categories: "Categories",
+      destinations: "Destinacions",
+      noContent: "El contingut complet d'aquest article estarà disponible properament."
+    },
     forms: {
       origin: "Origen",
       destination: "Destí",
@@ -320,7 +343,8 @@ export const translations = {
       generate: "Generar Itinerari",
       booking: "Reservar ara",
       chooseDate: "Tria una data",
-      chooseRange: "Tria un rang de dates"
+      chooseRange: "Tria un rang de dates",
+      learnMore: "Saber més"
     }
   },
   en: {
@@ -457,6 +481,17 @@ export const translations = {
       privacy: "Privacy",
       cookies: "Cookies"
     },
+    blog: {
+      title: "Our Blog",
+      subtitle: "Tips, news and destinations for your next trip.",
+      featured: "Featured Article",
+      readMore: "Read more",
+      back: "Back to Blog",
+      tips: "Travel Tips",
+      categories: "Categories",
+      destinations: "Destinations",
+      noContent: "The full content of this article will be available soon."
+    },
     assistent: {
       welcome: "Hello! I am the **Viajes HICA** assistant. How can I help you today with your next trip?",
       placeholder: "Write where you want to go or what trip you are looking for...",
@@ -481,7 +516,8 @@ export const translations = {
       generate: "Generate Itinerary",
       booking: "Book now",
       chooseDate: "Choose a date",
-      chooseRange: "Choose a date range"
+      chooseRange: "Choose a date range",
+      learnMore: "Learn more"
     }
   }
 };
