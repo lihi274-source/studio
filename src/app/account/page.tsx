@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -8,14 +8,15 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Loader2, LogOut, User, KeyRound } from 'lucide-react';
+import { Loader2, User, KeyRound } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useLocale } from '@/contexts/locale-context';
+import { translations } from '@/lib/translations';
 
 const formSchema = z.object({
-  usuari: z.string().min(1, 'El camp usuari és requerit.'),
-  password: z.string().min(1, 'La contrasenya és requerida.'),
+  usuari: z.string().min(1),
+  password: z.string().min(1),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -25,6 +26,8 @@ type UserData = {
 }
 
 export default function AccountPage() {
+  const { locale } = useLocale();
+  const t = translations[locale];
   const { toast } = useToast();
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -32,24 +35,14 @@ export default function AccountPage() {
   const [isLoadingUser, setIsLoadingUser] = useState(true);
 
   useEffect(() => {
-    try {
-      const userData = localStorage.getItem('user');
-      if (userData) {
-        setUser(JSON.parse(userData));
-      }
-    } catch (error) {
-      console.error("Failed to parse user data from localStorage", error);
-      localStorage.removeItem('user');
-    }
+    const userData = localStorage.getItem('user');
+    if (userData) setUser(JSON.parse(userData));
     setIsLoadingUser(false);
   }, []);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      usuari: '',
-      password: '',
-    },
+    defaultValues: { usuari: '', password: '' },
   });
 
   const handleLogin = async (values: FormValues) => {
@@ -57,46 +50,23 @@ export default function AccountPage() {
     try {
       const response = await fetch(`https://sheetdb.io/api/v1/reou400435n4c/search?sheet=usuaris&usuari=${values.usuari}&password=${values.password}`);
       const data = await response.json();
-
       if (data.length > 0) {
-        const userData: UserData = {
-          usuari: data[0].usuari,
-          empresa: data[0].empresa,
-        };
+        const userData = { usuari: data[0].usuari, empresa: data[0].empresa };
         localStorage.setItem('user', JSON.stringify(userData));
         setUser(userData);
-        toast({
-          title: 'Sessió iniciada correctament',
-          description: `Benvingut/da, ${userData.usuari}!`,
-        });
+        toast({ title: t.account.welcome, description: `${userData.usuari}` });
         router.push('/dashboard');
       } else {
-        toast({
-          variant: "destructive",
-          title: 'Error d\'autenticació',
-          description: 'Les dades introduïdes són incorrectes.',
-        });
+        toast({ variant: "destructive", title: t.account.error, description: t.account.errorDesc });
       }
     } catch (error) {
-      toast({
-        variant: "destructive",
-        title: 'Error de xarxa',
-        description: 'No s\'ha pogut connectar amb el servidor. Intenta-ho de nou més tard.',
-      });
+      toast({ variant: "destructive", title: "Error", description: "Network Error" });
     } finally {
       setIsSubmitting(false);
     }
   };
   
-  if (isLoadingUser) {
-    return (
-      <div className="flex flex-col min-h-screen bg-background">
-        <main className="flex-grow container mx-auto px-4 py-8 flex items-center justify-center">
-            <Loader2 className="h-16 w-16 animate-spin text-primary" />
-        </main>
-      </div>
-    );
-  }
+  if (isLoadingUser) return <div className="flex min-h-screen items-center justify-center"><Loader2 className="animate-spin" /></div>;
 
   return (
      <div className="flex flex-col min-h-screen bg-background">
@@ -104,18 +74,17 @@ export default function AccountPage() {
         {user ? (
           <Card className="w-full max-w-md">
             <CardHeader className="text-center">
-              <CardTitle>Ja has iniciat sessió</CardTitle>
-              <CardDescription>Vols anar al teu perfil o tancar la sessió?</CardDescription>
+              <CardTitle>{t.account.welcome}</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col gap-4">
-              <Button onClick={() => router.push('/dashboard')} className="w-full">Anar al Perfil</Button>
+              <Button onClick={() => router.push('/dashboard')} className="w-full">{t.account.profile}</Button>
             </CardContent>
           </Card>
         ) : (
           <Card className="w-full max-w-md">
             <CardHeader>
-              <CardTitle>Accedeix al teu compte</CardTitle>
-              <CardDescription>Introdueix les teves credencials per continuar.</CardDescription>
+              <CardTitle>{t.account.loginTitle}</CardTitle>
+              <CardDescription>{t.account.loginSub}</CardDescription>
             </CardHeader>
             <CardContent>
               <Form {...form}>
@@ -125,11 +94,11 @@ export default function AccountPage() {
                     name="usuari"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Usuari</FormLabel>
+                        <FormLabel>{t.account.user}</FormLabel>
                          <div className="relative">
                            <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                            <FormControl>
-                            <Input placeholder="El teu nom d'usuari" {...field} className="pl-10"/>
+                            <Input placeholder={t.account.userPlace} {...field} className="pl-10"/>
                           </FormControl>
                          </div>
                         <FormMessage />
@@ -141,7 +110,7 @@ export default function AccountPage() {
                     name="password"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Contrasenya</FormLabel>
+                        <FormLabel>{t.account.pass}</FormLabel>
                         <div className="relative">
                            <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                           <FormControl>
@@ -153,14 +122,7 @@ export default function AccountPage() {
                     )}
                   />
                   <Button type="submit" className="w-full" disabled={isSubmitting}>
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Entrant...
-                      </>
-                    ) : (
-                      'Entrar'
-                    )}
+                    {isSubmitting ? t.account.loggingIn : t.account.loginBtn}
                   </Button>
                 </form>
               </Form>

@@ -5,16 +5,20 @@ import Link from 'next/link';
 import { Card, CardDescription, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { useLocale } from '@/contexts/locale-context';
+import { translations } from '@/lib/translations';
 
 const DestinosTab = () => {
-  // We'll show a selection of countries
+  const { locale } = useLocale();
+  const t = translations[locale];
+  
   const countries = PlaceHolderImages.filter(p => p.id.startsWith('country-'));
 
   return (
     <div className="mt-6">
       <div className="text-center mb-12">
-        <h2 className="font-headline text-3xl text-primary-foreground">Explora el Mundo</h2>
-        <p className="text-muted-foreground mt-2">Descubre curiosidades y lugares fascinantes en estos países.</p>
+        <h2 className="font-headline text-3xl text-primary-foreground">{t.home.destTitle}</h2>
+        <p className="text-muted-foreground mt-2">{t.home.destSub}</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {countries.map((country) => (
@@ -35,7 +39,7 @@ const DestinosTab = () => {
               </div>
               <Button asChild className="mt-4 w-full bg-accent hover:bg-accent/90 text-accent-foreground">
                 <Link href={`/destinos/${country.id}`}>
-                  Saber más
+                  {locale === 'en' ? 'Learn more' : locale === 'ca' ? 'Saber més' : 'Saber más'}
                 </Link>
               </Button>
             </div>

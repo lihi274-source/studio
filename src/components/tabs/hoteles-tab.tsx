@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { CalendarIcon, Users, MapPin } from 'lucide-react';
 import { format } from 'date-fns';
-import { es } from 'date-fns/locale';
+import { es, ca, enUS } from 'date-fns/locale';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
@@ -14,17 +14,24 @@ import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { useLocale } from '@/contexts/locale-context';
+import { translations } from '@/lib/translations';
 
 const formSchema = z.object({
-  destino: z.string().min(1, 'El destino es requerido'),
+  destino: z.string().min(1),
   fechas: z.object({
-    from: z.date({ required_error: 'La fecha de entrada es requerida.' }),
-    to: z.date({ required_error: 'La fecha de salida es requerida.' }),
+    from: z.date(),
+    to: z.date(),
   }),
-  huespedes: z.string().min(1, 'El número de huéspedes es requerido'),
+  huespedes: z.string().min(1),
 });
 
 const HotelesTab = () => {
+  const { locale } = useLocale();
+  const t = translations[locale];
+  
+  const dateLocale = locale === 'ca' ? ca : locale === 'en' ? enUS : es;
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -35,14 +42,13 @@ const HotelesTab = () => {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    // Here you would typically handle the hotel search logic
   }
 
   return (
     <Card className="mt-6 border-2 border-primary/20 shadow-lg">
       <CardHeader>
-        <CardTitle className="font-headline text-3xl">Encuentra tu Hotel Ideal</CardTitle>
-        <CardDescription>Busca entre miles de hoteles al mejor precio.</CardDescription>
+        <CardTitle className="font-headline text-3xl">{t.home.hotelTitle}</CardTitle>
+        <CardDescription>{t.home.hotelSub}</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -52,11 +58,11 @@ const HotelesTab = () => {
               name="destino"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Destino</FormLabel>
+                  <FormLabel>{t.forms.destination}</FormLabel>
                   <div className="relative">
                     <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                     <FormControl>
-                      <Input placeholder="Ciudad, hotel, o punto de interés" {...field} className="pl-10" />
+                      <Input placeholder={t.forms.destination} {...field} className="pl-10" />
                     </FormControl>
                   </div>
                   <FormMessage />
@@ -70,7 +76,7 @@ const HotelesTab = () => {
                 name="fechas"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>Fechas de Entrada y Salida</FormLabel>
+                    <FormLabel>{t.forms.departure} - {t.forms.return}</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
@@ -83,14 +89,14 @@ const HotelesTab = () => {
                             {field.value?.from ? (
                               field.value.to ? (
                                 <>
-                                  {format(field.value.from, 'LLL dd, y', { locale: es })} -{' '}
-                                  {format(field.value.to, 'LLL dd, y', { locale: es })}
+                                  {format(field.value.from, 'LLL dd, y', { locale: dateLocale })} -{' '}
+                                  {format(field.value.to, 'LLL dd, y', { locale: dateLocale })}
                                 </>
                               ) : (
-                                format(field.value.from, 'LLL dd, y', { locale: es })
+                                format(field.value.from, 'LLL dd, y', { locale: dateLocale })
                               )
                             ) : (
-                              <span>Elige un rango de fechas</span>
+                              <span>{t.forms.chooseRange}</span>
                             )}
                           </Button>
                         </FormControl>
@@ -116,19 +122,19 @@ const HotelesTab = () => {
                 name="huespedes"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Huéspedes</FormLabel>
+                    <FormLabel>{t.forms.guests}</FormLabel>
                     <div className="relative">
                       <Users className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger className="pl-10">
-                            <SelectValue placeholder="Selecciona el número de huéspedes" />
+                            <SelectValue placeholder={t.forms.guests} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
                           {[...Array(8)].map((_, i) => (
                             <SelectItem key={i + 1} value={`${i + 1}`}>
-                              {i + 1} {i + 1 > 1 ? 'huéspedes' : 'huésped'}
+                              {i + 1} {i + 1 > 1 ? t.forms.guests.toLowerCase() : t.forms.guests.toLowerCase().slice(0, -1)}
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -140,7 +146,7 @@ const HotelesTab = () => {
               />
             </div>
             <Button type="submit" size="lg" className="w-full md:w-auto bg-accent hover:bg-accent/90 text-accent-foreground">
-              Buscar Hoteles
+              {t.forms.search}
             </Button>
           </form>
         </Form>

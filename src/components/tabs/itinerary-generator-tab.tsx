@@ -12,19 +12,23 @@ import { useState } from 'react';
 import { Loader2, Sparkles, AlertCircle } from 'lucide-react';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import ReactMarkdown from 'react-markdown';
-import { generateItinerary, type GenerateItineraryInput } from '@/ai/flows/generate-itinerary-flow';
-
+import { generateItinerary } from '@/ai/flows/generate-itinerary-flow';
+import { useLocale } from '@/contexts/locale-context';
+import { translations } from '@/lib/translations';
 
 const formSchema = z.object({
-  destination: z.string().min(1, 'El destí és requerit.'),
-  dates: z.string().min(1, 'Les dates són requerides.'),
-  budget: z.string().min(1, 'El pressupost és requerit.'),
-  interests: z.string().min(10, 'Descriu els teus interessos amb una mica més de detall.'),
+  destination: z.string().min(1),
+  dates: z.string().min(1),
+  budget: z.string().min(1),
+  interests: z.string().min(10),
 });
 
 type FormValues = z.infer<typeof formSchema>;
 
 const ItineraryGeneratorTab = () => {
+  const { locale } = useLocale();
+  const t = translations[locale];
+  
   const [isLoading, setIsLoading] = useState(false);
   const [itinerary, setItinerary] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -47,9 +51,8 @@ const ItineraryGeneratorTab = () => {
     try {
       const result = await generateItinerary(values);
       setItinerary(result);
-
     } catch (error: any) {
-      setError(error.message || "Hi ha hagut un error en generar l'itinerari.");
+      setError(error.message || "Error generating itinerary.");
     } finally {
       setIsLoading(false);
     }
@@ -59,10 +62,8 @@ const ItineraryGeneratorTab = () => {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-6">
       <Card className="border-2 border-primary/20 shadow-lg">
         <CardHeader>
-          <CardTitle className="font-headline text-3xl">Generador de Itinerarios con IA</CardTitle>
-          <CardDescription>
-            ¿No sabes por dónde empezar? Describe el viaje de tus sueños y nuestra IA creará un plan personalizado para ti.
-          </CardDescription>
+          <CardTitle className="font-headline text-3xl">{t.home.itinerTitle}</CardTitle>
+          <CardDescription>{t.home.itinerSub}</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -72,9 +73,9 @@ const ItineraryGeneratorTab = () => {
                 name="destination"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Destino</FormLabel>
+                    <FormLabel>{t.forms.destination}</FormLabel>
                     <FormControl>
-                      <Input placeholder="Ej: París, Francia" {...field} />
+                      <Input placeholder={t.forms.destination} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -85,9 +86,9 @@ const ItineraryGeneratorTab = () => {
                 name="dates"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Fechas del Viaje</FormLabel>
+                    <FormLabel>{t.nav.tracking === 'Seguiment' ? 'Dates del Viatge' : 'Fechas del Viaje'}</FormLabel>
                     <FormControl>
-                      <Input placeholder="Ej: 15 al 22 de Octubre" {...field} />
+                      <Input placeholder="Ej: 15-22 Oct" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -98,9 +99,9 @@ const ItineraryGeneratorTab = () => {
                 name="budget"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Presupuesto</FormLabel>
+                    <FormLabel>{t.forms.budget}</FormLabel>
                     <FormControl>
-                      <Input placeholder="Ej: Moderado, Lujoso, Económico" {...field} />
+                      <Input placeholder={t.forms.budget} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -111,10 +112,10 @@ const ItineraryGeneratorTab = () => {
                 name="interests"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Intereses y Preferencias</FormLabel>
+                    <FormLabel>{t.forms.interests}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Ej: Me encanta el arte, la comida callejera, caminar por la ciudad y busco hoteles boutique."
+                        placeholder={t.forms.interests}
                         className="resize-none"
                         {...field}
                       />
@@ -127,10 +128,10 @@ const ItineraryGeneratorTab = () => {
                 {isLoading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Generando...
+                    {t.assistent.thinking}
                   </>
                 ) : (
-                  'Generar Itinerario'
+                  t.forms.generate
                 )}
               </Button>
             </form>
@@ -143,17 +144,16 @@ const ItineraryGeneratorTab = () => {
           <CardHeader>
             <CardTitle className="font-headline text-2xl flex items-center">
               <Sparkles className="mr-2 h-6 w-6 text-accent" />
-              Tu Itinerario Personalizado
+              {t.home.itinerResult}
             </CardTitle>
           </CardHeader>
           <CardContent>
             {isLoading && (
               <div className="space-y-4">
-                <p className="text-muted-foreground text-center">Nuestra IA está planificando tu viaje...</p>
+                <p className="text-muted-foreground text-center">{t.home.itinerPlanning}</p>
                 <div className="space-y-2">
                     <div className="h-4 bg-muted rounded w-3/4 animate-pulse"></div>
                     <div className="h-4 bg-muted rounded w-1/2 animate-pulse"></div>
-                    <div className="h-4 bg-muted rounded w-2/3 animate-pulse"></div>
                 </div>
               </div>
             )}
@@ -171,8 +171,7 @@ const ItineraryGeneratorTab = () => {
             )}
             {!isLoading && !itinerary && !error && (
                <div className="text-center text-muted-foreground py-16">
-                  <p>Tu itinerario aparecerá aquí.</p>
-                  <p className="text-sm">Rellena el formulario para empezar.</p>
+                  <p>{t.home.itinerEmpty}</p>
               </div>
             )}
           </CardContent>

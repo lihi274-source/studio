@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { CalendarIcon, Users, PlaneTakeoff, PlaneLanding } from 'lucide-react';
 import { format } from 'date-fns';
-import { es } from 'date-fns/locale';
+import { es, ca, enUS } from 'date-fns/locale';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
@@ -14,16 +14,23 @@ import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { useLocale } from '@/contexts/locale-context';
+import { translations } from '@/lib/translations';
 
 const formSchema = z.object({
-  origen: z.string().min(1, 'El origen es requerido'),
-  destino: z.string().min(1, 'El destino es requerido'),
-  ida: z.date({ required_error: 'La fecha de ida es requerida.' }),
+  origen: z.string().min(1),
+  destino: z.string().min(1),
+  ida: z.date(),
   vuelta: z.date().optional(),
-  pasajeros: z.string().min(1, 'El número de pasajeros es requerido'),
+  pasajeros: z.string().min(1),
 });
 
 const VuelosTab = () => {
+  const { locale } = useLocale();
+  const t = translations[locale];
+  
+  const dateLocale = locale === 'ca' ? ca : locale === 'en' ? enUS : es;
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -35,14 +42,13 @@ const VuelosTab = () => {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    // Here you would typically handle the flight search logic
   }
 
   return (
     <Card className="mt-6 border-2 border-primary/20 shadow-lg">
       <CardHeader>
-        <CardTitle className="font-headline text-3xl">Busca tu Vuelo</CardTitle>
-        <CardDescription>Encuentra las mejores ofertas para tu próximo viaje.</CardDescription>
+        <CardTitle className="font-headline text-3xl">{t.home.flightTitle}</CardTitle>
+        <CardDescription>{t.home.flightSub}</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -53,11 +59,11 @@ const VuelosTab = () => {
                 name="origen"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Origen</FormLabel>
+                    <FormLabel>{t.forms.origin}</FormLabel>
                     <div className="relative">
                       <PlaneTakeoff className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                       <FormControl>
-                        <Input placeholder="Ciudad de salida" {...field} className="pl-10" />
+                        <Input placeholder={t.forms.origin} {...field} className="pl-10" />
                       </FormControl>
                     </div>
                     <FormMessage />
@@ -69,11 +75,11 @@ const VuelosTab = () => {
                 name="destino"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Destino</FormLabel>
+                    <FormLabel>{t.forms.destination}</FormLabel>
                     <div className="relative">
                       <PlaneLanding className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                       <FormControl>
-                        <Input placeholder="Ciudad de llegada" {...field} className="pl-10" />
+                        <Input placeholder={t.forms.destination} {...field} className="pl-10" />
                       </FormControl>
                     </div>
                     <FormMessage />
@@ -88,7 +94,7 @@ const VuelosTab = () => {
                 name="ida"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>Fecha de Ida</FormLabel>
+                    <FormLabel>{t.forms.departure}</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
@@ -98,9 +104,9 @@ const VuelosTab = () => {
                           >
                             <CalendarIcon className="mr-2 h-4 w-4" />
                             {field.value ? (
-                              format(field.value, 'PPP', { locale: es })
+                              format(field.value, 'PPP', { locale: dateLocale })
                             ) : (
-                              <span>Elige una fecha</span>
+                              <span>{t.forms.chooseDate}</span>
                             )}
                           </Button>
                         </FormControl>
@@ -124,7 +130,7 @@ const VuelosTab = () => {
                 name="vuelta"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>Fecha de Vuelta (Opcional)</FormLabel>
+                    <FormLabel>{t.forms.returnOpt}</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
@@ -134,9 +140,9 @@ const VuelosTab = () => {
                           >
                             <CalendarIcon className="mr-2 h-4 w-4" />
                             {field.value ? (
-                              format(field.value, 'PPP', { locale: es })
+                              format(field.value, 'PPP', { locale: dateLocale })
                             ) : (
-                              <span>Elige una fecha</span>
+                              <span>{t.forms.chooseDate}</span>
                             )}
                           </Button>
                         </FormControl>
@@ -160,19 +166,19 @@ const VuelosTab = () => {
                 name="pasajeros"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Pasajeros</FormLabel>
+                    <FormLabel>{t.forms.passengers}</FormLabel>
                     <div className="relative">
                       <Users className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger className="pl-10">
-                            <SelectValue placeholder="Selecciona el número de pasajeros" />
+                            <SelectValue placeholder={t.forms.passengers} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
                           {[...Array(8)].map((_, i) => (
                             <SelectItem key={i + 1} value={`${i + 1}`}>
-                              {i + 1} {i + 1 > 1 ? 'pasajeros' : 'pasajero'}
+                              {i + 1} {i + 1 > 1 ? t.forms.passengers.toLowerCase() : t.forms.passengers.toLowerCase().slice(0, -1)}
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -184,7 +190,7 @@ const VuelosTab = () => {
               />
             </div>
             <Button type="submit" size="lg" className="w-full md:w-auto bg-accent hover:bg-accent/90 text-accent-foreground">
-              Buscar Vuelos
+              {t.forms.search}
             </Button>
           </form>
         </Form>

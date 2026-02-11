@@ -11,16 +11,21 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Loader2, User, Mail, MessageSquare } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useLocale } from '@/contexts/locale-context';
+import { translations } from '@/lib/translations';
 
 const contactFormSchema = z.object({
-  fullName: z.string().min(3, 'El nombre es requerido.'),
-  email: z.string().email('El email no es válido.'),
-  message: z.string().min(10, 'El mensaje debe tener al menos 10 caracteres.'),
+  fullName: z.string().min(3),
+  email: z.string().email(),
+  message: z.string().min(10),
 });
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 export default function ContactoPage() {
+  const { locale } = useLocale();
+  const t = translations[locale];
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
@@ -35,37 +40,22 @@ export default function ContactoPage() {
 
   const onSubmit = async (values: ContactFormValues) => {
     setIsSubmitting(true);
-    
     try {
       const response = await fetch("https://formspree.io/f/xanrjdrv", {
         method: 'POST',
-        headers: {
-          'Accept': 'application/json'
-        },
+        headers: { 'Accept': 'application/json' },
         body: JSON.stringify(values)
       });
 
       if (response.ok) {
-        toast({
-          title: '¡Mensaje enviado!',
-          description: 'Gracias por contactarnos. Te responderemos lo antes posible.',
-        });
+        toast({ title: t.contact.success, description: t.contact.successDesc });
         form.reset();
       } else {
-        toast({
-          variant: "destructive",
-          title: 'Error al enviar el mensaje',
-          description: 'Hubo un problema. Por favor, inténtalo de nuevo.',
-        });
+        toast({ variant: "destructive", title: t.contact.error, description: t.contact.errorDesc });
       }
     } catch (error) {
-      toast({
-          variant: "destructive",
-          title: 'Error de red',
-          description: 'No se pudo conectar con el servidor. Revisa tu conexión.',
-        });
+      toast({ variant: "destructive", title: "Error", description: "Network error" });
     }
-
     setIsSubmitting(false);
   };
 
@@ -73,10 +63,8 @@ export default function ContactoPage() {
     <div className="container mx-auto px-4 py-12 flex items-center justify-center">
       <Card className="w-full max-w-2xl border-2 border-primary/20 shadow-lg">
         <CardHeader className="text-center">
-          <CardTitle className="font-headline text-4xl">Ponte en contacto</CardTitle>
-          <CardDescription className="text-lg">
-            ¿Tienes alguna pregunta o sugerencia? ¡Nos encantaría saber de ti!
-          </CardDescription>
+          <CardTitle className="font-headline text-4xl">{t.contact.title}</CardTitle>
+          <CardDescription className="text-lg">{t.contact.subtitle}</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -86,11 +74,11 @@ export default function ContactoPage() {
                 name="fullName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Nombre completo</FormLabel>
+                    <FormLabel>{t.contact.name}</FormLabel>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                       <FormControl>
-                        <Input placeholder="Tu nombre y apellidos" {...field} className="pl-10" />
+                        <Input placeholder={t.contact.namePlace} {...field} className="pl-10" />
                       </FormControl>
                     </div>
                     <FormMessage />
@@ -102,7 +90,7 @@ export default function ContactoPage() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Correo electrónico</FormLabel>
+                    <FormLabel>{t.contact.email}</FormLabel>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                       <FormControl>
@@ -118,11 +106,11 @@ export default function ContactoPage() {
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Tu mensaje</FormLabel>
+                    <FormLabel>{t.contact.message}</FormLabel>
                     <div className="relative">
                        <MessageSquare className="absolute left-3 top-4 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                       <FormControl>
-                        <Textarea placeholder="Escribe aquí tu consulta..." {...field} className="pl-10 pt-3 min-h-[120px]" />
+                        <Textarea placeholder={t.contact.messagePlace} {...field} className="pl-10 pt-3 min-h-[120px]" />
                       </FormControl>
                     </div>
                     <FormMessage />
@@ -133,10 +121,10 @@ export default function ContactoPage() {
                 {isSubmitting ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Enviando...
+                    {t.contact.submitting}
                   </>
                 ) : (
-                  'Enviar Mensaje'
+                  t.contact.submit
                 )}
               </Button>
             </form>

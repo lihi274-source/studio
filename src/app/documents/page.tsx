@@ -4,16 +4,16 @@ import { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Loader2, Printer, AlertCircle, FileText, Building, User, Phone, MapPin } from 'lucide-react';
+import { Loader2, Printer, AlertCircle, FileText } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
-
+import { useLocale } from '@/contexts/locale-context';
+import { translations } from '@/lib/translations';
 
 // --- TYPE DEFINITIONS ---
-
 type DocumentLine = {
   num_factura: string;
   data: string;
@@ -25,7 +25,7 @@ type DocumentLine = {
   iva: string;
   dte: string;
   albara: string;
-  estat: 'Pagada' | 'Pendent' | string;
+  estat: string;
 };
 
 type ClientData = {
@@ -43,10 +43,7 @@ type LoggedInUser = {
 };
 
 type VatSummary = {
-  [rate: number]: {
-    base: number;
-    amount: number;
-  };
+  [rate: number]: { base: number; amount: number };
 };
 
 type InvoiceTotals = {
@@ -66,373 +63,164 @@ type GroupedInvoice = {
   client: ClientData;
   lines: DocumentLine[];
   totals: InvoiceTotals;
-  estat: 'Pagada' | 'Pendent' | string;
+  estat: string;
 };
 
-
-// --- STATUS BADGE COMPONENT ---
-const StatusBadge = ({ status }: { status: string }) => {
-  const isPaid = status?.toLowerCase() === 'pagada';
-  const badgeClasses = cn(
-    'px-2.5 py-0.5 rounded-full text-xs font-semibold inline-block',
-    {
-      'bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300': isPaid,
-      'bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300': !isPaid,
-    }
-  );
-
+const StatusBadge = ({ status, t }: { status: string, t: any }) => {
+  const isPaid = status?.toLowerCase() === 'pagada' || status?.toLowerCase() === 'paid';
+  const label = isPaid ? t.documents.status.paid : t.documents.status.pending;
   return (
-    <span className={badgeClasses}>
-      {status || 'Pendent'}
+    <span className={cn('px-2.5 py-0.5 rounded-full text-xs font-semibold', isPaid ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800')}>
+      {label}
     </span>
   );
 };
 
-
-// --- INVOICE DETAIL COMPONENT (for rendering and printing) ---
-
-const InvoiceDetail = ({ invoice }: { invoice: GroupedInvoice }) => (
+const InvoiceDetail = ({ invoice, t }: { invoice: GroupedInvoice, t: any }) => (
   <Card className="shadow-none border-0">
     <CardContent className="p-8 bg-white text-black">
-      {/* Header */}
       <header className="flex justify-between items-start mb-8">
         <div className="flex items-center">
-          <Image src="/log.png" alt="Viajes HICA Logo" width={150} height={150} />
+          <Image src="/log.png" alt="Logo" width={150} height={150} />
           <div className="ml-4">
-            <h2 className="text-2xl font-bold text-black">Viajes HICA</h2>
+            <h2 className="text-2xl font-bold">Viajes HICA</h2>
             <p className="text-sm">C/Amposta Nº8 Bajo s/n</p>
-            <p className="text-sm">contacto@viajeshica.com</p>
-            <p className="text-sm">+34 900 123 456</p>
           </div>
         </div>
         <div className="text-right">
-          <h1 className="text-3xl font-bold uppercase text-gray-700">Factura</h1>
+          <h1 className="text-3xl font-bold uppercase">{t.documents.invoice}</h1>
            <div className="flex items-center justify-end gap-4 my-1">
-             <p>
-                <span className="font-semibold">Nº:</span> {invoice.num_factura}
-             </p>
-             <StatusBadge status={invoice.estat} />
+             <p><span className="font-semibold">Nº:</span> {invoice.num_factura}</p>
+             <StatusBadge status={invoice.estat} t={t} />
            </div>
-          <p>
-            <span className="font-semibold">Data:</span> {new Date(invoice.data).toLocaleDateString('ca-ES')}
-          </p>
-          {invoice.albara && <p><span className="font-semibold">Albarà:</span> {invoice.albara}</p>}
+          <p><span className="font-semibold">{t.documents.date}:</span> {new Date(invoice.data).toLocaleDateString()}</p>
         </div>
       </header>
-
-      {/* Client Info */}
-      <section className="mb-8">
-        <div className="border-t border-b border-gray-300 py-4">
-          <h3 className="text-lg font-semibold mb-2">Client:</h3>
-          <p className="font-bold">{invoice.client.empresa}</p>
-          <p>{invoice.client.fiscalid}</p>
-          <p>{invoice.client.adreca}</p>
-          <p>Tel: {invoice.client.telefon}</p>
-          <p>Email: {invoice.client.usuari}</p>
-        </div>
+      <section className="mb-8 border-y py-4">
+        <h3 className="text-lg font-semibold mb-2">{t.documents.client}:</h3>
+        <p className="font-bold">{invoice.client.empresa}</p>
+        <p>{invoice.client.adreca}</p>
       </section>
-
-      {/* Invoice Lines Table */}
       <section className="mb-8">
         <Table>
-          <TableHeader>
-            <TableRow className="bg-gray-100">
-              <TableHead className="w-[50%]">Concepte</TableHead>
-              <TableHead className="text-right">P. Unitari</TableHead>
-              <TableHead className="text-right">Unitats</TableHead>
-              <TableHead className="text-right">Dte.</TableHead>
-              <TableHead className="text-right">Total</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {invoice.lines.map((line, index) => {
-              const price = parseFloat(line.preu_unitari) || 0;
-              const units = parseFloat(line.unitats) || 0;
-              const discount = parseFloat(line.dte) || 0;
-              const lineTotal = (price * units) * (1 - discount / 100);
-              return (
-                <TableRow key={index}>
+          <TableHeader><TableRow className="bg-gray-100">
+            <TableHead>{t.documents.concept}</TableHead>
+            <TableHead className="text-right">{t.documents.price}</TableHead>
+            <TableHead className="text-right">{t.documents.units}</TableHead>
+            <TableHead className="text-right">{t.documents.discount}</TableHead>
+            <TableHead className="text-right">Total</TableHead>
+          </TableRow></TableHeader>
+          <TableBody>{invoice.lines.map((line, i) => {
+              const p = parseFloat(line.preu_unitari) || 0;
+              const u = parseFloat(line.unitats) || 0;
+              const d = parseFloat(line.dte) || 0;
+              const total = (p * u) * (1 - d/100);
+              return (<TableRow key={i}>
                   <TableCell>{line.concepte}</TableCell>
-                  <TableCell className="text-right">{price.toFixed(2)} €</TableCell>
-                  <TableCell className="text-right">{units}</TableCell>
-                  <TableCell className="text-right">{discount.toFixed(2)} %</TableCell>
-                  <TableCell className="text-right">{lineTotal.toFixed(2)} €</TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
+                  <TableCell className="text-right">{p.toFixed(2)} €</TableCell>
+                  <TableCell className="text-right">{u}</TableCell>
+                  <TableCell className="text-right">{d.toFixed(2)} %</TableCell>
+                  <TableCell className="text-right">{total.toFixed(2)} €</TableCell>
+                </TableRow>);
+          })}</TableBody>
         </Table>
       </section>
-      
-      {/* Totals Section */}
       <section className="flex justify-end mb-8">
         <div className="w-full max-w-sm space-y-2">
-            <div className="flex justify-between">
-                <span className="font-semibold">Subtotal:</span>
-                <span>{invoice.totals.subtotal.toFixed(2)} €</span>
-            </div>
-            <div className="flex justify-between">
-                <span className="font-semibold">Descompte Total:</span>
-                <span>- {invoice.totals.discountAmount.toFixed(2)} €</span>
-            </div>
-            <div className="flex justify-between font-bold border-t pt-2">
-                <span className="font-semibold">Base Imposable:</span>
-                <span>{invoice.totals.totalBase.toFixed(2)} €</span>
-            </div>
-             {Object.entries(invoice.totals.vatSummary).map(([rate, { base, amount }]) => (
-                 <div key={rate} className="flex justify-between text-sm text-gray-600">
-                     <span>Quota {rate}% s/ {base.toFixed(2)} €:</span>
-                     <span>{amount.toFixed(2)} €</span>
-                 </div>
-             ))}
-             <div className="flex justify-between text-xl font-bold border-t pt-2 mt-2">
-                <span>TOTAL A PAGAR:</span>
-                <span>{invoice.totals.grandTotal.toFixed(2)} €</span>
-            </div>
+            <div className="flex justify-between"><span>{t.documents.subtotal}:</span><span>{invoice.totals.subtotal.toFixed(2)} €</span></div>
+            <div className="flex justify-between"><span>{t.documents.totalDiscount}:</span><span>- {invoice.totals.discountAmount.toFixed(2)} €</span></div>
+            <div className="flex justify-between font-bold border-t pt-2"><span>{t.documents.taxBase}:</span><span>{invoice.totals.totalBase.toFixed(2)} €</span></div>
+            <div className="flex justify-between text-xl font-bold border-t pt-2 mt-2"><span>{t.documents.total}:</span><span>{invoice.totals.grandTotal.toFixed(2)} €</span></div>
         </div>
       </section>
-      
-      {/* Footer */}
-      <footer className="border-t border-gray-300 pt-4 mt-8 text-xs text-gray-500">
-         <div className="mb-4">
-            <span className="font-semibold">Forma de pagament:</span> {invoice.fpagament}
-        </div>
-        <p>Inscrita al Registre Mercantil de [Ciutat], Tom [Número], Foli [Número], Full [Número], Inscripció [Número].</p>
-        <p>De conformitat amb el que estableix el Reglament (UE) 2016/679 del Parlament Europeu i del Consell, de 27 d'abril de 2016, relatiu a la protecció de les persones físiques pel que fa al tractament de dades personals i a la lliure circulació d'aquestes dades, l'informem que les seves dades seran incorporades a un fitxer sota la responsabilitat de Viajes HICA per gestionar la present relació comercial.</p>
+      <footer className="border-t pt-4 text-xs text-gray-500">
+         <p><span className="font-semibold">{t.documents.payment}:</span> {invoice.fpagament}</p>
       </footer>
     </CardContent>
   </Card>
 );
 
-// --- MAIN PAGE COMPONENT ---
-
 export default function DocumentsPage() {
+  const { locale } = useLocale();
+  const t = translations[locale];
   const router = useRouter();
-  const [currentUser, setCurrentUser] = useState<LoggedInUser | null>(null);
-  const [userRole, setUserRole] = useState<string | null>(null);
-  const [documents, setDocuments] = useState<DocumentLine[]>([]);
   const [clients, setClients] = useState<ClientData[]>([]);
+  const [documents, setDocuments] = useState<DocumentLine[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [invoiceToPrint, setInvoiceToPrint] = useState<GroupedInvoice | null>(null);
 
-  // Authentication and Data Fetching
   useEffect(() => {
-    let loggedInUser: LoggedInUser | null = null;
-    try {
-      const userDataString = localStorage.getItem('user');
-      if (userDataString) {
-        loggedInUser = JSON.parse(userDataString);
-        setCurrentUser(loggedInUser);
-      } else {
-        router.push('/account');
-        return;
-      }
-    } catch (e) {
-      console.error("Failed to parse user data", e);
-      router.push('/account');
-      return;
-    }
-
-    if (!loggedInUser) return;
-
+    const userData = localStorage.getItem('user');
+    if (!userData) { router.push('/account'); return; }
+    const user = JSON.parse(userData);
+    
     const fetchData = async () => {
-      setIsLoading(true);
-      setError(null);
       try {
-        // Fetch all clients to get role and fiscal data
-        const clientsResponse = await fetch('https://sheetdb.io/api/v1/reou400435n4c?sheet=usuaris');
-        const allClients: ClientData[] = await clientsResponse.json();
+        const cRes = await fetch('https://sheetdb.io/api/v1/reou400435n4c?sheet=usuaris');
+        const allClients = await cRes.json();
         setClients(allClients);
-
-        const currentUserData = allClients.find(c => c.usuari === loggedInUser!.usuari);
-        const role = currentUserData?.rol.toLowerCase() || 'client';
-        setUserRole(role);
-
-        // Fetch documents based on role
-        let documentsUrl = 'https://sheetdb.io/api/v1/reou400435n4c?sheet=documents';
-        if (role === 'client') {
-          documentsUrl = `https://sheetdb.io/api/v1/reou400435n4c/search?sheet=documents&usuari=${loggedInUser.usuari}`;
-        }
-        
-        const documentsResponse = await fetch(documentsUrl);
-        const fetchedDocuments: DocumentLine[] = await documentsResponse.json();
-        setDocuments(fetchedDocuments);
-
-      } catch (err) {
-        setError('No s\'ha pogut carregar la informació. Intenta-ho de nou més tard.');
-        console.error(err);
-      } finally {
-        setIsLoading(false);
-      }
+        const role = allClients.find((c: any) => c.usuari === user.usuari)?.rol.toLowerCase() || 'client';
+        const dUrl = role === 'client' ? `https://sheetdb.io/api/v1/reou400435n4c/search?sheet=documents&usuari=${user.usuari}` : 'https://sheetdb.io/api/v1/reou400435n4c?sheet=documents';
+        const dRes = await fetch(dUrl);
+        setDocuments(await dRes.json());
+      } catch (err) { console.error(err); } finally { setIsLoading(false); }
     };
-
     fetchData();
   }, [router]);
 
-  // Invoice processing and grouping
-  const groupedInvoices = useMemo((): GroupedInvoice[] => {
-    if (!documents.length || !clients.length) return [];
-
-    const invoicesMap = new Map<string, { lines: DocumentLine[], clientName: string }>();
-
-    for (const doc of documents) {
-      if (!doc.num_factura) continue;
-      
-      if (!invoicesMap.has(doc.num_factura)) {
-        invoicesMap.set(doc.num_factura, { lines: [], clientName: doc.usuari });
-      }
-      invoicesMap.get(doc.num_factura)!.lines.push(doc);
-    }
-    
-    return Array.from(invoicesMap.entries()).map(([num_factura, data]) => {
-      const firstLine = data.lines[0];
-      const clientInfo = clients.find(c => c.usuari === data.clientName) || {} as ClientData;
-      
-      const vatSummary: VatSummary = {};
-      let subtotal = 0;
-      let discountAmount = 0;
-
-      data.lines.forEach(line => {
-        const price = parseFloat(line.preu_unitari) || 0;
-        const units = parseFloat(line.unitats) || 0;
-        const discountPercentage = parseFloat(line.dte) || 0;
-        const vatRate = parseFloat(line.iva) || 0;
-
-        const lineSubtotal = price * units;
-        const lineDiscount = lineSubtotal * (discountPercentage / 100);
-        const lineBase = lineSubtotal - lineDiscount;
-        const lineVatAmount = lineBase * (vatRate / 100);
-
-        subtotal += lineSubtotal;
-        discountAmount += lineDiscount;
-        
-        if (!vatSummary[vatRate]) {
-          vatSummary[vatRate] = { base: 0, amount: 0 };
-        }
-        vatSummary[vatRate].base += lineBase;
-        vatSummary[vatRate].amount += lineVatAmount;
+  const groupedInvoices = useMemo(() => {
+    const map = new Map<string, DocumentLine[]>();
+    documents.forEach(d => {
+      if (!map.has(d.num_factura)) map.set(d.num_factura, []);
+      map.get(d.num_factura)!.push(d);
+    });
+    return Array.from(map.entries()).map(([id, lines]) => {
+      const client = clients.find(c => c.usuari === lines[0].usuari) || {} as ClientData;
+      let subtotal = 0, discount = 0, vat = 0;
+      lines.forEach(l => {
+          const p = parseFloat(l.preu_unitari) || 0, u = parseFloat(l.unitats) || 0, d = parseFloat(l.dte) || 0, v = parseFloat(l.iva) || 0;
+          const s = p * u, dis = s * (d/100), base = s - dis;
+          subtotal += s; discount += dis; vat += base * (v/100);
       });
-
-      const totalBase = subtotal - discountAmount;
-      const totalVat = Object.values(vatSummary).reduce((acc, curr) => acc + curr.amount, 0);
-      const grandTotal = totalBase + totalVat;
-
-      const totals: InvoiceTotals = { subtotal, discountAmount, totalBase, vatSummary, totalVat, grandTotal };
-
-      return {
-        num_factura,
-        data: firstLine.data,
-        fpagament: firstLine.fpagament,
-        albara: firstLine.albara,
-        client: clientInfo,
-        lines: data.lines,
-        totals,
-        estat: firstLine.estat
-      };
-    }).sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime());
-
+      return { num_factura: id, data: lines[0].data, client, lines, estat: lines[0].estat, fpagament: lines[0].fpagament, totals: { subtotal, discountAmount: discount, totalBase: subtotal - discount, grandTotal: subtotal - discount + vat } };
+    });
   }, [documents, clients]);
 
-  // Printing effect
-  useEffect(() => {
-    if (invoiceToPrint) {
-      // Use a short timeout to ensure the DOM is updated before printing
-      const timer = setTimeout(() => {
-        window.print();
-        setInvoiceToPrint(null);
-      }, 100);
-      return () => clearTimeout(timer);
-    }
-  }, [invoiceToPrint]);
+  useEffect(() => { if (invoiceToPrint) { setTimeout(() => { window.print(); setInvoiceToPrint(null); }, 100); } }, [invoiceToPrint]);
 
-
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-64">
-        <Loader2 className="h-16 w-16 animate-spin text-primary" />
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <Alert variant="destructive">
-        <AlertCircle className="h-4 w-4" />
-        <AlertTitle>Error</AlertTitle>
-        <AlertDescription>{error}</AlertDescription>
-      </Alert>
-    );
-  }
+  if (isLoading) return <div className="flex h-64 justify-center items-center"><Loader2 className="animate-spin h-16 w-16" /></div>;
 
   return (
     <div>
-        <Card data-id="documents-accordion-card">
-            <CardHeader>
-                <CardTitle className="font-headline text-4xl flex items-center">
-                    <FileText className="mr-4 h-8 w-8 text-primary"/>
-                    Els Meus Documents
-                </CardTitle>
-                <CardDescription>
-                    Aquí pots consultar i imprimir les teves factures.
-                </CardDescription>
-            </CardHeader>
-            <CardContent>
-                {groupedInvoices.length === 0 ? (
-                    <p className="text-muted-foreground text-center py-8">No s'han trobat factures.</p>
-                ) : (
-                    <Accordion type="single" collapsible className="w-full">
-                        {groupedInvoices.map((invoice) => (
-                             <AccordionItem value={invoice.num_factura} key={invoice.num_factura}>
-                                 <AccordionTrigger>
-                                     <div className="flex justify-between items-center w-full pr-4">
-                                         <div className="flex items-center gap-4 text-left">
-                                             <p className="font-bold text-lg text-primary">Factura #{invoice.num_factura}</p>
-                                             <p className="text-sm text-muted-foreground">
-                                                Data: {new Date(invoice.data).toLocaleDateString('ca-ES')}
-                                             </p>
-                                         </div>
-                                         <div className="flex items-center gap-4">
-                                              <StatusBadge status={invoice.estat} />
-                                             <div className="text-right">
-                                                 <p className="font-bold text-xl">{invoice.totals.grandTotal.toFixed(2)} €</p>
-                                                 {userRole !== 'client' && <p className="text-sm text-muted-foreground">{invoice.client.empresa}</p>}
-                                             </div>
-                                         </div>
-                                     </div>
-                                 </AccordionTrigger>
-                                 <AccordionContent>
-                                     <div className="p-4 bg-primary/5 rounded-md">
-                                        <div className="flex justify-end mb-4 print:hidden">
-                                            <Button onClick={() => setInvoiceToPrint(invoice)} className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                                                <Printer className="mr-2 h-4 w-4"/>
-                                                Imprimir PDF
-                                            </Button>
-                                        </div>
-                                        <div className="bg-white rounded-lg shadow-md p-2">
-                                            <InvoiceDetail invoice={invoice} />
-                                        </div>
-                                     </div>
-                                 </AccordionContent>
-                             </AccordionItem>
-                        ))}
-                    </Accordion>
-                )}
-            </CardContent>
-        </Card>
-        
-        {/*
-          Hidden container for the invoice to be printed.
-          It's kept in the DOM but made invisible on screen.
-          The print-specific CSS in globals.css will make it visible for printing.
-        */}
-        <div className="invisible h-0 overflow-hidden print-area">
-            {invoiceToPrint && (
-                <div id="zona-factura">
-                    <InvoiceDetail invoice={invoiceToPrint} />
-                </div>
-            )}
-        </div>
+      <Card>
+        <CardHeader>
+          <CardTitle className="font-headline text-4xl flex items-center"><FileText className="mr-4" />{t.documents.title}</CardTitle>
+          <CardDescription>{t.documents.subtitle}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          {groupedInvoices.length === 0 ? <p className="text-center py-8">{t.documents.empty}</p> : (
+            <Accordion type="single" collapsible className="w-full">
+              {groupedInvoices.map(invoice => (
+                <AccordionItem value={invoice.num_factura} key={invoice.num_factura}>
+                  <AccordionTrigger>
+                    <div className="flex justify-between items-center w-full pr-4">
+                      <div className="text-left"><p className="font-bold text-primary">{t.documents.invoice} #{invoice.num_factura}</p><p className="text-sm">{new Date(invoice.data).toLocaleDateString()}</p></div>
+                      <div className="flex items-center gap-4"><StatusBadge status={invoice.estat} t={t} /><p className="font-bold text-xl">{invoice.totals.grandTotal.toFixed(2)} €</p></div>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="p-4 bg-primary/5 rounded-md">
+                      <div className="flex justify-end mb-4 print:hidden"><Button onClick={() => setInvoiceToPrint(invoice as any)}>{t.documents.print}</Button></div>
+                      <div className="bg-white rounded-lg p-2"><InvoiceDetail invoice={invoice as any} t={t} /></div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          )}
+        </CardContent>
+      </Card>
+      <div className="invisible h-0 overflow-hidden print-area">{invoiceToPrint && <div id="zona-factura"><InvoiceDetail invoice={invoiceToPrint} t={t} /></div>}</div>
     </div>
   );
 }

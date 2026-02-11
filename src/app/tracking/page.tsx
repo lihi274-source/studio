@@ -11,9 +11,11 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/component
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Loader2, Search, Package, MapPin, AlertCircle, CheckCircle, FileText, Wallet, SearchCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useLocale } from '@/contexts/locale-context';
+import { translations } from '@/lib/translations';
 
 const searchSchema = z.object({
-  tracking_code: z.string().min(3, 'El código de seguimiento es requerido.'),
+  tracking_code: z.string().min(3),
 });
 
 type SearchFormValues = z.infer<typeof searchSchema>;
@@ -23,11 +25,9 @@ type Shipment = {
   origen: string;
   destino: string;
   confirmacion_reserva: string;
-  status: 'Buscando ofertas' | 'Pendiente de pago' | 'Pagado';
+  status: string;
   ubicacion_actual: string;
 };
-
-const statuses = ['Buscando ofertas', 'Pendiente de pago', 'Pagado'];
 
 const statusIcons = {
   'Buscando ofertas': SearchCheck,
@@ -36,51 +36,55 @@ const statusIcons = {
 };
 
 export default function TrackingPage() {
+  const { locale } = useLocale();
+  const t = translations[locale];
+  
   const [shipment, setShipment] = useState<Shipment | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const statuses = [t.tracking.status.searching, t.tracking.status.pending, t.tracking.status.paid];
+
   const form = useForm<SearchFormValues>({
     resolver: zodResolver(searchSchema),
-    defaultValues: {
-      tracking_code: '',
-    },
+    defaultValues: { tracking_code: '' },
   });
 
   const handleSearch: SubmitHandler<SearchFormValues> = async (data) => {
     setIsLoading(true);
     setShipment(null);
     setError(null);
-
     try {
       const response = await fetch(`https://sheetdb.io/api/v1/reou400435n4c/search?tracking_code=${data.tracking_code}`);
-      if (!response.ok) {
-        throw new Error('No se ha podido conectar con el servidor.');
-      }
       const results: Shipment[] = await response.json();
-
       if (results.length > 0) {
         setShipment(results[0]);
       } else {
-        setError('Código no encontrado. Revisa el código y vuelve a intentarlo.');
+        setError(t.tracking.notFound);
       }
     } catch (e) {
-      setError('Ha habido un error en la conexión. Inténtalo más tarde.');
+      setError(t.tracking.error);
     } finally {
       setIsLoading(false);
     }
   };
   
-  const currentStatusIndex = shipment ? statuses.indexOf(shipment.status) : -1;
+  // Map spreadsheet status to translated status for index finding
+  const mapStatus = (status: string) => {
+      if (status === 'Buscando ofertas') return t.tracking.status.searching;
+      if (status === 'Pendiente de pago') return t.tracking.status.pending;
+      if (status === 'Pagado') return t.tracking.status.paid;
+      return status;
+  };
+
+  const currentStatusIndex = shipment ? statuses.indexOf(mapStatus(shipment.status)) : -1;
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-3xl">
       <Card className="w-full border-2 border-primary/10 shadow-lg">
         <CardHeader className="text-center">
-          <CardTitle className="font-headline text-4xl">Localiza tu envío</CardTitle>
-          <CardDescription className="text-lg">
-            Introduce tu código de seguimiento para ver el estado actual.
-          </CardDescription>
+          <CardTitle className="font-headline text-4xl">{t.tracking.title}</CardTitle>
+          <CardDescription className="text-lg">{t.tracking.subtitle}</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -93,7 +97,7 @@ export default function TrackingPage() {
                     <FormControl>
                       <div className="relative">
                         <Package className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                        <Input placeholder="Escribe tu código aquí..." {...field} className="pl-10 h-12 text-base" />
+                        <Input placeholder={t.tracking.placeholder} {...field} className="pl-10 h-12 text-base" />
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -102,7 +106,7 @@ export default function TrackingPage() {
               />
               <Button type="submit" size="lg" className="h-12 bg-accent hover:bg-accent/90 text-accent-foreground" disabled={isLoading}>
                 {isLoading ? <Loader2 className="animate-spin" /> : <Search />}
-                <span className="ml-2">Buscar</span>
+                <span className="ml-2">{t.tracking.button}</span>
               </Button>
             </form>
           </Form>
@@ -120,11 +124,10 @@ export default function TrackingPage() {
       {shipment && (
         <Card className="mt-8 animate-in fade-in-50">
           <CardHeader>
-            <CardTitle className="font-headline text-2xl">Resultados para: {shipment.tracking_code}</CardTitle>
-            <CardDescription>A continuación se muestra la información más reciente de tu envío.</CardDescription>
+            <CardTitle className="font-headline text-2xl">{t.tracking.resultTitle}: {shipment.tracking_code}</CardTitle>
+            <CardDescription>{t.tracking.resultSub}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-8">
-            {/* Timeline */}
              <div className="flex items-center w-full px-4 sm:px-8 pt-4">
                 <div className="relative flex-1">
                     <div className="absolute top-1/2 -translate-y-1/2 w-full h-0.5 bg-border"></div>
@@ -134,10 +137,9 @@ export default function TrackingPage() {
                     ></div>
                     <div className="relative flex justify-between">
                         {statuses.map((status, index) => {
-                            const Icon = statusIcons[status as keyof typeof statusIcons];
+                            const Icon = statusIcons['Buscando ofertas' as keyof typeof statusIcons]; // Generic
                             const isCompleted = currentStatusIndex >=0 && index <= currentStatusIndex;
                             const isActive = index === currentStatusIndex;
-
                             return (
                                 <div key={status} className="z-10">
                                     <div className={cn(
@@ -145,7 +147,7 @@ export default function TrackingPage() {
                                         isCompleted ? "bg-green-500 border-green-600 text-white" : "bg-card border-border",
                                         isActive && "animate-pulse"
                                     )}>
-                                        <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                                        <SearchCheck className="w-5 h-5 sm:w-6 sm:h-6" />
                                     </div>
                                 </div>
                             );
@@ -161,34 +163,32 @@ export default function TrackingPage() {
                 ))}
             </div>
 
-
-            {/* Shipment details */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm pt-6 border-t">
                 <div className="flex items-start gap-3">
                     <Package className="h-5 w-5 text-primary mt-1"/>
                     <div>
-                        <p className="font-semibold">Origen</p>
+                        <p className="font-semibold">{t.tracking.origin}</p>
                         <p className="text-muted-foreground">{shipment.origen}</p>
                     </div>
                 </div>
                  <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-primary mt-1"/>
                     <div>
-                        <p className="font-semibold">Destino</p>
+                        <p className="font-semibold">{t.tracking.destination}</p>
                         <p className="text-muted-foreground">{shipment.destino}</p>
                     </div>
                 </div>
                  <div className="flex items-start gap-3">
                     <FileText className="h-5 w-5 text-primary mt-1"/>
                     <div>
-                        <p className="font-semibold">Confirmación Reserva</p>
+                        <p className="font-semibold">{t.tracking.confirmation}</p>
                         <p className="text-muted-foreground">{shipment.confirmacion_reserva}</p>
                     </div>
                 </div>
                 <div className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-green-500 mt-1"/>
                     <div>
-                        <p className="font-semibold">Ubicación actual</p>
+                        <p className="font-semibold">{t.tracking.current}</p>
                         <p className="text-muted-foreground">{shipment.ubicacion_actual}</p>
                     </div>
                 </div>
