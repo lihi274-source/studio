@@ -25,19 +25,15 @@ export default function BlogPage() {
   const tip2 = PlaceHolderImages.find(p => p.id === 'blog-tip2');
 
   return (
-    <div 
-      className="relative bg-cover bg-center bg-no-repeat min-h-screen"
-      style={{ backgroundImage: "url('/fondo.jpg')" }}
-    >
-      <div className="absolute inset-0 bg-black/60" />
-      <div className="relative container mx-auto px-4 py-12">
-        <h1 className="font-headline text-4xl md:text-5xl text-white text-center mb-12">
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 py-12">
+        <h1 className="font-headline text-4xl md:text-5xl text-primary-foreground text-center mb-12">
           {t.blog.title}
         </h1>
 
         {/* Featured Post */}
         {featuredPost && (
-          <section className="mb-16 bg-card/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-xl border border-primary/10">
+          <section className="mb-16 bg-card p-6 md:p-8 rounded-2xl shadow-xl border border-primary/10">
              <p className="text-xs font-bold uppercase tracking-widest text-accent mb-4">
               {t.blog.featured}
             </p>
@@ -104,10 +100,10 @@ export default function BlogPage() {
 
         {/* Consejos Section */}
         <section>
-          <h2 className="font-headline text-3xl text-center text-white mb-10">{t.blog.tips}</h2>
+          <h2 className="font-headline text-3xl text-center text-primary-foreground mb-10">{t.blog.tips}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {tip1 && (
-              <Card className="flex flex-col overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl bg-card/80 backdrop-blur-sm">
+              <Card className="flex flex-col overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl bg-card">
                  <div className="relative w-full h-48 overflow-hidden bg-muted">
                    <Image 
                     src={tip1.imageUrl} 
@@ -131,7 +127,7 @@ export default function BlogPage() {
               </Card>
             )}
             {tip2 && (
-               <Card className="flex flex-col overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl bg-card/80 backdrop-blur-sm">
+               <Card className="flex flex-col overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl bg-card">
                   <div className="relative w-full h-48 overflow-hidden bg-muted">
                    <Image 
                     src={tip2.imageUrl} 
