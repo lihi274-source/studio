@@ -8,6 +8,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlaceHolderImages, getLocalized } from '@/lib/placeholder-images';
 import { useLocale } from '@/contexts/locale-context';
 import { translations } from '@/lib/translations';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export default function BlogPage() {
   const { locale } = useLocale();
@@ -35,14 +42,36 @@ export default function BlogPage() {
               {t.blog.featured}
             </p>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div className="relative w-full h-80 rounded-lg overflow-hidden">
-                <Image
-                  src={featuredPost.imageUrl}
-                  alt={getLocalized(featuredPost, 'title', locale)}
-                  fill
-                  className="object-cover"
-                  data-ai-hint={featuredPost.imageHint}
-                />
+              <div className="relative w-full h-80 rounded-lg overflow-hidden group bg-muted">
+                {featuredPost.images && featuredPost.images.length > 0 ? (
+                  <Carousel className="w-full h-full" opts={{ loop: true }}>
+                    <CarouselContent className="h-full ml-0">
+                      {featuredPost.images.map((img, idx) => (
+                        <CarouselItem key={idx} className="h-full pl-0 basis-full">
+                          <div className="relative w-full h-full">
+                            <Image
+                              src={img}
+                              alt={`${getLocalized(featuredPost, 'title', locale)} ${idx + 1}`}
+                              fill
+                              unoptimized
+                              className="object-cover"
+                            />
+                          </div>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="left-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 hover:bg-black/60 border-none text-white z-10" />
+                    <CarouselNext className="right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 hover:bg-black/60 border-none text-white z-10" />
+                  </Carousel>
+                ) : (
+                  <Image
+                    src={featuredPost.imageUrl}
+                    alt={getLocalized(featuredPost, 'title', locale)}
+                    fill
+                    className="object-cover"
+                    data-ai-hint={featuredPost.imageHint}
+                  />
+                )}
               </div>
               <div className="text-foreground">
                 <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-3">
