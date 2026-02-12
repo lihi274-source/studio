@@ -1,3 +1,4 @@
+
 'use client';
 
 import { notFound } from 'next/navigation';
@@ -88,25 +89,26 @@ export default function BlogPostPageComponent({ slug }: { slug: string }) {
       </div>
 
       <Card className="overflow-hidden shadow-lg border-primary/20">
-        <div className="relative w-full h-80 md:h-[450px] overflow-hidden group">
+        <div className="relative w-full h-80 md:h-[450px] overflow-hidden group bg-muted">
           {post.images && post.images.length > 0 ? (
             <Carousel className="w-full h-full" opts={{ loop: true }}>
               <CarouselContent className="h-full ml-0">
                 {post.images.map((img, idx) => (
-                  <CarouselItem key={idx} className="h-full pl-0">
+                  <CarouselItem key={idx} className="h-full pl-0 basis-full">
                     <div className="relative w-full h-full">
                       <Image
                         src={img}
                         alt={`${title} ${idx + 1}`}
                         fill
+                        unoptimized
                         className="object-cover"
                       />
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="left-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white/20 hover:bg-white/40 border-none text-white" />
-              <CarouselNext className="right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white/20 hover:bg-white/40 border-none text-white" />
+              <CarouselPrevious className="left-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 hover:bg-black/60 border-none text-white z-10" />
+              <CarouselNext className="right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 hover:bg-black/60 border-none text-white z-10" />
             </Carousel>
           ) : post.imageUrl ? (
               <Image
@@ -119,7 +121,7 @@ export default function BlogPostPageComponent({ slug }: { slug: string }) {
           ) : null}
           
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
-          <div className="absolute bottom-0 left-0 p-8 md:p-12 pointer-events-none">
+          <div className="absolute bottom-0 left-0 p-8 md:p-12 pointer-events-none z-10">
             <h1 className="font-headline text-4xl md:text-5xl text-white">
               {title}
             </h1>
