@@ -1,3 +1,4 @@
+
 'use client';
 
 import { notFound } from 'next/navigation';
@@ -91,15 +92,16 @@ export default function BlogPostPageComponent({ slug }: { slug: string }) {
         <div className="relative w-full h-80 md:h-[450px] overflow-hidden group bg-muted">
           {post.images && post.images.length > 0 ? (
             <Carousel className="w-full h-full" opts={{ loop: true }}>
-              <CarouselContent className="h-full ml-0">
+              <CarouselContent className="h-full ml-0 flex">
                 {post.images.map((img, idx) => (
-                  <CarouselItem key={idx} className="h-full pl-0 basis-full">
+                  <CarouselItem key={idx} className="h-full pl-0 basis-full flex-shrink-0">
                     <div className="relative w-full h-full">
                       <Image
                         src={img}
                         alt={`${title} ${idx + 1}`}
                         fill
                         unoptimized
+                        priority={idx === 0}
                         className="object-cover"
                       />
                     </div>
@@ -114,6 +116,7 @@ export default function BlogPostPageComponent({ slug }: { slug: string }) {
                 src={post.imageUrl}
                 alt={title}
                 fill
+                unoptimized
                 className="object-cover"
                 data-ai-hint={post.imageHint}
               />

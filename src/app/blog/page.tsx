@@ -1,3 +1,4 @@
+
 'use client';
 
 import { ArrowRight, Calendar, Tag } from 'lucide-react';
@@ -42,18 +43,19 @@ export default function BlogPage() {
               {t.blog.featured}
             </p>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div className="relative w-full h-80 rounded-lg overflow-hidden group bg-muted">
+              <div className="relative w-full h-80 rounded-lg overflow-hidden group bg-muted shadow-inner">
                 {featuredPost.images && featuredPost.images.length > 0 ? (
                   <Carousel className="w-full h-full" opts={{ loop: true }}>
-                    <CarouselContent className="h-full ml-0">
+                    <CarouselContent className="h-80 ml-0 flex">
                       {featuredPost.images.map((img, idx) => (
-                        <CarouselItem key={idx} className="h-full pl-0 basis-full">
+                        <CarouselItem key={idx} className="h-full pl-0 basis-full flex-shrink-0">
                           <div className="relative w-full h-full">
                             <Image
                               src={img}
                               alt={`${getLocalized(featuredPost, 'title', locale)} ${idx + 1}`}
                               fill
                               unoptimized
+                              priority={idx === 0}
                               className="object-cover"
                             />
                           </div>
@@ -68,6 +70,7 @@ export default function BlogPage() {
                     src={featuredPost.imageUrl}
                     alt={getLocalized(featuredPost, 'title', locale)}
                     fill
+                    unoptimized
                     className="object-cover"
                     data-ai-hint={featuredPost.imageHint}
                   />
@@ -106,8 +109,14 @@ export default function BlogPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {tip1 && (
               <Card className="flex flex-col overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl bg-card/80 backdrop-blur-sm">
-                 <div className="relative w-full h-48 overflow-hidden">
-                   <Image src={tip1.imageUrl} alt={getLocalized(tip1, 'title', locale)} fill className="object-cover" />
+                 <div className="relative w-full h-48 overflow-hidden bg-muted">
+                   <Image 
+                    src={tip1.imageUrl} 
+                    alt={getLocalized(tip1, 'title', locale)} 
+                    fill 
+                    unoptimized
+                    className="object-cover" 
+                   />
                  </div>
                 <CardHeader>
                   <CardTitle className="font-headline text-2xl">{getLocalized(tip1, 'title', locale)}</CardTitle>
@@ -124,8 +133,14 @@ export default function BlogPage() {
             )}
             {tip2 && (
                <Card className="flex flex-col overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl bg-card/80 backdrop-blur-sm">
-                  <div className="relative w-full h-48 overflow-hidden">
-                   <Image src={tip2.imageUrl} alt={getLocalized(tip2, 'title', locale)} fill className="object-cover" />
+                  <div className="relative w-full h-48 overflow-hidden bg-muted">
+                   <Image 
+                    src={tip2.imageUrl} 
+                    alt={getLocalized(tip2, 'title', locale)} 
+                    fill 
+                    unoptimized
+                    className="object-cover" 
+                   />
                  </div>
                   <CardHeader>
                       <CardTitle className="font-headline text-2xl">{getLocalized(tip2, 'title', locale)}</CardTitle>
