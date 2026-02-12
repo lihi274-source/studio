@@ -1,4 +1,3 @@
-
 'use client';
 
 import { ArrowRight, Calendar, Tag } from 'lucide-react';
@@ -48,7 +47,7 @@ export default function BlogPage() {
                   <Carousel className="w-full h-full" opts={{ loop: true }}>
                     <CarouselContent className="h-80 ml-0 flex">
                       {featuredPost.images.map((img, idx) => (
-                        <CarouselItem key={idx} className="h-full pl-0 basis-full flex-shrink-0">
+                        <CarouselItem key={idx} className="h-80 pl-0 basis-full flex-shrink-0">
                           <div className="relative w-full h-full">
                             <Image
                               src={img}
@@ -62,8 +61,8 @@ export default function BlogPage() {
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-                    <CarouselPrevious className="left-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 hover:bg-black/60 border-none text-white z-10" />
-                    <CarouselNext className="right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 hover:bg-black/60 border-none text-white z-10" />
+                    <CarouselPrevious className="left-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 hover:bg-black/60 border-none text-white z-20" />
+                    <CarouselNext className="right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 hover:bg-black/60 border-none text-white z-20" />
                   </Carousel>
                 ) : (
                   <Image

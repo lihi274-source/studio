@@ -1,4 +1,3 @@
-
 'use client';
 
 import { notFound } from 'next/navigation';
@@ -92,7 +91,7 @@ export default function BlogPostPageComponent({ slug }: { slug: string }) {
         <div className="relative w-full h-80 md:h-[450px] overflow-hidden group bg-muted">
           {post.images && post.images.length > 0 ? (
             <Carousel className="w-full h-full" opts={{ loop: true }}>
-              <CarouselContent className="h-full ml-0 flex">
+              <CarouselContent className="h-80 md:h-[450px] ml-0 flex">
                 {post.images.map((img, idx) => (
                   <CarouselItem key={idx} className="h-full pl-0 basis-full flex-shrink-0">
                     <div className="relative w-full h-full">
@@ -108,8 +107,8 @@ export default function BlogPostPageComponent({ slug }: { slug: string }) {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="left-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 hover:bg-black/60 border-none text-white z-10" />
-              <CarouselNext className="right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 hover:bg-black/60 border-none text-white z-10" />
+              <CarouselPrevious className="left-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 hover:bg-black/60 border-none text-white z-20" />
+              <CarouselNext className="right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 hover:bg-black/60 border-none text-white z-20" />
             </Carousel>
           ) : post.imageUrl ? (
               <Image
