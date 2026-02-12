@@ -12,6 +12,7 @@ export type ImagePlaceholder = {
   description_ca?: string;
   imageUrl: string;
   imageHint: string;
+  images?: string[];
   details?: string;
   details_es?: string;
   details_en?: string;

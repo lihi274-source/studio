@@ -9,6 +9,13 @@ import { Card, CardContent } from '@/components/ui/card';
 import { PlaceHolderImages, getLocalized } from '@/lib/placeholder-images';
 import { useLocale } from '@/contexts/locale-context';
 import { translations } from '@/lib/translations';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 // Helper function to parse text with asterisks for bolding
 const parseBold = (text: string) => {
@@ -81,23 +88,44 @@ export default function BlogPostPageComponent({ slug }: { slug: string }) {
       </div>
 
       <Card className="overflow-hidden shadow-lg border-primary/20">
-        {post.imageUrl && (
-            <div className="relative w-full h-80 md:h-[450px] overflow-hidden">
-                <Image
+        <div className="relative w-full h-80 md:h-[450px] overflow-hidden group">
+          {post.images && post.images.length > 0 ? (
+            <Carousel className="w-full h-full" opts={{ loop: true }}>
+              <CarouselContent className="h-full ml-0">
+                {post.images.map((img, idx) => (
+                  <CarouselItem key={idx} className="h-full pl-0">
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={img}
+                        alt={`${title} ${idx + 1}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white/20 hover:bg-white/40 border-none text-white" />
+              <CarouselNext className="right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white/20 hover:bg-white/40 border-none text-white" />
+            </Carousel>
+          ) : post.imageUrl ? (
+              <Image
                 src={post.imageUrl}
                 alt={title}
                 fill
                 className="object-cover"
                 data-ai-hint={post.imageHint}
-                />
-                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                 <div className="absolute bottom-0 left-0 p-8 md:p-12">
-                    <h1 className="font-headline text-4xl md:text-5xl text-white">
-                        {title}
-                    </h1>
-                </div>
-            </div>
-        )}
+              />
+          ) : null}
+          
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+          <div className="absolute bottom-0 left-0 p-8 md:p-12 pointer-events-none">
+            <h1 className="font-headline text-4xl md:text-5xl text-white">
+              {title}
+            </h1>
+          </div>
+        </div>
+        
         <CardContent className="p-8 md:p-12">
           <article className="prose prose-lg lg:prose-xl dark:prose-invert max-w-none text-foreground">
             <p className="lead text-xl text-muted-foreground mb-8">{description}</p>
