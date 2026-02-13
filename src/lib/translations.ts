@@ -34,6 +34,11 @@ export const translations = {
       flightTitle: "Busca tu Vuelo",
       flightSub: "Encuentra las mejores ofertas para tu próximo viaje."
     },
+    destinations: {
+      back: "Volver a Destinos",
+      noDetails: "Más detalles sobre este destino estarán disponibles próximamente. Estamos trabajando para ofrecerte la mejor información.",
+      noDetailsSub: "Mientras tanto, puedes explorar nuestras excursiones o ponerte en contacto con nosotros si tienes alguna pregunta específica."
+    },
     about: {
       title: "Viajes HICA",
       subtitle: "Hacemos que la planificación de tu próxima aventura sea tan emocionante y sencilla como el viaje mismo.",
@@ -206,6 +211,11 @@ export const translations = {
       hotelSub: "Busca entre milers d'hotels al millor preu.",
       flightTitle: "Busca el teu Vol",
       flightSub: "Troba les millors ofertes per al teu proper viatge."
+    },
+    destinations: {
+      back: "Tornar a Destins",
+      noDetails: "Més detalls sobre aquest destí estaran disponibles properament. Estem treballant per oferir-te la millor informació.",
+      noDetailsSub: "Mentrestant, pots explorar les nostres excursions o posar-te en contacte amb nosaltres si tens alguna pregunta específica."
     },
     about: {
       title: "Viajes HICA",
@@ -380,6 +390,11 @@ export const translations = {
       flightTitle: "Search Your Flight",
       flightSub: "Find the best deals for your next trip."
     },
+    destinations: {
+      back: "Back to Destinations",
+      noDetails: "More details about this destination will be available soon. We are working to provide you with the best information.",
+      noDetailsSub: "In the meantime, you can explore our excursions or contact us if you have any specific questions."
+    },
     about: {
       title: "Viajes HICA",
       subtitle: "We make planning your next adventure as exciting and simple as the trip itself.",
@@ -491,16 +506,6 @@ export const translations = {
       categories: "Categories",
       destinations: "Destinations",
       noContent: "The full content of this article will be available soon."
-    },
-    assistent: {
-      welcome: "Hello! I am the **Viajes HICA** assistant. How can I help you today with your next trip?",
-      placeholder: "Write where you want to go or what trip you are looking for...",
-      thinking: "Preparing your trip...",
-      reset: "Reset chat",
-      back: "Back",
-      title: "HICA Travel Assistant",
-      subtitle: "Artificial Intelligence at your service",
-      disclaimer: "Remember that I am an AI. Always check final details with our team."
     },
     forms: {
       origin: "Origin",
