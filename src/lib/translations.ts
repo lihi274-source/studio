@@ -12,7 +12,8 @@ export const translations = {
       contact: "Contacto",
       account: "Mi Cuenta",
       menuTitle: "Menú de Navegación",
-      langTitle: "Idioma"
+      langTitle: "Idioma",
+      tagline: "Tu agencia de viajes para explorar el mundo"
     },
     home: {
       destinations: "Destinos",
@@ -147,7 +148,7 @@ export const translations = {
       thinking: "Preparando tu viaje...",
       reset: "Reiniciar chat",
       back: "Volver",
-      title: "Asistente Viajero HICA",
+      title: "Asistente Viatger HICA",
       subtitle: "Inteligencia Artificial a tu servicio",
       disclaimer: "Recuerda que soy una IA. Revisa siempre los detalles finales con nuestro equipo."
     },
@@ -216,7 +217,8 @@ export const translations = {
       contact: "Contacte",
       account: "El meu Compte",
       menuTitle: "Menú de Navegació",
-      langTitle: "Idioma"
+      langTitle: "Idioma",
+      tagline: "La teva agència de viatges per explorar el món"
     },
     home: {
       destinations: "Destins",
@@ -420,7 +422,8 @@ export const translations = {
       contact: "Contact",
       account: "My Account",
       menuTitle: "Navigation Menu",
-      langTitle: "Language"
+      langTitle: "Language",
+      tagline: "Your travel agency to explore the world"
     },
     home: {
       destinations: "Destinations",

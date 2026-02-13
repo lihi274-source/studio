@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -37,7 +38,7 @@ const Header = () => {
                 <h1 className="text-2xl md:text-3xl font-headline text-primary-foreground">
                   Viajes HICA
                 </h1>
-                <p className="text-sm text-muted-foreground hidden sm:block">Tu agencia de viajes para explorar el world</p>
+                <p className="text-sm text-muted-foreground hidden sm:block">{t.nav.tagline}</p>
               </div>
             </Link>
         </div>
