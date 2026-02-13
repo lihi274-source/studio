@@ -186,7 +186,7 @@
     },
     {
       "id": "tour-cairo",
-      "imageUrl": "https://images.unsplash.com/photo-1553913861-c0fddf2619ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxlZ3lwdCUyMHB5cmFtaWRzfGVufDB8fHx8MTc2NDA4OTA1MHww&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1553913861-c0fddf2619ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxlZ3lwdCUyMHB5cmFtaWRzfGVufDB8fHx8MTc2NDA4OTA1MHww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "cairo pyramids",
       "description": "Els misteris de l'antic Egipte t'esperen al Caire.",
       "description_es": "Los misterios del antiguo Egipto te esperan en El Cairo.",
@@ -210,7 +210,7 @@
     },
     {
       "id": "tour-rey-leon",
-      "imageUrl": "https://images.unsplash.com/photo-1503095396549-80705bc061be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0aGVhdHJlJTIwc3RhZ2V8ZW58MHx8fHwxNzY0MDg5MTMwfDA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/elreyleon.jpg",
       "imageHint": "theatre stage",
       "description": "Gaudeix de l'espectacle més famós de la Gran Via de Madrid.",
       "description_es": "Disfruta del espectáculo más famoso de la Gran Vía de Madrid.",
