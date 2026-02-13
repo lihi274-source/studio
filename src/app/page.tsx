@@ -1,7 +1,7 @@
 'use client';
 
 import { Suspense, useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { Hotel, Map, Plane, Globe, Bot } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Header from '@/components/layout/header';
@@ -16,24 +16,34 @@ import { translations } from '@/lib/translations';
 
 function HomePageContent() {
   const searchParams = useSearchParams();
-  const initialTab = searchParams.get('tab') || 'destinos';
-  const [activeTab, setActiveTab] = useState(initialTab);
+  const router = useRouter();
   const { locale } = useLocale();
   const t = translations[locale];
 
-  // When the query param changes, update the state
+  // Initialize state from URL or default to 'destinos'
+  const [activeTab, setActiveTab] = useState('destinos');
+
+  // Sync state with URL changes (e.g., when clicking "RESERVA ARA" from About page)
   useEffect(() => {
     const tabFromUrl = searchParams.get('tab');
-    if (tabFromUrl && tabFromUrl !== activeTab) {
+    if (tabFromUrl && ['destinos', 'vuelos', 'hoteles', 'excursiones', 'itinerarios'].includes(tabFromUrl)) {
       setActiveTab(tabFromUrl);
     }
-  }, [searchParams, activeTab]);
+  }, [searchParams]);
+
+  // Handle tab change: update local state and URL query param
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('tab', value);
+    router.push(`/?${params.toString()}`, { scroll: false });
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8">
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
           <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 h-auto bg-card rounded-lg border-2 border-foreground/10 p-1 shadow-md">
             <TabsTrigger value="destinos" className="py-2.5 text-sm md:text-base text-accent data-[state=active]:text-foreground">
               <Globe className="mr-2 h-5 w-5" />
@@ -80,7 +90,7 @@ function HomePageContent() {
 
 export default function Home() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center">Loading...</div>}>
       <HomePageContent />
     </Suspense>
   );
