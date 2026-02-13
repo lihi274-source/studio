@@ -137,7 +137,7 @@
       "id": "tour-disneyland",
       "imageUrl": "/disney.jpg",
       "imageHint": "disneyland paris castle",
-      "title": "Entrades Disneyland® Paris (2 Parques)",
+      "title": "Entrades Disneyland® Paris (2 Parcs)",
       "title_es": "Entradas Disneyland® Paris (2 Parques)",
       "title_en": "Disneyland® Paris Tickets (2 Parks)",
       "description": "Gaudeix de la màgia de Disney amb accés als dos parcs: Disneyland® Park i Walt Disney Studios®.",
@@ -148,6 +148,9 @@
       "id": "tour-paris",
       "imageUrl": "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwYXJpcyUyMGVpZmZlbCUyMHRvd2VyfGVufDB8fHx8MTc2NDA4ODk4MHww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "paris eiffel",
+      "title": "Tour Eiffel i Creuer pel Sena",
+      "title_es": "Tour Eiffel y Crucero por el Sena",
+      "title_en": "Eiffel Tower Tour and Seine Cruise",
       "description": "Descobreix la màgia de París amb una visita a la Torre Eiffel i un creuer pel Sena.",
       "description_es": "Descubre la magia de París con una visita a la Torre Eiffel y un crucero por el Sena.",
       "description_en": "Discover the magic of Paris with a visit to the Eiffel Tower and a cruise on the Seine."
@@ -156,6 +159,9 @@
       "id": "tour-rome",
       "imageUrl": "https://images.unsplash.com/photo-1666225908854-2495f1f4d83a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxyb21lJTIwY29sb3NzZXVtfGVufDB8fHx8MTc2Mzk5NzM4NXww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "rome colosseum",
+      "title": "Roma Antiga: Coliseu i Fòrum",
+      "title_es": "Roma Antigua: Coliseo y Foro",
+      "title_en": "Ancient Rome: Colosseum and Forum",
       "description": "Viatja a l'antiguitat explorant el Coliseu i el Fòrum Romà.",
       "description_es": "Viaja a la antigüedad explorando el Coliseo y el Foro Romano.",
       "description_en": "Travel back to ancient times by exploring the Colosseum and the Roman Forum."
@@ -164,6 +170,9 @@
       "id": "tour-new-york",
       "imageUrl": "https://images.unsplash.com/photo-1448317971280-6c74e016e49c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxuZXclMjB5b3JrJTIwY2l0eXxlbnwwfHx8fDE3NjQwNjEyNDd8MA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "new york skyline",
+      "title": "Contrastos de Nova York",
+      "title_es": "Contrastes de Nueva York",
+      "title_en": "Contrasts of New York",
       "description": "Una experiència urbana única pels contrastos de la Gran Poma.",
       "description_es": "Una experiencia urbana única por los contrastes de la Gran Manzana.",
       "description_en": "A unique urban experience through the contrasts of the Big Apple."
@@ -172,6 +181,9 @@
       "id": "tour-tokyo",
       "imageUrl": "https://images.unsplash.com/photo-1547448526-5e9d57fa28f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0b2t5byUyMGphcGFufGVufDB8fHx8MTc2NDA4MDc3OHww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "tokyo shibuya",
+      "title": "Tradició i Modernitat a Tòquio",
+      "title_es": "Tradición y Modernidad en Tokio",
+      "title_en": "Tradition and Modernity in Tokyo",
       "description": "Submergeix-te en la tradició i modernitat de la capital japonesa.",
       "description_es": "Sumérgete en la tradición y modernidad de la capital japonesa.",
       "description_en": "Immerse yourself in the tradition and modernity of the Japanese capital."
@@ -180,6 +192,9 @@
       "id": "tour-sydney",
       "imageUrl": "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzeWRuZXklMjBvcGVyYSUyMGhvdXNlfGVufDB8fHx8MTc2NDA4OTA0MHww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "sydney opera",
+      "title": "Meravilles de Sídney i Platges",
+      "title_es": "Maravillas de Sídney y Playas",
+      "title_en": "Sydney Wonders and Beaches",
       "description": "Descobreix les platges i la icònica òpera de Sídney.",
       "description_es": "Descubre las playas y la icónica ópera de Sídney.",
       "description_en": "Discover the beaches and the iconic Sydney Opera House."
@@ -188,6 +203,9 @@
       "id": "tour-cairo",
       "imageUrl": "https://images.unsplash.com/photo-1553913861-c0fddf2619ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxlZ3lwdCUyMHB5cmFtaWRzfGVufDB8fHx8MTc2NDA4OTA1MHww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "cairo pyramids",
+      "title": "Misteris de l'Antic Egipte",
+      "title_es": "Misterios del Antiguo Egipto",
+      "title_en": "Mysteries of Ancient Egypt",
       "description": "Els misteris de l'antic Egipte t'esperen al Caire.",
       "description_es": "Los misterios del antiguo Egipto te esperan en El Cairo.",
       "description_en": "The mysteries of ancient Egypt await you in Cairo."
@@ -207,6 +225,9 @@
       "id": "tour-caldea",
       "imageUrl": "/caldea.jpg",
       "imageHint": "spa mountain",
+      "title": "Relax a Caldea, Andorra",
+      "title_es": "Relax en Caldea, Andorra",
+      "title_en": "Relax at Caldea, Andorra",
       "description": "Desconnecta a les muntanyes d'Andorra al centre Caldea.",
       "description_es": "Desconecta en las montañas de Andorra en el centro Caldea.",
       "description_en": "Unwind in the mountains of Andorra at the Caldea center."
@@ -215,6 +236,9 @@
       "id": "tour-rey-leon",
       "imageUrl": "/elreyleon.jpg",
       "imageHint": "theatre stage",
+      "title": "El Rei Lleó, El Musical",
+      "title_es": "El Rey León, El Musical",
+      "title_en": "The Lion King, The Musical",
       "description": "Gaudeix de l'espectacle més famós de la Gran Via de Madrid.",
       "description_es": "Disfruta del espectáculo más famoso de la Gran Vía de Madrid.",
       "description_en": "Enjoy the most famous show on Madrid's Gran Vía."
@@ -223,6 +247,9 @@
       "id": "tour-valencia",
       "imageUrl": "/vlc.jpg",
       "imageHint": "aquarium valencia",
+      "title": "Oceanogràfic de València",
+      "title_es": "Oceanogràfic de Valencia",
+      "title_en": "Oceanogràfic in Valencia",
       "description": "Explora el món submarí a l'Oceanogràfic de València.",
       "description_es": "Explora el mundo submarino en el Oceanogràfic de Valencia.",
       "description_en": "Explore the underwater world at the Oceanogràfic in Valencia."
@@ -231,6 +258,9 @@
       "id": "tour-madrid",
       "imageUrl": "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtYWRyaWQlMjBjaXR5fGVufDB8fHx8MTc2NDA4OTI2MHww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "madrid city",
+      "title": "Tour Triangle de l'Art Madrid",
+      "title_es": "Tour Triángulo del Arte Madrid",
+      "title_en": "Art Triangle Tour Madrid",
       "description": "Un recorregut pels museus més importants de la capital.",
       "description_es": "Un recorrido por los museos más importantes de la capital.",
       "description_en": "A tour of the most important museums in the capital."

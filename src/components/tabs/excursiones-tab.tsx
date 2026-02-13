@@ -1,10 +1,11 @@
+
 'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { PlaceHolderImages, getLocalized } from '@/lib/placeholder-images';
 import { excursionsData, conversionRates } from '@/lib/excursions-data';
 import { useLocale } from '@/contexts/locale-context';
 import { translations } from '@/lib/translations';
@@ -16,7 +17,18 @@ const ExcursionesTab = () => {
   const excursions = excursionsData.map(excursion => {
     const imageData = PlaceHolderImages.find(img => img.id === excursion.id);
     const priceInEur = excursion.price * (conversionRates[excursion.currency] || 1);
-    return { ...excursion, ...imageData, priceInEur };
+    
+    // Prioritize localized strings from placeholder-images.json, fallback to hardcoded title if missing
+    const displayTitle = imageData ? getLocalized(imageData, 'title', locale) : excursion.title;
+    const displayDescription = imageData ? getLocalized(imageData, 'description', locale) : '';
+
+    return { 
+      ...excursion, 
+      ...imageData, 
+      priceInEur, 
+      displayTitle: displayTitle || excursion.title,
+      displayDescription: displayDescription 
+    };
   });
 
   return (
@@ -32,7 +44,7 @@ const ExcursionesTab = () => {
               <div className="relative w-full aspect-video">
                 <Image
                   src={excursion.imageUrl}
-                  alt={excursion.title}
+                  alt={excursion.displayTitle}
                   fill
                   className="object-cover"
                   data-ai-hint={excursion.imageHint}
@@ -40,8 +52,8 @@ const ExcursionesTab = () => {
               </div>
             )}
             <CardHeader>
-              <CardTitle className="font-headline text-xl">{excursion.title}</CardTitle>
-              <CardDescription>{excursion.description}</CardDescription>
+              <CardTitle className="font-headline text-xl">{excursion.displayTitle}</CardTitle>
+              <CardDescription>{excursion.displayDescription}</CardDescription>
             </CardHeader>
             <div className="flex-grow" />
             <CardFooter className="flex justify-between items-center">
