@@ -1,3 +1,4 @@
+
 export type Locale = 'es' | 'ca' | 'en';
 
 export const translations = {
@@ -177,6 +178,32 @@ export const translations = {
       chooseDate: "Elige una fecha",
       chooseRange: "Elige un rango de fechas",
       learnMore: "Saber más"
+    },
+    booking: {
+      title: "Completa tu reserva",
+      subtitle: "Rellena el formulario para solicitar tu plaza.",
+      date: "Fecha de la excursión",
+      datePlace: "Elige una fecha",
+      participants: "Participantes",
+      participantsPlace: "Nº de personas",
+      person: "persona",
+      people: "personas",
+      name: "Nombre y Apellidos",
+      namePlace: "Tu nombre completo",
+      email: "Email",
+      phone: "Teléfono de contacto",
+      phonePlace: "Tu número de teléfono",
+      submit: "Confirmar Reserva",
+      submitting: "Procesando...",
+      success: "¡Reserva solicitada!",
+      successDesc: "Hemos recibido tu solicitud para {count} persona(s) el {date}. Te contactaremos pronto.",
+      error: "Error al enviar la reserva",
+      errorDesc: "Hubo un problema. Por favor, inténtalo de nuevo.",
+      networkError: "Error de red",
+      networkErrorDesc: "No se pudo conectar con el servidor. Revisa tu conexión.",
+      notFound: "Excursión no encontrada",
+      notFoundDesc: "No hemos podido encontrar la excursión que buscas.",
+      back: "Volver a Excursiones"
     }
   },
   ca: {
@@ -257,7 +284,7 @@ export const translations = {
       placeholder: "Escriu el teu codi aquí...",
       button: "Cercar",
       resultTitle: "Resultats per a",
-      resultSub: "A continuació es mostra la informació més recent del teu enviament.",
+      resultSub: "A continuació se mostra la informació més recent del teu enviament.",
       origin: "Origen",
       destination: "Destí",
       confirmation: "Confirmació Reserva",
@@ -355,6 +382,32 @@ export const translations = {
       chooseDate: "Tria una data",
       chooseRange: "Tria un rang de dates",
       learnMore: "Saber més"
+    },
+    booking: {
+      title: "Completa la teva reserva",
+      subtitle: "Omple el formulari per sol·licitar la teva plaça.",
+      date: "Data de l'excursió",
+      datePlace: "Tria una data",
+      participants: "Participants",
+      participantsPlace: "Nº de persones",
+      person: "persona",
+      people: "persones",
+      name: "Nom i Cognoms",
+      namePlace: "El teu nom complet",
+      email: "Email",
+      phone: "Telèfon de contacte",
+      phonePlace: "El teu número de telèfon",
+      submit: "Confirmar Reserva",
+      submitting: "Processant...",
+      success: "Reserva sol·licitada!",
+      successDesc: "Hem rebut la teva sol·licitud per a {count} persona(es) el {date}. Et contactarem aviat.",
+      error: "Error en enviar la reserva",
+      errorDesc: "Hi ha hagut un problema. Si us plau, torna-ho a provar.",
+      networkError: "Error de xarxa",
+      networkErrorDesc: "No s'ha pogut connectar amb el servidor. Revisa la teva connexió.",
+      notFound: "Excursió no trobada",
+      notFoundDesc: "No hem pogut trobar l'excursió que busques.",
+      back: "Tornar a Excursions"
     }
   },
   en: {
@@ -523,6 +576,32 @@ export const translations = {
       chooseDate: "Choose a date",
       chooseRange: "Choose a date range",
       learnMore: "Learn more"
+    },
+    booking: {
+      title: "Complete your booking",
+      subtitle: "Fill in the form to request your spot.",
+      date: "Excursion Date",
+      datePlace: "Choose a date",
+      participants: "Participants",
+      participantsPlace: "Number of people",
+      person: "person",
+      people: "people",
+      name: "Full Name",
+      namePlace: "Your full name",
+      email: "Email",
+      phone: "Contact Phone",
+      phonePlace: "Your phone number",
+      submit: "Confirm Booking",
+      submitting: "Processing...",
+      success: "Booking requested!",
+      successDesc: "We have received your request for {count} person(s) on {date}. We will contact you soon.",
+      error: "Error sending booking",
+      errorDesc: "There was a problem. Please try again.",
+      networkError: "Network error",
+      networkErrorDesc: "Could not connect to the server. Check your connection.",
+      notFound: "Excursion not found",
+      notFoundDesc: "We couldn't find the excursion you're looking for.",
+      back: "Back to Excursions"
     }
   }
 };
