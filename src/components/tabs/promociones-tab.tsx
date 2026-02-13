@@ -58,10 +58,10 @@ const promocionesData: Promocion[] = [
   },
   {
     id: 'promo-portaventura',
-    title: 'PortAventura: Especial Navidad',
+    title: 'PortAventura World',
     price: 60,
     currency: 'EUR',
-    description: 'Disfruta de la magia de la Navidad en PortAventura con atracciones y espectáculos únicos para toda la familia.',
+    description: 'Disfruta de la emoción y la diversión en PortAventura con atracciones y espectáculos únicos para toda la familia.',
     excursionId: 'tour-portaventura',
   },
 ];

@@ -129,7 +129,7 @@
       "description_en": "From universal adapters to portable batteries, we show you the gadgets that cannot be missing in your backpack.",
       "imageUrl": "/post.jpg",
       "imageHint": "travel gadgets",
-      "details": "### Imprescindibles per a qualsevol viatge\n\n*   **Adaptador universal:** Un sol dispositiu per a tots els països. Busca'n un amb ports USB per carregar diversos aparells alhora.\n*   **Bateria externa (Power Bank):** Per no quedar-te mai sense bateria al mòbil o la càmera. Una de 10.000 mAh és un bon equilibri entre mida i capacitat.\n*   **Auriculars amb cancel·lació de soroll:** Perfectes per a vols llargs o per aïllar-te del soroll en llocs concorreguts.\n\n### Gadgets per a l'aventura\n\n*   **Filtre d'aigua portàtil:** Si fas senderisme o visites llocs amb aigua no potable, és un accessori essencial.\n*   **Localitzador GPS (com un AirTag):** Posa'n un a la maleta facturada per tenir-la sempre localitzada.",
+      "details": "### Imprescindibles per a qualezvol viatge\n\n*   **Adaptador universal:** Un sol dispositiu per a tots els països. Busca'n un amb ports USB per carregar diversos aparells alhora.\n*   **Bateria externa (Power Bank):** Per no quedar-te mai sense bateria al mòbil o la càmera. Una de 10.000 mAh és un bon equilibri entre mida i capacitat.\n*   **Auriculars amb cancel·lació de soroll:** Perfectes per a vols llargs o per aïllar-te del soroll en llocs concorreguts.\n\n### Gadgets per a l'aventura\n\n*   **Filtre d'aigua portàtil:** Si fas senderisme o visites llocs amb aigua no potable, és un accessori essencial.\n*   **Localitzador GPS (com un AirTag):** Posa'n un a la maleta facturada per tenir-la sempre localitzada.",
       "details_es": "### Imprescindibles para cualquier viaje\n\n*   **Adaptador universal:** Un solo dispositivo para todos los países. Busca uno con puertos USB para cargar varios aparatos a la vez.\n*   **Batería externa (Power Bank):** Para no quedarte nunca sin batería en el móvil o la cámara. Una de 10.000 mAh es un buen equilibrio entre tamaño y capacidad.\n*   **Auriculares con cancelación de ruido:** Perfectos para vuelos largos o para aislarte del ruido en lugares concurrido.\n\n### Gadgets para la aventura\n\n*   **Filtro de agua portátil:** Si haces senderismo o visitas lugares con agua no potable, es un accesoio esencial.\n*   **Localizador GPS (como un AirTag):** Pon uno en la maleta facturada para tenerla siempre localizada.",
       "details_en": "### Essentials for Any Trip\n\n*   **Universal Adapter:** A single device for all countries. Look for one with USB ports to charge multiple devices at once.\n*   **Portable Battery (Power Bank):** So you never run out of battery on your phone or camera. A 10,000 mAh one is a good balance between size and capacity.\n*   **Noise-Canceling Headphones:** Perfect for long flights or to isolate yourself from noise in crowded places.\n\n### Gadgets for Adventure\n\n*   **Portable Water Filter:** If you go hiking or visit places with non-potable water, it's an essential accessory.\n*   **GPS Tracker (like an AirTag):** Put one in your checked luggage to always have it located."
     },
@@ -196,9 +196,12 @@
       "id": "tour-portaventura",
       "imageUrl": "/pa.jpg",
       "imageHint": "theme park",
-      "description": "Viu la màgia de Nadal amb tota la família a PortAventura.",
-      "description_es": "Vive la magia de la Navidad con toda la familia en PortAventura.",
-      "description_en": "Experience the magic of Christmas with the whole family at PortAventura."
+      "title": "PortAventura World",
+      "title_es": "PortAventura World",
+      "title_en": "PortAventura World",
+      "description": "Viu una experiència inoblidable amb tota la família a PortAventura World.",
+      "description_es": "Vive una experiencia inolvidable con toda la familia en PortAventura World.",
+      "description_en": "Live an unforgettable experience with the whole family at PortAventura World."
     },
     {
       "id": "tour-caldea",
