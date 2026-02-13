@@ -6,6 +6,7 @@ export type Excursion = {
 };
 
 export const excursionsData: Excursion[] = [
+  { id: 'tour-disneyland', title: 'Entradas Disneyland® Paris (2 Parques)', price: 99, currency: 'EUR' },
   { id: 'tour-paris', title: 'Tour Eiffel y Crucero por el Sena', price: 120, currency: 'EUR' },
   { id: 'tour-rome', title: 'Roma Antigua: Coliseo y Foro', price: 95, currency: 'EUR' },
   { id: 'tour-new-york', title: 'Contrastes de Nueva York', price: 80, currency: 'USD' },

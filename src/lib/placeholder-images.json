@@ -12,7 +12,7 @@
       "imageHint": "japan temple",
       "details": "### Què veure i fer:\n\n*   **Tòquio:** Explora Shibuya i el seu famós encreuament, visita el temple Senso-ji a Asakusa i gaudeix de la tecnologia a Akihabara.\n*   **Kioto:** Recorre els temples tradicionals com Fushimi Inari i el Pavelló Daurat (Kinkaku-ji).\n*   **Experiència cultural:** Participa en una cerimònia del te, prova sushi autèntic i passeja per jardins zen.\n*   **Natura:** Contempla el Mont Fuji des del Llac Kawaguchi o fes senderisme als Alps Japonesos.",
       "details_es": "### Qué ver y hacer:\n\n*   **Tokio:** Explora Shibuya y su famoso cruce, visita el templo Senso-ji en Asakusa y disfruta de la tecnología en Akihabara.\n*   **Kioto:** Recorre los temples tradicionales como Fushimi Inari y el Pabellón Dorado (Kinkaku-ji).\n*   **Experiencia cultural:** Participa en una ceremonia del té, prueba sushi auténtico y pasea por jardines zen.\n*   **Naturaleza:** Contempla el Monte Fuji desde el Lago Kawaguchi o haz senderismo en los Alpes Japonesos.",
-      "details_en": "### What to see and do:\n\n*   **Tokyo:** Explore Shibuya and its famous crossing, visit the Senso-ji temple in Asakusa and enjoy technology in Akihabara.\n*   **Kyoto:** Tour traditional temples like Fushimi Inari and the Golden Pavilion (Kinkaku-ji).\n*   **Cultural Experience:** Participate in a tea ceremony, try authentic sushi and stroll through zen gardens.\n*   **Nature:** Gaze at Mount Fuji from Lake Kawaguchi or go hiking in the Japanese Alps."
+      "details_en": "### What to see and do:\n\n*   **Tokyo:** Explore Shibuya and its famous crossing, visit the Senso-ji temple in Asakusa and enjoy technology in Akihabara.\n*   **Kyoto:** Tour traditional temples like Fushimi Inari and the Golden Pavilion (Kinkaku-ji).\n*   **Cultural Experience:** Participate in a tea ceremony, try authentic sushi and stroll through zen gardens.\n*   **Nature:** Gaze at Mount Fuji from Lake Google or go hiking in the Japanese Alps."
     },
     {
       "id": "country-italy",
@@ -25,7 +25,7 @@
       "imageUrl": "https://images.unsplash.com/photo-1666225908854-2495f1f4d83a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxyb21lJTIwY29sb3NzZXVtfGVufDB8fHx8MTc2Mzk5NzM4NXww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "italy colosseum",
       "details": "### Què veure i fer:\n\n*   **Roma:** Visita el Coliseu, la Fontana di Trevi i el Vaticà.\n*   **Venècia:** Passeja en gòndola pels canals i explora la Plaça de Sant Marc.\n*   **Florència:** Admira l'art renaixentista a la Galeria Uffizi i el Duomo.\n*   **Cultura i menjar:** Aprèn a fer pasta fresca i prova autèntica pizza napolitana.",
-      "details_es": "### Qué ver y hacer:\n\n*   **Roma:** Visita el Coliseo, la Fontana di Trevi y el Vaticano.\n*   **Venecia:** Pasea en góndola por los canales y explora la Plaza de San Marcos.\n*   **Florencia:** Admira el arte renaixentista en la Galería Uffizi y el Duomo.\n*   **Cultura y comida:** Aprende a hacer pasta fresca y prueba auténtica pizza napolitana.",
+      "details_es": "### Qué ver y hacer:\n\n*   **Roma:** Visita el Coliseo, la Fontana di Trevi y el Vaticano.\n*   **Venecia:** Pasea en góndola por los canales y explora la Plaza de San Marcos.\n*   **Florencia:** Admira el arte renacentista en la Galería Uffizi y el Duomo.\n*   **Cultura y comida:** Aprende a hacer pasta fresca y prueba auténtica pizza napolitana.",
       "details_en": "### What to see and do:\n\n*   **Rome:** Visit the Colosseum, the Trevi Fountain and the Vatican.\n*   **Venice:** Ride a gondola through the canals and explore St. Mark's Square.\n*   **Florence:** Admire Renaissance art at the Uffizi Gallery and the Duomo.\n*   **Culture and food:** Learn to make fresh pasta and try authentic Neapolitan pizza."
     },
     {
@@ -132,6 +132,17 @@
       "details": "### Imprescindibles per a qualsevol viatge\n\n*   **Adaptador universal:** Un sol dispositiu per a tots els països. Busca'n un amb ports USB per carregar diversos aparells alhora.\n*   **Bateria externa (Power Bank):** Per no quedar-te mai sense bateria al mòbil o la càmera. Una de 10.000 mAh és un bon equilibri entre mida i capacitat.\n*   **Auriculars amb cancel·lació de soroll:** Perfectes per a vols llargs o per aïllar-te del soroll en llocs concorreguts.\n\n### Gadgets per a l'aventura\n\n*   **Filtre d'aigua portàtil:** Si fas senderisme o visites llocs amb aigua no potable, és un accessori essencial.\n*   **Localitzador GPS (com un AirTag):** Posa'n un a la maleta facturada per tenir-la sempre localitzada.",
       "details_es": "### Imprescindibles para cualquier viaje\n\n*   **Adaptador universal:** Un solo dispositivo para todos los países. Busca uno con puertos USB para cargar varios aparatos a la vez.\n*   **Batería externa (Power Bank):** Para no quedarte nunca sin batería en el móvil o la cámara. Una de 10.000 mAh es un buen equilibrio entre tamaño y capacidad.\n*   **Auriculares con cancelación de ruido:** Perfectos para vuelos largos o para aislarte del ruido en lugares concurrido.\n\n### Gadgets para la aventura\n\n*   **Filtro de agua portátil:** Si haces senderismo o visitas lugares con agua no potable, es un accesoio esencial.\n*   **Localizador GPS (como un AirTag):** Pon uno en la maleta facturada para tenerla siempre localizada.",
       "details_en": "### Essentials for Any Trip\n\n*   **Universal Adapter:** A single device for all countries. Look for one with USB ports to charge multiple devices at once.\n*   **Portable Battery (Power Bank):** So you never run out of battery on your phone or camera. A 10,000 mAh one is a good balance between size and capacity.\n*   **Noise-Canceling Headphones:** Perfect for long flights or to isolate yourself from noise in crowded places.\n\n### Gadgets for Adventure\n\n*   **Portable Water Filter:** If you go hiking or visit places with non-potable water, it's an essential accessory.\n*   **GPS Tracker (like an AirTag):** Put one in your checked luggage to always have it located."
+    },
+    {
+      "id": "tour-disneyland",
+      "imageUrl": "https://images.unsplash.com/photo-1513073114158-38f21f0e2717?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkaXNuZXlsYW5kJTIwcGFyaXN8ZW58MHx8fHwxNzY0MDkwMDAwfDA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "disneyland paris castle",
+      "title": "Entrades Disneyland® Paris (2 Parques)",
+      "title_es": "Entradas Disneyland® Paris (2 Parques)",
+      "title_en": "Disneyland® Paris Tickets (2 Parks)",
+      "description": "Gaudeix de la màgia de Disney amb accés als dos parcs: Disneyland® Park i Walt Disney Studios®.",
+      "description_es": "Disfruta de la magia de Disney con acceso a los dos parques: Disneyland® Park y Walt Disney Studios®.",
+      "description_en": "Enjoy the magic of Disney with access to both parks: Disneyland® Park and Walt Disney Studios®."
     },
     {
       "id": "tour-paris",

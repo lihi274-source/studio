@@ -22,7 +22,7 @@ const promocionesData: Promocion[] = [
     price: 99, 
     currency: 'EUR', 
     description: 'Vive un sueño en Disneyland® Paris con entradas para los 2 parques Disney. ¡Una experiencia ideal para toda la familia!',
-    excursionId: 'tour-paris'
+    excursionId: 'tour-disneyland'
   },
   { 
     id: 'promo-caldea', 
@@ -68,7 +68,7 @@ const promocionesData: Promocion[] = [
 
 const PromocionesTab = () => {
   const promociones = promocionesData.map(promo => {
-    const imageData = PlaceHolderImages.find(img => img.id === promo.id);
+    const imageData = PlaceHolderImages.find(img => img.id === promo.id || img.id === promo.excursionId);
     return { ...promo, ...imageData };
   });
 
