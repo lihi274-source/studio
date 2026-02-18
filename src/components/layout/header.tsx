@@ -28,26 +28,33 @@ const Header = () => {
   ];
 
   return (
-    <header className="py-4 bg-transparent backdrop-blur-sm border-b border-border/50 sticky top-0 z-40">
-      <div className="flex w-full items-center justify-between px-6 lg:px-10">
-        <div className="flex items-center">
-            <Link href="/" className="flex items-center">
-              <Image src="/log.png" alt="Viajes HICA Logo" width={200} height={200} className="mr-3" />
-              <div>
-                <h1 className="text-2xl md:text-3xl font-headline text-primary-foreground">
+    <header className="py-3 md:py-4 bg-transparent backdrop-blur-sm border-b border-border/50 sticky top-0 z-40">
+      <div className="flex w-full items-center justify-between px-4 md:px-6 lg:px-10 gap-2">
+        <div className="flex items-center min-w-0">
+            <Link href="/" className="flex items-center min-w-0">
+              <div className="relative w-10 h-10 md:w-16 md:h-16 mr-2 md:mr-3 flex-shrink-0">
+                <Image 
+                  src="/log.png" 
+                  alt="Viajes HICA Logo" 
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="min-w-0">
+                <h1 className="text-lg md:text-3xl font-headline text-primary-foreground truncate leading-tight">
                   Viajes HICA
                 </h1>
-                <p className="text-sm text-muted-foreground hidden sm:block">{t.nav.tagline}</p>
+                <p className="text-[10px] md:text-sm text-muted-foreground hidden md:block truncate">{t.nav.tagline}</p>
               </div>
             </Link>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
           {/* Selector de Idioma */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-10 w-10 hover:bg-accent/50">
-                <Languages className="h-6 w-6 text-primary" />
+              <Button variant="ghost" size="icon" className="h-9 w-9 md:h-10 md:w-10 hover:bg-accent/50">
+                <Languages className="h-5 w-5 md:h-6 md:h-6 text-primary" />
                 <span className="sr-only">Seleccionar idioma</span>
               </Button>
             </DropdownMenuTrigger>
@@ -71,9 +78,9 @@ const Header = () => {
           </DropdownMenu>
 
           {/* Account Shortcut */}
-          <Button asChild variant="ghost" size="icon" className="h-10 w-10 hover:bg-accent/50">
+          <Button asChild variant="ghost" size="icon" className="h-9 w-9 md:h-10 md:w-10 hover:bg-accent/50">
             <Link href="/account">
-              <User className="h-6 w-6 text-primary" />
+              <User className="h-5 w-5 md:h-6 md:h-6 text-primary" />
               <span className="sr-only">{t.nav.account}</span>
             </Link>
           </Button>
@@ -81,8 +88,8 @@ const Header = () => {
           {/* Unified Navigation Dropdown (3 lines icon) */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-10 w-10 hover:bg-accent/50">
-                <Menu className="h-8 w-8 text-primary" />
+              <Button variant="ghost" size="icon" className="h-9 w-9 md:h-10 md:w-10 hover:bg-accent/50">
+                <Menu className="h-6 w-6 md:h-8 md:w-8 text-primary" />
                 <span className="sr-only">Abrir menú de navegación</span>
               </Button>
             </DropdownMenuTrigger>
