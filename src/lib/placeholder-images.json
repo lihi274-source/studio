@@ -5,93 +5,113 @@
       "title": "Japó",
       "title_es": "Japón",
       "title_en": "Japan",
+      "title_fr": "Japon",
       "description": "Un país on la tradició mil·lenària i la tecnologia futurista conviuen. No et perdis els temples de Kioto ni l'encreuament de Shibuya a Tòquio.",
       "description_es": "Un país donde la tradición milenaria y la tecnología futurista conviven. No te pierdas los templos de Kioto ni el cruce de Shibuya en Tokio.",
       "description_en": "A country where ancient tradition and futuristic technology coexist. Don't miss the temples of Kyoto or the Shibuya crossing in Tokyo.",
+      "description_fr": "Un pays où la tradition séculaire et la technologie futuriste coexistent. Ne manquez pas les temples de Kyoto ou le carrefour de Shibuya à Tokyo.",
       "imageUrl": "https://images.unsplash.com/photo-1547448526-5e9d57fa28f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0b2t5byUyMGphcGFufGVufDB8fHx8MTc2NDA4MDc3OHww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "japan temple",
       "details": "### Què veure i fer:\n\n*   **Tòquio:** Explora Shibuya i el seu famós encreuament, visita el temple Senso-ji a Asakusa i gaudeix de la tecnologia a Akihabara.\n*   **Kioto:** Recorre els temples tradicionals com Fushimi Inari i el Pavelló Daurat (Kinkaku-ji).\n*   **Experiència cultural:** Participa en una cerimònia del te, prova sushi autèntic i passeja per jardins zen.\n*   **Natura:** Contempla el Mont Fuji des del Llac Kawaguchi o fes senderisme als Alps Japonesos.",
       "details_es": "### Qué ver y hacer:\n\n*   **Tokio:** Explora Shibuya y su famoso cruce, visita el templo Senso-ji en Asakusa y disfruta de la tecnología en Akihabara.\n*   **Kioto:** Recorre los temples tradicionales como Fushimi Inari y el Pabellón Dorado (Kinkaku-ji).\n*   **Experiencia cultural:** Participa en una ceremonia del té, prueba sushi auténtico y pasea por jardines zen.\n*   **Naturaleza:** Contempla el Monte Fuji desde el Lago Kawaguchi o haz senderismo en los Alpes Castellanos.",
-      "details_en": "### What to see and do:\n\n*   **Tokyo:** Explore Shibuya and its famous crossing, visit the Senso-ji temple in Asakusa and enjoy technology in Akihabara.\n*   **Kyoto:** Tour traditional temples like Fushimi Inari and the Golden Pavilion (Kinkaku-ji).\n*   **Cultural Experience:** Participate in a tea ceremony, try authentic sushi and stroll through zen gardens.\n*   **Nature:** Gaze at Mount Fuji from Lake Google or go hiking in the Japanese Alps."
+      "details_en": "### What to see and do:\n\n*   **Tokyo:** Explore Shibuya and its famous crossing, visit the Senso-ji temple in Asakusa and enjoy technology in Akihabara.\n*   **Kyoto:** Tour traditional temples like Fushimi Inari and the Golden Pavilion (Kinkaku-ji).\n*   **Cultural Experience:** Participate in a tea ceremony, try authentic sushi and stroll through zen gardens.\n*   **Nature:** Gaze at Mount Fuji from Lake Google or go hiking in the Japanese Alps.",
+      "details_fr": "### À voir et à faire :\n\n*   **Tokyo :** Explorez Shibuya et son célèbre carrefour, visitez le temple Senso-ji à Asakusa et profitez de la technologie à Akihabara.\n*   **Kyoto :** Parcourez les temples traditionnels comme Fushimi Inari et le Pavillon d'Or (Kinkaku-ji).\n*   **Expérience culturelle :** Participez à une cérémonie du thé, goûtez au sushi authentique et flânez dans les jardins zen.\n*   **Nature :** Contemplez le Mont Fuji depuis le lac Kawaguchi ou faites de la randonnée dans les Alpes japonaises."
     },
     {
       "id": "country-italy",
       "title": "Itàlia",
       "title_es": "Italia",
       "title_en": "Italy",
+      "title_fr": "Italie",
       "description": "Cuna de l'Imperi Romà i el Renaixement. Gaudeix de la seva inigualable gastronomia, el seu art i els seus romàntics paisatges.",
       "description_es": "Cuna del Imperio Romano y el Renacimiento. Disfruta de su inigualable gastronomía, su arte y sus románticos paisajes.",
       "description_en": "Cradle of the Roman Empire and the Renaissance. Enjoy its unparalleled gastronomy, its art and its romantic landscapes.",
+      "description_fr": "Berceau de l'Empire romain et de la Renaissance. Profitez de sa gastronomie inégalée, de son art et de ses paysages romantiques.",
       "imageUrl": "https://images.unsplash.com/photo-1666225908854-2495f1f4d83a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxyb21lJTIwY29sb3NzZXVtfGVufDB8fHx8MTc2Mzk5NzM4NXww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "italy colosseum",
       "details": "### Què veure i fer:\n\n*   **Roma:** Visita el Coliseu, la Fontana di Trevi i el Vaticà.\n*   **Venècia:** Passeja en gòndola pels canals i explora la Plaça de Sant Marc.\n*   **Florència:** Admira l'art renaixentista a la Galeria Uffizi i el Duomo.\n*   **Cultura i menjar:** Aprèn a fer pasta fresca i prova autèntica pizza napolitana.",
       "details_es": "### Qué ver y hacer:\n\n*   **Roma:** Visita el Coliseo, la Fontana di Trevi y el Vaticano.\n*   **Venecia:** Pasea en góndola por los canales y explora la Plaza de San Marcos.\n*   **Florencia:** Admira el arte renacentista en la Galería Uffizi y el Duomo.\n*   **Cultura y comida:** Aprende a hacer pasta fresca y prueba auténtica pizza napolitana.",
-      "details_en": "### What to see and do:\n\n*   **Rome:** Visit the Colosseum, the Trevi Fountain and the Vatican.\n*   **Venice:** Ride a gondola through the canals and explore St. Mark's Square.\n*   **Florence:** Admire Renaissance art at the Uffizi Gallery and the Duomo.\n*   **Culture and food:** Learn to make fresh pasta and try authentic Neapolitan pizza."
+      "details_en": "### What to see and do:\n\n*   **Rome:** Visit the Colosseum, the Trevi Fountain and the Vatican.\n*   **Venice:** Ride a gondola through the canals and explore St. Mark's Square.\n*   **Florence:** Admire Renaissance art at the Uffizi Gallery and the Duomo.\n*   **Culture and food:** Learn to make fresh pasta and try authentic Neapolitan pizza.",
+      "details_fr": "### À voir et à faire :\n\n*   **Rome :** Visitez le Colisée, la fontaine de Trevi et le Vatican.\n*   **Venise :** Faites une balade en gondole sur les canaux et explorez la place Saint-Marc.\n*   **Florence :** Admirez l'art de la Renaissance à la galerie des Offices et au Duomo.\n*   **Culture et cuisine :** Apprenez à faire des pâtes fraîches et goûtez à l'authentique pizza napolitaine."
     },
     {
       "id": "country-egypt",
       "title": "Egipte",
       "title_es": "Egipto",
       "title_en": "Egypt",
+      "title_fr": "Égypte",
       "description": "Viatja en el temps visitant les majestuoses Piràmides de Giza, l'Esfinx i els tresors dels faraons al Nil.",
       "description_es": "Viaja en el tiempo visitando las majestuosas Pyramides de Giza, la Esfinge y los tesoros de los faraones en el Nilo.",
       "description_en": "Travel back in time visiting the majestic Pyramids of Giza, the Sphinx and the treasures of the pharaohs in the Nile.",
-      "imageUrl": "https://images.unsplash.com/photo-1553913861-c0fddf2619ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxlZ3lwdCUyMHB5cmFtaWRzfGVufDB8fHx8MTc2NDAwMzc2NXww&ixlib.rb-4.1.0&q=80&w=1080",
+      "description_fr": "Voyagez dans le temps en visitant les majestueuses pyramides de Gizeh, le Sphinx et les trésors des pharaons sur le Nil.",
+      "imageUrl": "https://images.unsplash.com/photo-1553913861-c0fddf2619ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxlZ3lwdCUyMHB5cmFtaWRzfGVufDB8fHx8MTc2NDAwdTM3NjV8MA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "egypt pyramids",
       "details": "### Què veure i fer:\n\n*   **El Caire:** Descobreix les Piràmides de Giza i l'Esfinx, visita el Museu Egipci.\n*   **Luxor:** Explora la Vall dels Reis i els temples de Karnak.\n*   **Nil:** Fes un creuer pel riu per veure paisatges i temples històrics.\n*   **Experiència única:** Munta en camell i viu el desert.",
       "details_es": "### Qué ver y hacer:\n\n*   **El Cairo:** Descubre las Pirámides de Giza y la Esfinge, visita el Museo Egipcio.\n*   **Luxor:** Explora el Valle de los Reyes y los templos de Karnak.\n*   **Nilo:** Haz un crucero por el río para ver paisajes y templos históricos.\n*   **Experiencia única:** Monta en camello y vive el desierto.",
-      "details_en": "### What to see and do:\n\n*   **Cairo:** Discover the Pyramids of Giza and the Sphinx, visit the Egyptian Museum.\n*   **Luxor:** Explore the Valley of the Kings and the Karnak temples.\n*   **Nile:** Take a river cruise to see landscapes and historic temples.\n*   **Unique experience:** Ride a camel and experience the desert."
+      "details_en": "### What to see and do:\n\n*   **Cairo:** Discover the Pyramids of Giza and the Sphinx, visit the Egyptian Museum.\n*   **Luxor:** Explore the Valley of the Kings and the Karnak temples.\n*   **Nile:** Take a river cruise to see landscapes and historic temples.\n*   **Unique experience:** Ride a camel and experience the desert.",
+      "details_fr": "### À voir et à faire :\n\n*   **Le Caire :** Découvrez les pyramides de Gizeh et le Sphinx, visitez le Musée égyptien.\n*   **Louxor :** Explorez la Vallée des Rois et les temples de Karnak.\n*   **Le Nil :** Faites une croisière sur le fleuve pour voir des paysages et des temples historiques.\n*   **Expérience unique :** Montez à chameau et vivez le désert."
     },
     {
       "id": "country-france",
       "title": "França",
       "title_es": "Francia",
       "title_en": "France",
+      "title_fr": "France",
       "description": "Famosa per la seva alta cuina, la seva moda i el seu art. París, la 'Ciutat de la Llum', t'espera amb els seus encants i el seu romanticisme.",
       "description_es": "Famosa por su alta cocina, su moda y su arte. París, la 'Ciudad de la Luz', te espera con sus encantos y su romanticismo.",
       "description_en": "Famous for its haute cuisine, its fashion and its art. Paris, the 'City of Light', awaits you with its charms and its romanticism.",
+      "description_fr": "Célèbre pour sa haute gastronomie, sa mode et son art. Paris, la 'Ville Lumière', vous attend avec ses charmes et son romantisme.",
       "imageUrl": "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwYXJpcyUyMGVpZmZlbCUyMHRvd2VyfGVufDB8fHx8MTc2NDA4ODk4MHww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "france paris",
       "details": "### Què veure i fer:\n\n*   **París:** Puja a la Torre Eiffel, recorre el Louvre i passeja per Montmartre.\n*   **Regions:** Gaudeix de les vinyes a Bordeus o la Provença amb els seus camps d'espígol.\n*   **Costa Blava:** Descobreix Niça i Cannes, ideals per a platges i glamur.\n*   **Gastronomia:** Degusta croissants, formatges i vins francesos.",
       "details_es": "### Qué ver y hacer:\n\n*   **París:** Sube a la Torre Eiffel, recorre el Louvre y pasea por Montmartre.\n*   **Regiones:** Disfruta de los viñedos en Burdeos o la Provenza con sus campos de lavanda.\n*   **Costa Azul:** Descubre Niza y Cannes, ideales para playas y glamour.\n*   **Gastronomía:** Degusta croissants, quesos y vinos franceses.",
-      "details_en": "### What to see and do:\n\n*   **Paris:** Climb the Eiffel Tower, tour the Louvre and stroll through Montmartre.\n*   **Regions:** Enjoy the vineyards in Bordeaux or Provence with its lavender fields.\n*   **French Riviera:** Discover Nice and Cannes, ideal for beaches and glamour.\n*   **Gastronomy:** Taste croissants, cheeses and French wines."
+      "details_en": "### What to see and do:\n\n*   **Paris:** Climb the Eiffel Tower, tour the Louvre and stroll through Montmartre.\n*   **Regions:** Enjoy the vineyards in Bordeaux or Provence with its lavender fields.\n*   **French Riviera:** Discover Nice and Cannes, ideal for beaches and glamour.\n*   **Gastronomy:** Taste croissants, cheeses and French wines.",
+      "details_fr": "### À voir et à faire :\n\n*   **Paris :** Montez à la Tour Eiffel, visitez le Louvre et flânez à Montmartre.\n*   **Régions :** Profitez des vignobles de Bordeaux ou de la Provence avec ses champs de lavande.\n*   **Côte d'Azur :** Découvrez Nice et Cannes, idéales pour les plages et le glamour.\n*   **Gastronomie :** Dégustez des croissants, des fromages et des vins français."
     },
     {
       "id": "country-usa",
       "title": "Estats Units",
       "title_es": "Estados Unidos",
       "title_en": "United States",
+      "title_fr": "États-Unis",
       "description": "Un país de contrasts, des dels rascacels de Nova York fins als parcs nacionals com el Gran Canyó.",
       "description_es": "Un país de contrastes, desde los rascacielos de Nueva York hasta los parques nacionales como el Gran Cañón.",
       "description_en": "A country of contrasts, from the skyscrapers of New York to national parks like the Grand Canyon.",
+      "description_fr": "Un pays de contrastes, des gratte-ciel de New York aux parcs nationaux comme le Grand Canyon.",
       "imageUrl": "https://images.unsplash.com/photo-1448317971280-6c74e016e49c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxuZXclMjB5b3JrJTIwY2l0eXxlbnwwfHx8fDE3NjQwNjEyNDd8MA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "usa city",
       "details": "### Què veure i fer:\n\n*   **Nova York:** Passeja per Central Park, puja a l'Empire State i recorre Times Square.\n*   **Costa Oest:** Explora Los Angeles, Hollywood i les platges de Califòrnia.\n*   **Parcs Nacionals:** Visita el Gran Canyó, Yellowstone o Yosemite.\n*   **Diversió:** Gaudeix de parcs temàtics a Orlando (Disney, Universal).",
       "details_es": "### Qué ver y hacer:\n\n*   **Nueva York:** Pasea por Central Park, sube al Empire State y recorre Times Square.\n*   **Costa Oeste:** Explora Los Ángeles, Hollywood y las playas de California.\n*   **Parques Nacionales:** Visita el Gran Cañón, Yellowstone o Yosemite.\n*   **Diversión:** Disfruta de parques temáticos en Orlando (Disney, Universal).",
-      "details_en": "### What to see and do:\n\n*   **New York:** Stroll through Central Park, climb the Empire State Building and tour Times Square.\n*   **West Coast:** Explore Los Angeles, Hollywood and California beaches.\n*   **National Parks:** Visit the Grand Canyon, Yellowstone or Yosemite.\n*   **Fun:** Enjoy theme parks in Orlando (Disney, Universal)."
+      "details_en": "### What to see and do:\n\n*   **New York:** Stroll through Central Park, climb the Empire State Building and tour Times Square.\n*   **West Coast:** Explore Los Angeles, Hollywood and California beaches.\n*   **National Parks:** Visit the Grand Canyon, Yellowstone or Yosemite.\n*   **Fun:** Enjoy theme parks in Orlando (Disney, Universal).",
+      "details_fr": "### À voir et à faire :\n\n*   **New York :** Promenez-vous dans Central Park, montez à l'Empire State Building et parcourez Times Square.\n*   **Côte Ouest :** Explorez Los Angeles, Hollywood et les plages de Californie.\n*   **Parcs nationaux :** Visitez le Grand Canyon, Yellowstone ou Yosemite.\n*   **Divertissement :** Profitez des parcs à thèmes à Orlando (Disney, Universal)."
     },
     {
       "id": "country-spain",
       "title": "Espanya",
       "title_es": "España",
       "title_en": "Spain",
+      "title_fr": "Espagne",
       "description": "Gaudeix del sol, la siesta i la festa. Des de l'arquitectura de Gaudí a Barcelona fins a les platges de les Illes Balears.",
       "description_es": "Disfruta del sol, la siesta y la fiesta. Desde la arquitectura de Gaudí en Barcelona hasta las playas de las Islas Baleares.",
       "description_en": "Enjoy the sun, siesta and party. From Gaudí's architecture in Barcelona to the beaches of the Balearic Islands.",
-      "imageUrl": "https://images.unsplash.com/photo-1533856493584-0c6ca8ca9ce3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhbXVzZW1lbnQlMjBwYXJrfGVufDB8fHx8MTc2NDAwMTMzN3ww&ixlib.rb-4.1.0&q=80&w=1080",
+      "description_fr": "Profitez du soleil, de la sieste et de la fête. De l'architecture de Gaudí à Barcelone aux plages des îles Baléares.",
+      "imageUrl": "https://images.unsplash.com/photo-1533856493584-0c6ca8ca9ce3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhbXVzZW1lbnQlMjBwYXJrfGVufDB8fHx8MTc2NDAwdTEzMzd8MA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "spain barcelona",
       "details": "### Què veure i fer:\n\n*   **Barcelona:** Admira la Sagrada Família i passeja per Les Rambles.\n*   **Madrid:** Descobreix el Museu del Prado i el Parc del Retiro.\n*   **Andalusia:** Recorre l'Alhambra a Granada i la Mesquita de Còrdova.\n*   **Platges i gastronomia:** Gaudeix de la Costa Brava, tapes i paella a València.",
       "details_es": "### Qué ver y hacer:\n\n*   **Barcelona:** Admira la Sagrada Familia y pasea por Las Ramblas.\n*   **Madrid:** Descubre el Museo del Prado y el Parque del Retiro.\n*   **Andalucía:** Recorre la Alhambra en Granada y la Mezquita de Córdoba.\n*   **Playas y gastronomía:** Disfruta de la Costa Brava, tapas y paella en Valencia.",
-      "details_en": "### What to see and do:\n\n*   **Barcelona:** Admire the Sagrada Familia and stroll down Las Ramblas.\n*   **Madrid:** Discover the Prado Museum and Retiro Park.\n*   **Andalusia:** Tour the Alhambra in Granada and the Mosque of Cordoba.\n*   **Beaches and Gastronomy:** Enjoy the Costa Brava, tapas and paella in Valencia."
+      "details_en": "### What to see and do:\n\n*   **Barcelona:** Admire the Sagrada Familia and stroll down Las Ramblas.\n*   **Madrid:** Discover the Prado Museum and Retiro Park.\n*   **Andalusia:** Tour the Alhambra in Granada and the Mosque of Cordoba.\n*   **Beaches and Gastronomy:** Enjoy the Costa Brava, tapas and paella in Valencia.",
+      "details_fr": "### À voir et à faire :\n\n*   **Barcelone :** Admirez la Sagrada Família et flânez sur Las Ramblas.\n*   **Madrid :** Découvrez le musée du Prado et le parc du Retiro.\n*   **Andalousie :** Parcourez l'Alhambra à Grenade et la Mosquée de Cordoue.\n*   **Plages et gastronomie :** Profitez de la Costa Brava, des tapas et de la paella à Valence."
     },
     {
       "id": "blog-featured",
       "title": "10 Destinacions Imprescindibles per al 2026",
       "title_es": "10 Destinos Imprescindibles para 2026",
       "title_en": "10 Must-Visit Destinations for 2026",
+      "title_fr": "10 Destinations Incontournables pour 2026",
       "description": "Descobreix la nostra selecció de les 10 millors destinacions per viatjar aquest any. Des de platges paradisíaques fins a ciutats vibrants, inspira't per a la teva propera gran aventura!",
       "description_es": "Descubre nuestra selección de los 10 mejores destinos para viajar este año. Desde playas paradisíacas hasta ciudades vibrantes, ¡inspírate para tu próxima gran aventura!",
       "description_en": "Discover our selection of the 10 best destinations to travel this year. From heavenly beaches to vibrant cities, get inspired for your next big adventure!",
+      "description_fr": "Découvrez notre sélection des 10 meilleures destinations pour voyager cette année. Des plages paradisiaques aux villes vibrantes, laissez-vous inspirer !",
       "imageUrl": "/dolomita.jpg",
       "imageHint": "travel destinations",
       "images": [
@@ -103,35 +123,42 @@
       ],
       "details": "### 10 Destins Imprescindibles per al 2026\n\n**Dolomites, Itàlia**\nEl cor dels Jocs Olímpics d'Hivern 2026\nEls Dolomites seran un dels epicentres del turisme aquest any gràcies a les Olimpíades, nous hotels boutique i paisatges alpines espectaculars. Ideal tant per esquiar com per a rutes a l'estiu.\n\n**Washington D.C., Estats Units**\nMuseus nous i celebracions històriques\nLa capital nord-americana celebra el 250è aniversari del país i estrena ampliacions culturals com un nou Museu Nacional Geographic, millores a l'Air & Space Museum i renovacions urbanes.\n\n**Taiwan**\nLa joia emergent d'Àsia\nEconomia, cultura vibrant, street food espectacular i natura increïble. Taiwan apareix com a destí alternatiu al Japó: igual d'interessant, més econòmic i encara poc massificat.\n\n**Japó**\nSantuaris nevats, llogarets tradicionals i onsen autèntics\nLa tendència 2026 és descobrir el Japó profund: pobles alpines, temples il·luminats a l'hivern i experiències locals lluny de Tòquio i Kyoto.\n\n**Tailàndia**\nPlatges, ciutat, jungla i cultura en un mateix viatge\nBangkok, les illes del sud i el nord muntanyós segueixen posicionant-se com un dels destins més complets de l'year: gastronomia, natura i accessibilitat.\n\n**Sant Sebastià, Espanya**\nLa capital gastronòmica d'Europa\nFamosa per les seves platges, la seva elegància i la seva cuina llegendària, Sant Sebastià es cola en llistes globals com un dels llocs més atractius del món per visitar el 2026.\n\n**Leiden, Països Baixos**\nEl “petit Amsterdam” sense aglomeracions\nCanals, museus històrics, jardins botànics i un ambient més tranquil que la capital. Un destí cultural perfecte per a escapades.\n\n**Mérida, Mèxic**\nColonial, cultural i a prop de ruïnes i cenotes\nLa capital de Yucatán s'està convertint en un imant per a viatgers per la seva arquitectura elegant, la seva vida local vibrant i la seva proximitat a meravelles naturals i arqueològiques.\n\n**Canadian Rockies, Canadà**\nBenestar de luxe en plena natura\nEl 2026 brillen encara més gràcies al nou BASIN Glacial Waters, una experiència termal d'alt nivell en un entorn natural espectacular.\n\n**Zanzíbar, Tanzània**\nPlatges turqueses i paradís de busseig\nZanzíbar és un dels millors destins del món per relaxar-te, explorar cultura swahili i descobrir un mar ple de vida.",
       "details_es": "### 10 Destinos Imprescindibles para 2026\n\n**Dolomitas, Italia**\nEl corazón de los Juegos Olímpicos de Invierno 2026\nLos Dolomitas serán uno de los epicentros del turismo este año gracias a las Olimpiadas, nuevos hoteles boutique y paisajes alpinos espectaculares. Ideal tanto para esquiar como para rutas en verano.\n\n**Washington D.C., Estados Unidos**\nMuseos nuevos y celebraciones históricas\nLa capital estadounidense celebra el 250º aniversario del país y estrena ampliaciones culturales como un nuevo Museo Nacional Geographic, mejoras en el Air & Space Museum y renovaciones urbanas.\n\n**Taiwan**\nLa joya emergente de Asia\nEconomía, cultura vibrante, street food espectacular y naturaleza increíble. Taiwan aparece como destino alternativo a Japón: igual de interesante, más económico y todavía poco masificado.\n\n**Japón**\nSantuarios nevados, aldeas tradicionales y onsen auténticos\nLa tendencia 2026 es descubrir el Japón profundo: pueblos alpinos, templos iluminados en invierno y experiencias locales lejos de Tokio y Kioto.\n\n**Tailandia**\nPlayas, ciudad, jungla y cultura en un mismo viaje\nBangkok, las islas del su y el norte montañoso siguen posicionándose como uno de los destinos más completos del año: gastronomía, naturaleza y accesibilidad.\n\n**San Sebastián, España**\nLa capital gastronómica de Europa\nFamosa por sus playas, su elegancia y su cocina legendaria, San Sebastián se cuela en listas globales como uno de los lugares más atractivos del mundo para visitar en 2026.\n\n**Leiden, Países Bajos**\nEl “pequeño Ámsterdam” sin aglomeraciones\nCanales, museos históricos, jardines botánicos y un ambiente más tranquilo que la capital. Un destino cultural perfecto para escapadas.\n\n**Mérida, México**\nColonial, cultural y cerca de ruinas y cenotes\nLa capital de Yucatán se está convirtiendo en un imán para viajeros por su arquitectura elegante, su vida local vibrante y su proximidad a maravillas naturales y arqueológicas.\n\n**Canadian Rockies, Canadá**\nBienestar de lujo en plena naturaleza\nEn 2026 brillan aún más gracias al nuevo BASIN Glacial Waters, una experiencia termal de alto nivel en un entorno natural espectacular.\n\n**Zanzíbar, Tanzania**\nPlayas turquesas y paraíso de buceo\nZanzíbar es uno de los mejores destinos del mundo para relajarte, explorar cultura swahili y descubrir un mar lleno de vida.",
-      "details_en": "### 10 Must-Visit Destinations for 2026\n\n**Dolomites, Italy**\nThe heart of the 2026 Winter Olympics\nThe Dolomites will be one of the epicenters of tourism this year thanks to the Olympics, new boutique hotels and spectacular alpine landscapes. Ideal both for skiing and for summer routes.\n\n**Washington D.C., United States**\nNew museums and historic celebrations\nThe US capital celebrates the country's 250th anniversary and premieres cultural expansions such as a new National Geographic Museum, improvements to the Air & Space Museum and urban renovations.\n\n**Taiwan**\nAsia's emerging gem. Economy, vibrant culture, spectacular street food and incredible nature. Taiwan appears as an alternative destination to Japan: just as interesting, cheaper and still not very crowded.\n\n**Japan**\nSnowy shrines, traditional villages and authentic onsen. The 2026 trend is to discover deep Japan: alpine villages, illuminated temples in winter and local experiences away from Tokyo and Kyoto.\n\n**Thailand**\nBeaches, city, jungle and culture in one trip. Bangkok, the southern islands and the mountainous north continue to position themselves as one of the most complete destinations of the year: gastronomy, nature and accessibility.\n\n**San Sebastian, Spain**\nThe gastronomic capital of Europe. Famous for its beaches, its elegance and its legendary cuisine, San Sebastian sneaks into global lists as one of the most attractive places in the world to visit in 2026.\n\n**Leiden, Netherlands**\nThe “little Amsterdam” without crowds. Canals, historic museums, botanical gardens and a quieter atmosphere than the capital. A perfect cultural destination for getaways.\n\n**Merida, Mexico**\nColonial, cultural and near ruins and cenotes. The capital of Yucatan is becoming a magnet for travelers for its elegant architecture, its vibrant local life and its proximity to natural and archaeological wonders.\n\n**Canadian Rockies, Canada**\nLuxury wellness in the heart of nature. In 2026 they shine even more thanks to the new BASIN Glacial Waters, a high-level thermal experience in a spectacular natural setting.\n\n**Zanzibar, Tanzania**\nTurquoise beaches and diving paradise. Zanzibar is one of the best destinations in the world to relax, explore Swahili culture and discover a sea full of life."
+      "details_en": "### 10 Must-Visit Destinations for 2026\n\n**Dolomites, Italy**\nThe heart of the 2026 Winter Olympics\nThe Dolomites will be one of the epicenters of tourism this year thanks to the Olympics, new boutique hotels and spectacular alpine landscapes. Ideal both for skiing and for summer routes.\n\n**Washington D.C., United States**\nNew museums and historic celebrations\nThe US capital celebrates the country's 250th anniversary and premieres cultural expansions such as a new National Geographic Museum, improvements to the Air & Space Museum and urban renovations.\n\n**Taiwan**\nAsia's emerging gem. Economy, vibrant culture, spectacular street food and incredible nature. Taiwan appears as an alternative destination to Japan: just as interesting, cheaper and still not very crowded.\n\n**Japan**\nSnowy shrines, traditional villages and authentic onsen. The 2026 trend is to discover deep Japan: alpine villages, illuminated temples in winter and local experiences away from Tokyo and Kyoto.\n\n**Thailand**\nBeaches, city, jungle and culture in one trip. Bangkok, the southern islands and the mountainous north continue to position themselves as one of the most complete destinations of the year: gastronomy, nature and accessibility.\n\n**San Sebastian, Spain**\nThe gastronomic capital of Europe. Famous for its beaches, its elegance and its legendary cuisine, San Sebastian sneaks into global lists as one of the most attractive places in the world to visit in 2026.\n\n**Leiden, Netherlands**\nThe “little Amsterdam” without crowds. Canals, historic museums, botanical gardens and a quieter atmosphere than the capital. A perfect cultural destination for getaways.\n\n**Merida, Mexico**\nColonial, cultural and near ruins and cenotes. The capital of Yucatan is becoming a magnet for travelers for its elegant architecture, its vibrant local life and its proximity to natural and archaeological wonders.\n\n**Canadian Rockies, Canada**\nLuxury wellness in the heart of nature. In 2026 they shine even more thanks to the new BASIN Glacial Waters, a high-level thermal experience in a spectacular natural setting.\n\n**Zanzibar, Tanzania**\nTurquoise beaches and diving paradise. Zanzibar is one of the best destinations in the world to relax, explore Swahili culture and discover a sea full of life.",
+      "details_fr": "### 10 Destinations Incontournables pour 2026\n\n**Les Dolomites, Italie**\nLe cœur des Jeux Olympiques d'Hiver 2026\nLes Dolomites seront l'un des épicentres du tourisme cette année grâce aux Olympiades et à leurs paysages alpins spectaculaires.\n\n**Washington D.C., États-Unis**\nNouveaux musées et célébrations historiques\nLa capitale américaine célèbre le 250ème anniversaire du pays avec de nouvelles extensions culturelles.\n\n**Taïwan**\nLe joyau émergent d'Asie\nUne culture vibrante et une cuisine de rue spectaculaire dans un cadre naturel incroyable.\n\n**Japon**\nSanctuaires enneigés et villages traditionnels\nDécouvrez le Japon profond, loin de l'agitation de Tokyo et Kyoto.\n\n**Thaïlande**\nPlages, villes et jungle en un seul voyage\nUn pays complet offrant gastronomie, nature et culture.\n\n**Saint-Sébastien, Espagne**\nLa capitale gastronomique d'Europe\nCélèbre pour sa cuisine légendaire et ses plages magnifiques.\n\n**Leyde, Pays-Bas**\nLe \"Petit Amsterdam\" sans la foule\nCanaux et musées historiques dans une ambiance paisible.\n\n**Mérida, Mexique**\nVille coloniale proche des cénotes\nUne architecture élégante et une vie locale vibrante au cœur du Yucatán.\n\n**Rocheuses canadiennes, Canada**\nBien-être de luxe en pleine nature\nUne expérience thermale de haut niveau dans un cadre spectaculaire.\n\n**Zanzibar, Tanzanie**\nPlages turquoise et paradis de la plongée\nUn paradis pour se détendre et explorer la culture swahilie."
     },
     {
       "id": "blog-tip1",
       "title": "Com fer la maleta com un professional en 5 passos",
       "title_es": "Cómo hacer la maleta como un profesional en 5 pasos",
       "title_en": "How to Pack Like a Pro in 5 Steps",
+      "title_fr": "Comment faire sa valise comme un pro en 5 étapes",
       "description": "Preparar la maleta no té per què ser un caos. Amb aquests trucs ràpids viatjaràs més lleuger, ordenat i sense oblidar-te de res.",
       "description_es": "Preparar la maleta no tiene por qué ser un caos. Con estos trucos rápidos viajarás más ligero, ordenado y sin olvidarte de nada.",
       "description_en": "Packing your suitcase doesn't have to be chaos. With these quick tips you will travel lighter, organized and without forgetting anything.",
+      "description_fr": "Faire sa valise ne doit pas être un chaos. Avec ces astuces rapides, voyagez léger et organisé.",
       "imageUrl": "/maleta.jpg",
       "imageHint": "suitcase",
       "details": "### 1. **Tria bé la maleta**\nPer a escapades curtes, opta per una maleta de cabina. Per a viatges llargs, una maleta gran o motxilla de viatge és el teu millor aliat. Revisa sempre el pes permès de la teva aerolínia.\n\n### 2. **Planifica el que realment necessites**\nFes una llista abans de començar i evita els “per si de cas”. Tria peces combinables entre si i porta només l'essencial: documents, carregadors, medicació i necesser.\n\n### 3. **Enrotlla la roba**\nLa tècnica de l'enrotllat estalvia espai i redueix arrugues. Col·loca els rotllets verticalment per veure-ho tot sense desordenar.\n\n### 4. **Organitza per categories**\nUtilitza packing cubes o bosses organitzadores per separar roba, accessoris, calçat i roba bruta. Guanyaràs espai i ho tindràs tot localitzat.\n\n### 5. **Prepara un kit de viatge**\nInclou raspall i mini pasta, powerbank, auriculars, tovalloletes i una muda extra. Et salvarà en vols llargs o imprevistos.",
       "details_es": "### 1. **Elige bien la maleta**\nPara escapadas cortas, opta por una maleta de cabina. Para viajes largos, una maleta grande o mochila de viaje es tu mejor aliada. Revisa siempre el peso permitido de tu aerolínea.\n\n### 2. **Planifica lo que realmente necesitas**\nHaz una lista antes de empezar y evita los “por si acaso”. Elige prendas combinables entre sí y lleva solo lo esencial: documentos, cargadores, medicación y neceser.\n\n### 3. **Enrolla la ropa**\nLa técnica del enrollado ahorra espacio y reduce arrugas. Coloca los rollitos verticalmente para verlo todo sin desordenar.\n\n### 4. **Organiza por categorías**\nUsa packing cubes o bolsas organizadoras para separar ropa, accesorios, calzado y ropa sucia. Ganarás espacio y tendrás todo localizado.\n\n### 5. **Prepara un kit de viaje**\nIncluye cepillo y mini pasta, powerbank, auriculares, toallitas y una muda extra. Te salvará en vuelos largos o imprevistos.",
-      "details_en": "### 1. **Choose the right suitcase**\nFor short getaways, opt for a cabin suitcase. For long trips, a large suitcase or travel backpack is your best ally. Always check the weight allowance of your airline.\n\n### 2. **Plan what you really need**\nMake a list before you start and avoid the \"just in case\". Choose clothes that can be combined with each other and carry only the essentials: documents, chargers, medication and toilet bag.\n\n### 3. **Roll your clothes**\nThe rolling technique saves space and reduces wrinkles. Place the rolls vertically to see everything without clutter.\n\n### 4. **Organize by categories**\nUse packing cubes or organizing bags to separate clothes, accessories, footwear and dirty clothes. You will gain space and have everything located.\n\n### 5. **Prepare a travel kit**\nInclude brush and mini paste, powerbank, headphones, wipes and an extra change of clothes. It will save you on long flights or unforeseen events."
+      "details_en": "### 1. **Choose the right suitcase**\nFor short getaways, opt for a cabin suitcase. For long trips, a large suitcase or travel backpack is your best ally. Always check the weight allowance of your airline.\n\n### 2. **Plan what you really need**\nMake a list before you start and avoid the \"just in case\". Choose clothes that can be combined with each other and carry only the essentials: documents, chargers, medication and toilet bag.\n\n### 3. **Roll your clothes**\nThe rolling technique saves space and reduces wrinkles. Place the rolls vertically to see everything without clutter.\n\n### 4. **Organize by categories**\nUse packing cubes or organizing bags to separate clothes, accessories, footwear and dirty clothes. You will gain space and have everything located.\n\n### 5. **Prepare a travel kit**\nInclude brush and mini paste, powerbank, headphones, wipes and an extra change of clothes. It will save you on long flights or unforeseen events.",
+      "details_fr": "### 1. **Choisissez la bonne valise**\nOptez pour un bagage cabine pour les courts séjours et une grande valise pour les longs voyages.\n\n### 2. **Planifiez l'essentiel**\nFaites une liste et évitez les \"au cas où\". Choisissez des vêtements faciles à assortir.\n\n### 3. **Roulez vos vêtements**\nCette technique gagne de l'espace et réduit les plis.\n\n### 4. **Organisez par catégories**\nUtilisez des cubes de rangement pour tout localiser rapidement.\n\n### 5. **Préparez un kit de voyage**\nGardez le nécessaire à portée de main pour les vols longs."
     },
     {
       "id": "blog-tip2",
       "title": "Els millors gadgets de viatge que necessites",
       "title_es": "Los mejores gadgets de viaje que necesitas",
       "title_en": "Best Travel Gadgets You Need",
+      "title_fr": "Les meilleurs gadgets de voyage indispensables",
       "description": "Des d'adaptadors universals fins a bateries portàtils, et mostrem els gadgets que no poden faltar a la teva motxilla.",
       "description_es": "Desde adaptadores universales hasta baterías portátiles, te mostramos los gadgets que no pueden faltar en tu mochila.",
       "description_en": "From universal adapters to portable batteries, we show you the gadgets that cannot be missing in your backpack.",
+      "description_fr": "Des adaptateurs universels aux batteries portables, découvrez les gadgets essentiels pour votre sac à dos.",
       "imageUrl": "/post.jpg",
       "imageHint": "travel gadgets",
       "details": "### Imprescindibles per a qualezvol viatge\n\n*   **Adaptador universal:** Un sol dispositiu per a tots els països. Busca'n un amb ports USB per carregar diversos aparells alhora.\n*   **Bateria externa (Power Bank):** Per no quedar-te mai sense bateria al mòbil o la càmera. Una de 10.000 mAh és un bon equilibri entre mida i capacitat.\n*   **Auriculars amb cancel·lació de soroll:** Perfectes per a vols llargs o per aïllar-te del soroll en llocs concorreguts.\n\n### Gadgets per a l'aventura\n\n*   **Filtre d'aigua portàtil:** Si fas senderisme o visites llocs amb aigua no potable, és un accessori essencial.\n*   **Localitzador GPS (com un AirTag):** Posa'n un a la maleta facturada per tenir-la sempre localitzada.",
       "details_es": "### Imprescindibles para cualquier viaje\n\n*   **Adaptador universal:** Un solo dispositivo para todos los países. Busca uno con puertos USB para cargar varios aparatos a la vez.\n*   **Batería externa (Power Bank):** Para no quedarte nunca sin batería en el móvil o la cámara. Una de 10.000 mAh es un buen equilibrio entre tamaño y capacidad.\n*   **Auriculares con cancelación de ruido:** Perfectos para vuelos largos o para aislarte del ruido en lugares concurrido.\n\n### Gadgets para la aventura\n\n*   **Filtro de agua portátil:** Si haces senderismo o visitas lugares con agua no potable, es un accesoio esencial.\n*   **Localizador GPS (como un AirTag):** Pon uno en la maleta facturada para tenerla siempre localizada.",
-      "details_en": "### Essentials for Any Trip\n\n*   **Universal Adapter:** A single device for all countries. Look for one with USB ports to charge multiple devices at once.\n*   **Portable Battery (Power Bank):** So you never run out of battery on your phone or camera. A 10,000 mAh one is a good balance between size and capacity.\n*   **Noise-Canceling Headphones:** Perfect for long flights or to isolate yourself from noise in crowded places.\n\n### Gadgets for Adventure\n\n*   **Portable Water Filter:** If you go hiking or visit places with non-potable water, it's an essential accessory.\n*   **GPS Tracker (like an AirTag):** Put one in your checked luggage to always have it located."
+      "details_en": "### Essentials for Any Trip\n\n*   **Universal Adapter:** A single device for all countries. Look for one with USB ports to charge multiple devices at once.\n*   **Portable Battery (Power Bank):** So you never run out of battery on your phone or camera. A 10,000 mAh one is a good balance between size and capacity.\n*   **Noise-Canceling Headphones:** Perfect for long flights or to isolate yourself from noise in crowded places.\n\n### Gadgets for Adventure\n\n*   **Portable Water Filter:** If you go hiking or visit places with non-potable water, it's an essential accessory.\n*   **GPS Tracker (like an AirTag):** Put one in your checked luggage to always have it located.",
+      "details_fr": "### Indispensables pour tout voyage\n\n*   **Adaptateur universel :** Un seul appareil pour tous les pays.\n*   **Batterie externe :** Pour ne jamais être à court de batterie.\n*   **Casque à réduction de bruit :** Parfait pour les longs vols.\n\n### Gadgets pour l'aventure\n\n*   **Filtre à eau portable :** Essentiel pour la randonnée.\n*   **Localisateur GPS :** Pour suivre votre valise en permanence."
     },
     {
       "id": "tour-disneyland",
@@ -140,9 +167,11 @@
       "title": "Entrades Disneyland® Paris (2 Parcs)",
       "title_es": "Entradas Disneyland® Paris (2 Parques)",
       "title_en": "Disneyland® Paris Tickets (2 Parks)",
+      "title_fr": "Billets Disneyland® Paris (2 Parcs)",
       "description": "Gaudeix de la màgia de Disney amb accés als dos parcs: Disneyland® Park i Walt Disney Studios®.",
       "description_es": "Disfruta de la magia de Disney con acceso a los dos parques: Disneyland® Park y Walt Disney Studios®.",
-      "description_en": "Enjoy the magic of Disney with access to both parks: Disneyland® Park and Walt Disney Studios®."
+      "description_en": "Enjoy the magic of Disney with access to both parks: Disneyland® Park and Walt Disney Studios®.",
+      "description_fr": "Profitez de la magie de Disney avec un accès aux deux parcs : Parc Disneyland® et Walt Disney Studios®."
     },
     {
       "id": "tour-paris",
@@ -151,9 +180,11 @@
       "title": "Tour Eiffel i Creuer pel Sena",
       "title_es": "Tour Eiffel y Crucero por el Sena",
       "title_en": "Eiffel Tower Tour and Seine Cruise",
+      "title_fr": "Tour Eiffel et Croisière sur la Seine",
       "description": "Descobreix la màgia de París amb una visita a la Torre Eiffel i un creuer pel Sena.",
       "description_es": "Descubre la magia de París con una visita a la Torre Eiffel y un crucero por el Sena.",
-      "description_en": "Discover the magic of Paris with a visit to the Eiffel Tower and a cruise on the Seine."
+      "description_en": "Discover the magic of Paris with a visit to the Eiffel Tower and a cruise on the Seine.",
+      "description_fr": "Découvrez la magie de Paris avec une visite à la Tour Eiffel et une croisière sur la Seine."
     },
     {
       "id": "tour-rome",
@@ -162,9 +193,11 @@
       "title": "Roma Antiga: Coliseu i Fòrum",
       "title_es": "Roma Antigua: Coliseo y Foro",
       "title_en": "Ancient Rome: Colosseum and Forum",
+      "title_fr": "Rome Antique : Colisée et Forum",
       "description": "Viatja a l'antiguitat explorant el Coliseu i el Fòrum Romà.",
       "description_es": "Viaja a la antigüedad explorando el Coliseo y el Foro Romano.",
-      "description_en": "Travel back to ancient times by exploring the Colosseum and the Roman Forum."
+      "description_en": "Travel back to ancient times by exploring the Colosseum and the Roman Forum.",
+      "description_fr": "Voyagez dans l'Antiquité en explorant le Colisée et le Forum romain."
     },
     {
       "id": "tour-new-york",
@@ -173,9 +206,11 @@
       "title": "Contrastos de Nova York",
       "title_es": "Contrastes de Nueva York",
       "title_en": "Contrasts of New York",
+      "title_fr": "Contrastes de New York",
       "description": "Una experiència urbana única pels contrastos de la Gran Poma.",
       "description_es": "Una experiencia urbana única por los contrastes de la Gran Manzana.",
-      "description_en": "A unique urban experience through the contrasts of the Big Apple."
+      "description_en": "A unique urban experience through the contrasts of the Big Apple.",
+      "description_fr": "Une expérience urbaine unique à travers les contrastes de la Grosse Pomme."
     },
     {
       "id": "tour-tokyo",
@@ -184,9 +219,11 @@
       "title": "Tradició i Modernitat a Tòquio",
       "title_es": "Tradición y Modernidad en Tokio",
       "title_en": "Tradition and Modernity in Tokyo",
+      "title_fr": "Tradition et Modernité à Tokyo",
       "description": "Submergeix-te en la tradició i modernitat de la capital japonesa.",
       "description_es": "Sumérgete en la tradición y modernidad de la capital japonesa.",
-      "description_en": "Immerse yourself in the tradition and modernity of the Japanese capital."
+      "description_en": "Immerse yourself in the tradition and modernity of the Japanese capital.",
+      "description_fr": "Immergez-vous dans la tradition et la modernité de la capitale japonaise."
     },
     {
       "id": "tour-sydney",
@@ -195,9 +232,11 @@
       "title": "Meravilles de Sídney i Platges",
       "title_es": "Maravillas de Sídney y Playas",
       "title_en": "Sydney Wonders and Beaches",
+      "title_fr": "Merveilles de Sydney et Plages",
       "description": "Descobreix les platges i la icònica òpera de Sídney.",
       "description_es": "Descubre las playas y la icónica ópera de Sídney.",
-      "description_en": "Discover the beaches and the iconic Sydney Opera House."
+      "description_en": "Discover the beaches and the iconic Sydney Opera House.",
+      "description_fr": "Découvrez les plages et l'icône de l'opéra de Sydney."
     },
     {
       "id": "tour-cairo",
@@ -206,9 +245,11 @@
       "title": "Misteris de l'Antic Egipte",
       "title_es": "Misterios del Antiguo Egipto",
       "title_en": "Mysteries of Ancient Egypt",
+      "title_fr": "Mystères de l'Égypte Ancienne",
       "description": "Els misteris de l'antic Egipte t'esperen al Caire.",
       "description_es": "Los misterios del antiguo Egipto te esperan en El Cairo.",
-      "description_en": "The mysteries of ancient Egypt await you in Cairo."
+      "description_en": "The mysteries of ancient Egypt await you in Cairo.",
+      "description_fr": "Les mystères de l'Égypte ancienne vous attendent au Caire."
     },
     {
       "id": "tour-portaventura",
@@ -217,9 +258,11 @@
       "title": "PortAventura World",
       "title_es": "PortAventura World",
       "title_en": "PortAventura World",
+      "title_fr": "PortAventura World",
       "description": "Viu una experiència inoblidable amb tota la família a PortAventura World.",
       "description_es": "Vive una experiencia inolvidable con toda la familia en PortAventura World.",
-      "description_en": "Live an unforgettable experience with the whole family at PortAventura World."
+      "description_en": "Live an unforgettable experience with the whole family at PortAventura World.",
+      "description_fr": "Vivez une expérience inoubliable en famille à PortAventura World."
     },
     {
       "id": "tour-caldea",
@@ -228,9 +271,11 @@
       "title": "Relax a Caldea, Andorra",
       "title_es": "Relax en Caldea, Andorra",
       "title_en": "Relax at Caldea, Andorra",
+      "title_fr": "Détente à Caldea, Andorre",
       "description": "Desconnecta a les muntanyes d'Andorra al centre Caldea.",
       "description_es": "Desconecta en las montañas de Andorra en el centro Caldea.",
-      "description_en": "Unwind in the mountains of Andorra at the Caldea center."
+      "description_en": "Unwind in the mountains of Andorra at the Caldea center.",
+      "description_fr": "Déconnectez dans les montagnes d'Andorre au centre Caldea."
     },
     {
       "id": "tour-rey-leon",
@@ -239,9 +284,11 @@
       "title": "El Rei Lleó, El Musical",
       "title_es": "El Rey León, El Musical",
       "title_en": "The Lion King, The Musical",
+      "title_fr": "Le Roi Lion, La Comédie Musicale",
       "description": "Gaudeix de l'espectacle més famós de la Gran Via de Madrid.",
       "description_es": "Disfruta del espectáculo más famoso de la Gran Vía de Madrid.",
-      "description_en": "Enjoy the most famous show on Madrid's Gran Vía."
+      "description_en": "Enjoy the most famous show on Madrid's Gran Vía.",
+      "description_fr": "Profitez du spectacle le plus célèbre de la Gran Vía de Madrid."
     },
     {
       "id": "tour-valencia",
@@ -250,9 +297,11 @@
       "title": "Oceanogràfic de València",
       "title_es": "Oceanogràfic de Valencia",
       "title_en": "Oceanogràfic in Valencia",
+      "title_fr": "Oceanogràfic de Valence",
       "description": "Explora el món submarí a l'Oceanogràfic de València.",
       "description_es": "Explora el mundo submarino en el Oceanogràfic de Valencia.",
-      "description_en": "Explore the underwater world at the Oceanogràfic in Valencia."
+      "description_en": "Explore the underwater world at the Oceanogràfic in Valencia.",
+      "description_fr": "Explorez le monde sous-marin à l'Oceanogràfic de Valence."
     },
     {
       "id": "tour-madrid",
@@ -261,9 +310,11 @@
       "title": "Tour Triangle de l'Art Madrid",
       "title_es": "Tour Triángulo del Arte Madrid",
       "title_en": "Art Triangle Tour Madrid",
+      "title_fr": "Tour Triangle de l'Art Madrid",
       "description": "Un recorregut pels museus més importants de la capital.",
       "description_es": "Un recorrido por los museos más importantes de la capital.",
-      "description_en": "A tour of the most important museums in the capital."
+      "description_en": "A tour of the most important museums in the capital.",
+      "description_fr": "Un parcours à travers les musées les plus importants de la capitale."
     }
   ]
 }

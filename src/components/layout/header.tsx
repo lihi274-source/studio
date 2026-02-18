@@ -1,4 +1,3 @@
-
 'use client';
 
 import Image from 'next/image';
@@ -64,6 +63,9 @@ const Header = () => {
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => setLocale('en')} className="cursor-pointer py-2 px-3 hover:bg-primary/10 rounded-md transition-colors">
                 <span className="text-sm font-medium">English</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLocale('fr')} className="cursor-pointer py-2 px-3 hover:bg-primary/10 rounded-md transition-colors">
+                <span className="text-sm font-medium">Français</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

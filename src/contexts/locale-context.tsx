@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-type Locale = 'es' | 'ca' | 'en';
+type Locale = 'es' | 'ca' | 'en' | 'fr';
 
 interface LocaleContextType {
   locale: Locale;
@@ -16,7 +16,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const savedLocale = localStorage.getItem('app-locale') as Locale;
-    if (savedLocale && ['es', 'ca', 'en'].includes(savedLocale)) {
+    if (savedLocale && ['es', 'ca', 'en', 'fr'].includes(savedLocale)) {
       setLocaleState(savedLocale);
     }
   }, []);

@@ -6,10 +6,12 @@ export type ImagePlaceholder = {
   title_es?: string;
   title_en?: string;
   title_ca?: string;
+  title_fr?: string;
   description: string;
   description_es?: string;
   description_en?: string;
   description_ca?: string;
+  description_fr?: string;
   imageUrl: string;
   imageHint: string;
   images?: string[];
@@ -17,6 +19,7 @@ export type ImagePlaceholder = {
   details_es?: string;
   details_en?: string;
   details_ca?: string;
+  details_fr?: string;
 };
 
 export const PlaceHolderImages: ImagePlaceholder[] = data.placeholderImages as ImagePlaceholder[];

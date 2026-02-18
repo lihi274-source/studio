@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { CalendarIcon, Users, MapPin } from 'lucide-react';
 import { format } from 'date-fns';
-import { es, ca, enUS } from 'date-fns/locale';
+import { es, ca, enUS, fr } from 'date-fns/locale';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
@@ -30,7 +30,7 @@ const HotelesTab = () => {
   const { locale } = useLocale();
   const t = translations[locale];
   
-  const dateLocale = locale === 'ca' ? ca : locale === 'en' ? enUS : es;
+  const dateLocale = locale === 'ca' ? ca : locale === 'en' ? enUS : locale === 'fr' ? fr : es;
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

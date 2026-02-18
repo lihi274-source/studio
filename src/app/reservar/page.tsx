@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Suspense, useState } from 'react';
@@ -18,7 +17,7 @@ import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { CalendarIcon, Users, User, Mail, Phone, Loader2, ArrowLeft } from 'lucide-react';
 import { format } from 'date-fns';
-import { es, ca, enUS } from 'date-fns/locale';
+import { es, ca, enUS, fr } from 'date-fns/locale';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
@@ -47,7 +46,7 @@ function BookingPageContent() {
   const excursion = excursionsData.find(e => e.id === excursionId);
   const imageData = PlaceHolderImages.find(p => p.id === excursionId);
   
-  const dateLocale = locale === 'ca' ? ca : locale === 'en' ? enUS : es;
+  const dateLocale = locale === 'ca' ? ca : locale === 'en' ? enUS : locale === 'fr' ? fr : es;
 
   const form = useForm<BookingFormValues>({
     resolver: zodResolver(bookingSchema),
@@ -129,7 +128,7 @@ function BookingPageContent() {
                 </div>
             )}
             <CardHeader>
-              <CardTitle className="font-headline text-3xl">{excursion.title}</CardTitle>
+              <CardTitle className="font-headline text-3xl">{getLocalized(imageData!, 'title', locale)}</CardTitle>
               <CardDescription>
                   {imageData ? getLocalized(imageData, 'description', locale) : ''}
               </CardDescription>

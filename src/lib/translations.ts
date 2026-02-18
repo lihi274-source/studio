@@ -1,5 +1,4 @@
-
-export type Locale = 'es' | 'ca' | 'en';
+export type Locale = 'es' | 'ca' | 'en' | 'fr';
 
 export const translations = {
   es: {
@@ -398,7 +397,7 @@ export const translations = {
       namePlace: "El teu nom complet",
       email: "Email",
       phone: "Telèfon de contacte",
-      phonePlace: "El teu número de telèfon",
+      phonePlace: "El teu nom de telèfon",
       submit: "Confirmar Reserva",
       submitting: "Processant...",
       success: "Reserva sol·licitada!",
@@ -605,6 +604,211 @@ export const translations = {
       notFound: "Excursion not found",
       notFoundDesc: "We couldn't find the excursion you're looking for.",
       back: "Back to Excursions"
+    }
+  },
+  fr: {
+    nav: {
+      home: "Accueil",
+      about: "À propos",
+      blog: "Blog",
+      tracking: "Suivi",
+      documents: "Documents",
+      contact: "Contact",
+      account: "Mon Compte",
+      menuTitle: "Menu de Navigation",
+      langTitle: "Langue",
+      tagline: "Votre agence de voyages pour explorer le monde"
+    },
+    home: {
+      destinations: "Destinations",
+      flights: "Vols",
+      hotels: "Hôtels",
+      excursions: "Excursions",
+      itineraries: "Itinéraires IA",
+      loading: "Chargement...",
+      destTitle: "Explorez le Monde",
+      destSub: "Découvrez des curiosités et des lieux fascinants dans ces pays.",
+      excurTitle: "Excursions et Activités Populaires",
+      excurSub: "Découvrez des expériences inoubliables dans les meilleures destinations du monde.",
+      itinerTitle: "Générateur d'Itinéraires avec IA",
+      itinerSub: "Vous ne savez pas par où commencer ? Décrivez le voyage de vos rêves et notre IA créera un plan personnalisé pour vous.",
+      itinerResult: "Votre Itinéraire Personnalisé",
+      itinerPlanning: "Notre IA planifie votre voyage...",
+      itinerEmpty: "Votre itinéraire apparaîtra ici. Remplissez le formulaire pour commencer.",
+      hotelTitle: "Trouvez votre Hôtel Idéal",
+      hotelSub: "Recherchez parmi des milliers d'hôtels au meilleur prix.",
+      flightTitle: "Recherchez votre Vol",
+      flightSub: "Trouvez les meilleures offres pour votre prochain voyage."
+    },
+    destinations: {
+      back: "Retour aux Destinations",
+      noDetails: "Plus de détails sur cette destination seront bientôt disponibles. Nous travaillons pour vous offrir la meilleure information.",
+      noDetailsSub: "En attendant, vous pouvez explorer nos excursions ou nous contacter si vous avez une question spécifique."
+    },
+    about: {
+      title: "Viajes HICA",
+      subtitle: "Nous rendons la planification de votre prochaine aventure aussi excitante et simple que le voyage lui-même.",
+      button: "RÉSERVEZ MAINTENANT",
+      team: "Équipe d'Experts",
+      teamDesc: "Passionnés par les voyages et dédiés à créer des expériences uniques pour vous.",
+      global: "Destinations Mondiales",
+      globalDesc: "Nous proposons une sélection rigoureuse de destinations à travers le monde.",
+      mission: "Notre Mission",
+      missionDesc: "Éliminer le stress de la planification pour que vous n'ayez qu'à profiter.",
+      articleTitle: "Une Expérience Centrée sur Vous",
+      articleP1: "Chez Viajes HICA, nous pensons que la planification de votre voyage doit être aussi excitante que le voyage lui-même. C'est pourquoi nous avons conçu un site web intuitif et puissant.",
+      articleH1: "Recherches Simplifiées",
+      articleP2: "Nos formulaires de recherche sont un exemple clair de notre engagement envers la simplicité. Avec des champs clairement étiquetés et des icônes qui vous guident.",
+      quote: "Notre objectif est que la technologie travaille pour vous, pas contre vous. Un bon site web est celui qui se sent invisible.",
+      articleH2: "Découvrez des Expériences Inoubliables",
+      articleP3: "L'onglet Excursions est votre fenêtre sur les aventures qui vous attendent. Nous présentons chaque activité avec des images de haute qualité et des prix transparents.",
+      back: "Retour à l'accueil"
+    },
+    contact: {
+      title: "Contactez-nous",
+      subtitle: "Vous avez une question ou une suggestion ? Nous serions ravis de vous entendre !",
+      name: "Nom complet",
+      namePlace: "Votre nom et prénom",
+      email: "Adresse e-mail",
+      message: "Votre message",
+      messagePlace: "Écrivez votre message ici...",
+      submit: "Envoyer le Message",
+      submitting: "Envoi en cours...",
+      success: "Message envoyé !",
+      successDesc: "Merci de nous avoir contactés. Nous vous répondrons dans les plus brefs délais.",
+      error: "Erreur lors de l'envoi du message",
+      errorDesc: "Un problème est survenu. Veuillez réessayer."
+    },
+    tracking: {
+      title: "Suivez votre envoi",
+      subtitle: "Entrez votre code de suivi pour voir le statut actuel.",
+      placeholder: "Écrivez votre code ici...",
+      button: "Rechercher",
+      resultTitle: "Résultats pour",
+      resultSub: "Voici les dernières informations sur votre envoi.",
+      origin: "Origine",
+      destination: "Destination",
+      confirmation: "Confirmation de Réservation",
+      current: "Localisation actuelle",
+      notFound: "Code non trouvé. Vérifiez le code et réessayez.",
+      error: "Une erreur de connexion est survenue. Réessayez plus tard.",
+      status: {
+        searching: "Recherche d'offres",
+        pending: "En attente de paiement",
+        paid: "Payé"
+      }
+    },
+    documents: {
+      title: "Mes Documents",
+      subtitle: "Ici vous pouvez consulter et imprimer vos factures.",
+      empty: "Aucune facture trouvée.",
+      invoice: "Facture",
+      date: "Date",
+      total: "TOTAL À PAYER",
+      print: "Imprimer PDF",
+      client: "Client",
+      concept: "Concept",
+      price: "P. Unitaire",
+      units: "Unités",
+      discount: "Remise",
+      subtotal: "Sous-total",
+      totalDiscount: "Remise Totale",
+      taxBase: "Base Imposable",
+      payment: "Mode de paiement",
+      status: {
+        paid: "Payée",
+        pending: "En attente"
+      }
+    },
+    account: {
+      loginTitle: "Accédez à votre compte",
+      loginSub: "Entrez vos identifiants pour continuer.",
+      user: "Utilisateur",
+      userPlace: "Votre nom d'utilisateur",
+      pass: "Mot de passe",
+      loginBtn: "Se connecter",
+      loggingIn: "Connexion...",
+      welcome: "Bienvenue !",
+      logout: "Se déconnecter",
+      profile: "Mon Profil",
+      profileSub: "Bienvenue dans votre zone privée,",
+      company: "Entreprise",
+      viewInvoices: "Voir mes factures",
+      error: "Erreur d'authentification",
+      errorDesc: "Les données saisies sont incorrectes."
+    },
+    footer: {
+      tagline: "Votre agence de voyages de confiance. Nous rendons la planification de votre prochaine aventure excitante et simple. Explorez le monde avec nous.",
+      contact: "Contact",
+      follow: "Suivez-nous",
+      rights: "Tous droits réservés.",
+      legal: "Mentions légales",
+      privacy: "Confidentialité",
+      cookies: "Cookies"
+    },
+    assistent: {
+      welcome: "Bonjour ! Je suis l'assistant de **Viajes HICA**. Comment puis-je vous aider aujourd'hui pour votre prochain voyage ?",
+      placeholder: "Écrivez où vous voulez aller ou quel voyage vous cherchez...",
+      thinking: "Préparation de votre voyage...",
+      reset: "Réinitialiser le chat",
+      back: "Retour",
+      title: "Assistant Voyageur HICA",
+      subtitle: "Intelligence Artificielle à votre service",
+      disclaimer: "Rappelez-vous que je suis une IA. Vérifiez toujours les détails finaux avec notre équipe."
+    },
+    blog: {
+      title: "Notre Blog",
+      subtitle: "Conseils, actualités et destinations pour votre prochain voyage.",
+      featured: "Article à la Une",
+      readMore: "Lire la suite",
+      back: "Retour au Blog",
+      tips: "Conseils pour votre Voyage",
+      categories: "Catégories",
+      destinations: "Destinations",
+      noContent: "Le contenu complet de cet article sera bientôt disponible."
+    },
+    forms: {
+      origin: "Origine",
+      destination: "Destination",
+      departure: "Date de Départ",
+      return: "Date de Retour",
+      returnOpt: "Date de Retour (Optionnel)",
+      passengers: "Passagers",
+      guests: "Voyageurs",
+      search: "Rechercher",
+      budget: "Budget",
+      interests: "Intérêts et Préférences",
+      generate: "Générer l'Itinéraire",
+      booking: "Réserver maintenant",
+      chooseDate: "Choisissez une date",
+      chooseRange: "Choisissez une plage de dates",
+      learnMore: "En savoir plus"
+    },
+    booking: {
+      title: "Complétez votre réservation",
+      subtitle: "Remplissez le formulaire pour demander votre place.",
+      date: "Date de l'excursion",
+      datePlace: "Choisissez une date",
+      participants: "Participants",
+      participantsPlace: "Nombre de personnes",
+      person: "personne",
+      people: "personnes",
+      name: "Nom et Prénom",
+      namePlace: "Votre nom complet",
+      email: "E-mail",
+      phone: "Téléphone de contact",
+      phonePlace: "Votre numéro de téléphone",
+      submit: "Confirmer la Réservation",
+      submitting: "Traitement...",
+      success: "Réservation demandée !",
+      successDesc: "Nous avons reçu votre demande pour {count} personne(s) le {date}. Nous vous contacterons bientôt.",
+      error: "Erreur lors de l'envoi de la réservation",
+      errorDesc: "Un problème est survenu. Veuillez réessayer.",
+      networkError: "Erreur réseau",
+      networkErrorDesc: "Impossible de se connecter au serveur. Vérifiez votre connexion.",
+      notFound: "Excursion non trouvée",
+      notFoundDesc: "Nous n'avons pas pu trouver l'excursion que vous cherchez.",
+      back: "Retour aux Excursions"
     }
   }
 };
