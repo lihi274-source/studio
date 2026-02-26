@@ -12,7 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, Plane, MapPin, Send, History, Palmtree, Luggage, FileText } from 'lucide-react';
+import { Loader2, Plane, MapPin, Send, History, Palmtree, Luggage, FileText, Printer } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { useLocale } from '@/contexts/locale-context';
@@ -25,7 +25,7 @@ const bookingFormSchema = z.object({
   serviceType: z.string().min(1, "Selecciona un tipus de viatge"),
   origin: z.string().min(2, "Introdueix l'origen"),
   destination: z.string().min(2, "Introdueix la destinació"),
-  cargo: z.string().min(5, "Explica'ns més sobre el teu viatge (persones, dates, etc.)"),
+  cargo: z.string().min(5, "Explica'ns els detalls (persones, dates, preferències...)"),
 });
 
 type BookingFormValues = z.infer<typeof bookingFormSchema>;
@@ -39,7 +39,6 @@ export default function BookingManagementPage() {
   const [requests, setRequests] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoadingRequests, setIsLoadingRequests] = useState(true);
-  const [downloadingId, setDownloadingId] = useState<string | null>(null);
 
   useEffect(() => {
     const userDataString = localStorage.getItem('user');
@@ -75,10 +74,10 @@ export default function BookingManagementPage() {
     setIsSubmitting(true);
 
     try {
-      const id = `HICA-${Math.floor(1000 + Math.random() * 9000)}`;
+      const id = `HICA-${Math.floor(10000 + Math.random() * 90000)}`;
       const dataAvui = new Date().toLocaleDateString('ca-ES');
       
-      const detalls = `Servei: ${values.serviceType} | Origen: ${values.origin} | Destí: ${values.destination} | Càrrega: ${values.cargo}`;
+      const detalls = `Servei: ${values.serviceType} | Origen: ${values.origin} | Destí: ${values.destination} | Detalls: ${values.cargo}`;
 
       const payload = {
         id,
@@ -106,124 +105,101 @@ export default function BookingManagementPage() {
     }
   };
 
-  const handleDownload = (req: any) => {
-    setDownloadingId(req.id);
-    
-    // Open window immediately to avoid popup blockers
-    const albaraWindow = window.open('', '_blank');
-    
-    setTimeout(() => {
-      if (albaraWindow) {
-        const detallsHtml = req.detalls.split(' | ').map((line: string) => `<p style="margin: 5px 0;">${line}</p>`).join('');
-        
-        albaraWindow.document.write(`
-          <!DOCTYPE html>
-          <html>
-            <head>
-              <title>Albarà ${req.id} - Viajes HICA</title>
-              <style>
-                body { font-family: 'Arial', sans-serif; padding: 40px; color: #333; line-height: 1.6; background-color: white; }
-                .container { max-width: 800px; margin: 0 auto; border: 1px solid #eee; padding: 40px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
-                .header { display: flex; justify-content: space-between; border-bottom: 3px solid #222538; padding-bottom: 20px; margin-bottom: 30px; }
-                .logo { font-size: 28px; font-weight: 900; color: #222538; text-transform: uppercase; letter-spacing: -1px; }
-                .title { font-size: 32px; font-weight: 900; text-transform: uppercase; margin: 0; color: #222538; }
-                .info-section { display: grid; grid-template-cols: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-                .info-box h3 { margin-top: 0; border-bottom: 1px solid #ddd; padding-bottom: 5px; font-size: 14px; text-transform: uppercase; color: #666; }
-                .label { font-weight: bold; color: #222538; }
-                .details-box { border: 2px solid #f0f0f0; padding: 25px; background: #fafafa; border-radius: 8px; margin-bottom: 30px; }
-                .details-box h2 { margin-top: 0; color: #222538; font-size: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-                .footer { margin-top: 60px; font-size: 11px; color: #999; text-align: center; border-top: 1px solid #eee; padding-top: 20px; }
-                .status-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; background: #e8f5e9; color: #2e7d32; font-weight: bold; font-size: 12px; }
-                @media print { .no-print { display: none !important; } .container { border: none; box-shadow: none; padding: 0; } }
-                .btn-print { padding: 12px 25px; background: #222538; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: opacity 0.2s; }
-                .btn-print:hover { opacity: 0.9; }
-              </style>
-            </head>
-            <body>
-              <div class="container">
-                <div class="header">
-                  <div>
-                    <div class="logo">Viajes HICA</div>
-                    <p style="margin: 5px 0;">C/Amposta Nº8 Bajo s/n</p>
-                    <p style="margin: 5px 0;">46000 València, Espanya</p>
-                  </div>
-                  <div style="text-align: right;">
-                    <h1 class="title">Albarà</h1>
-                    <p style="margin: 5px 0;"><strong>Nº Document:</strong> ${req.id}</p>
-                    <p style="margin: 5px 0;"><strong>Data d'Emissió:</strong> ${req.data}</p>
-                    <div class="status-badge">Estat: ${req.estat}</div>
-                  </div>
-                </div>
-                
-                <div class="info-section">
-                  <div class="info-box">
-                    <h3>Dades del Sol·licitant</h3>
-                    <p><span class="label">Usuari:</span> ${req.usuari}</p>
-                  </div>
-                  <div class="info-box">
-                    <h3>Referència de Gestió</h3>
-                    <p><span class="label">ID Sistema:</span> ${req.id}</p>
-                    <p><span class="label">Tipus:</span> Sol·licitud de Servei</p>
-                  </div>
-                </div>
-                
-                <div class="details-box">
-                  <h2>Detalls de la Sol·licitud</h2>
-                  <div style="font-size: 15px;">
-                    ${detallsHtml}
-                  </div>
-                </div>
-                
-                <div style="margin-top: 40px;">
-                   <p><strong>Observacions:</strong> Aquest document acredita la recepció de la vostra sol·licitud per part dels nostres sistemes. Un agent es posarà en contacte amb vosaltres per coordinar els següents passos.</p>
-                </div>
+  const handleDownloadAlbara = (req: any) => {
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) return;
 
-                <div class="footer">
-                  <p>© ${new Date().getFullYear()} Viajes HICA. Tots els drets reservats. Document de control intern.</p>
-                </div>
-              </div>
-              
-              <div class="no-print" style="text-align: center; margin-top: 30px;">
-                <button onclick="window.print()" class="btn-print">Imprimir o Guardar com a PDF</button>
-              </div>
-            </body>
-          </html>
-        `);
-        albaraWindow.document.close();
-      }
-      
-      setDownloadingId(null);
-      toast({
-        title: "Document obert",
-        description: `L'albarà ${req.id} s'ha generat correctament.`,
-      });
-    }, 1000);
+    const detailsLines = req.detalls.split(' | ').map((line: string) => `<li>${line}</li>`).join('');
+
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Albarà ${req.id} - Viajes HICA</title>
+        <style>
+          body { font-family: Arial, sans-serif; padding: 40px; color: #333; line-height: 1.6; }
+          .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #2079ad; padding-bottom: 20px; margin-bottom: 30px; }
+          .logo-area h1 { color: #2079ad; margin: 0; font-size: 28px; }
+          .logo-area p { margin: 5px 0 0; font-size: 14px; color: #666; }
+          .info-area { text-align: right; }
+          .info-area h2 { margin: 0; font-size: 18px; color: #2079ad; }
+          .section { margin-bottom: 30px; }
+          .section-title { font-weight: bold; text-transform: uppercase; font-size: 14px; color: #2079ad; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+          .details-list { list-style: none; padding: 0; margin: 0; }
+          .details-list li { margin-bottom: 8px; padding-left: 15px; position: relative; }
+          .details-list li::before { content: "•"; color: #ffae4d; position: absolute; left: 0; font-weight: bold; }
+          .footer { margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #999; text-align: center; }
+          .btn-print { background: #2079ad; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-bottom: 20px; }
+          @media print { .btn-print { display: none; } }
+        </style>
+      </head>
+      <body>
+        <button class="btn-print" onclick="window.print()">IMPRIMIR / GUARDAR PDF</button>
+        <div class="header">
+          <div class="logo-area">
+            <h1>Viajes HICA</h1>
+            <p>Tu agencia de viajes para explorar el mundo</p>
+          </div>
+          <div class="info-area">
+            <h2>ALBARÀ DE SERVEI</h2>
+            <p><strong>Ref:</strong> ${req.id}</p>
+            <p><strong>Data:</strong> ${req.data}</p>
+          </div>
+        </div>
+        
+        <div class="section">
+          <div class="section-title">Dades del Client</div>
+          <p><strong>Usuari:</strong> ${req.usuari}</p>
+          <p><strong>Empresa:</strong> ${user?.empresa || 'Client Particular'}</p>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Estat de la Sol·licitud</div>
+          <p><strong>Estat:</strong> <span style="color: #16a34a; font-weight: bold;">${req.estat}</span></p>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Detalls del Viatge i Serveis</div>
+          <ul class="details-list">
+            ${detailsLines}
+          </ul>
+        </div>
+
+        <div class="footer">
+          <p>Aquest document és un justificant de servei acceptat per Viajes HICA.</p>
+          <p>C/Amposta Nº8 Bajo s/n - contacto@viajeshica.com</p>
+        </div>
+      </body>
+      </html>
+    `;
+
+    printWindow.document.write(htmlContent);
+    printWindow.document.close();
   };
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
       <div className="mb-12 text-center">
-        <h1 className="text-4xl md:text-6xl font-headline text-primary-foreground flex items-center justify-center gap-4 mb-4">
-          <Palmtree className="h-12 w-12 md:h-16 md:w-16 text-accent" />
+        <h1 className="text-4xl md:text-5xl font-headline text-primary-foreground flex items-center justify-center gap-4">
+          <Palmtree className="h-12 w-12 text-accent" />
           {t.booking_mgmt.title}
         </h1>
-        <p className="text-muted-foreground mt-4 text-lg md:text-xl max-w-3xl mx-auto italic">
-          {t.booking_mgmt.subtitle}
+        <p className="text-muted-foreground mt-4 text-lg max-w-2xl mx-auto">
+          Gestiona les teves sol·licituds de viatge i consulta el teu historial
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         
-        {/* FORMULARIO */}
         <section>
-          <Card className="shadow-2xl border-t-8 border-t-accent bg-card overflow-hidden rounded-2xl">
-            <CardHeader className="bg-primary/5 border-b py-6">
-              <CardTitle className="flex items-center gap-3 font-headline text-2xl text-primary">
-                <Plane className="h-7 w-7" />
-                {t.booking_mgmt.formTitle}
+          <Card className="shadow-xl border-t-4 border-t-accent bg-card">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3 font-headline text-2xl">
+                <Plane className="h-6 w-6 text-primary" />
+                Nova Sol·licitud de Viatge
               </CardTitle>
             </CardHeader>
-            <CardContent className="pt-8 px-6 md:px-8">
+            <CardContent>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <FormField
@@ -231,18 +207,19 @@ export default function BookingManagementPage() {
                     name="serviceType"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-primary font-bold">{t.booking_mgmt.serviceType}</FormLabel>
+                        <FormLabel className="text-primary-foreground font-semibold">Tipus de Servei</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
-                            <SelectTrigger className="bg-background border-primary/20 h-12">
-                              <SelectValue placeholder={t.booking_mgmt.serviceType} />
+                            <SelectTrigger className="bg-background">
+                              <SelectValue placeholder="Què vols reservar?" />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="Transport Marítim">🚢 Transport Marítim</SelectItem>
-                            <SelectItem value="Transport Aeri">✈️ Transport Aeri</SelectItem>
-                            <SelectItem value="Transport Terrestre">🚛 Transport Terrestre</SelectItem>
-                            <SelectItem value="Almacén">🏬 Magatzem</SelectItem>
+                            <SelectItem value="Paquet Vacacional">☀️ Paquet Vacacional</SelectItem>
+                            <SelectItem value="Només Vols">✈️ Només Vols</SelectItem>
+                            <SelectItem value="Hotels / Allotjament">🏨 Hotels / Allotjament</SelectItem>
+                            <SelectItem value="Creuers">🚢 Creuers</SelectItem>
+                            <SelectItem value="Circuits Culturals">🗺️ Circuits Culturals</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -250,14 +227,14 @@ export default function BookingManagementPage() {
                     )}
                   />
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <FormField
                       control={form.control}
                       name="origin"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-primary font-bold">{t.booking_mgmt.origin}</FormLabel>
-                          <FormControl><Input placeholder={t.booking_mgmt.origin} {...field} className="bg-background border-primary/20 h-12 focus:ring-accent" /></FormControl>
+                          <FormLabel className="text-primary-foreground font-semibold">Ciutat d'Origen</FormLabel>
+                          <FormControl><Input placeholder="Ex: Barcelona" {...field} className="bg-background" /></FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -267,8 +244,8 @@ export default function BookingManagementPage() {
                       name="destination"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-primary font-bold">{t.booking_mgmt.destination}</FormLabel>
-                          <FormControl><Input placeholder={t.booking_mgmt.destination} {...field} className="bg-background border-primary/20 h-12 focus:ring-accent" /></FormControl>
+                          <FormLabel className="text-primary-foreground font-semibold">Destinació</FormLabel>
+                          <FormControl><Input placeholder="Ex: París, Japó..." {...field} className="bg-background" /></FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -280,11 +257,11 @@ export default function BookingManagementPage() {
                     name="cargo"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-primary font-bold">{t.booking_mgmt.cargo}</FormLabel>
+                        <FormLabel className="text-primary-foreground font-semibold">Detalls del viatge</FormLabel>
                         <FormControl>
                           <Textarea 
-                            placeholder={t.booking_mgmt.cargoPlace}
-                            className="bg-background min-h-[140px] border-primary/20 focus:ring-accent text-base" 
+                            placeholder="Indica dates aproximades, número de persones (adults/nens), categoria d'hotel..."
+                            className="bg-background min-h-[120px]" 
                             {...field} 
                           />
                         </FormControl>
@@ -293,13 +270,13 @@ export default function BookingManagementPage() {
                     )}
                   />
 
-                  <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-headline text-lg h-16 shadow-lg transition-all rounded-xl" disabled={isSubmitting}>
+                  <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg h-12" disabled={isSubmitting}>
                     {isSubmitting ? (
                       <Loader2 className="animate-spin h-6 w-6" />
                     ) : (
                       <>
                         <Send className="mr-2 h-5 w-5" />
-                        {t.booking_mgmt.submit}
+                        Enviar Sol·licitud
                       </>
                     )}
                   </Button>
@@ -309,77 +286,60 @@ export default function BookingManagementPage() {
           </Card>
         </section>
 
-        {/* HISTORIAL */}
         <section>
-          <h2 className="text-3xl font-headline text-primary mb-8 flex items-center gap-3">
-            <History className="h-8 w-8 text-accent" /> 
-            {t.booking_mgmt.historyTitle}
+          <h2 className="text-2xl font-headline text-primary-foreground mb-6 flex items-center gap-3">
+            <History className="h-7 w-7 text-primary" /> 
+            Les meves reserves
           </h2>
-          <div className="space-y-6">
+          <div className="space-y-4">
             {isLoadingRequests ? (
-              <div className="flex flex-col items-center justify-center p-20 bg-card rounded-3xl border border-primary/10">
-                <Loader2 className="h-12 w-12 animate-spin text-accent mb-4" />
-                <p className="text-muted-foreground">Carregant les teves dades...</p>
+              <div className="flex justify-center p-12">
+                <Loader2 className="h-10 w-10 animate-spin text-primary" />
               </div>
             ) : requests.length === 0 ? (
-              <div className="p-16 text-center border-4 border-dashed rounded-3xl bg-card/40 border-primary/10">
-                <Luggage className="h-20 w-20 mx-auto text-primary/20 mb-6" />
-                <p className="text-muted-foreground font-medium">{t.booking_mgmt.empty}</p>
+              <div className="p-12 text-center border-2 border-dashed rounded-xl bg-card/50">
+                <Luggage className="h-16 w-16 mx-auto text-muted-foreground/30 mb-4" />
+                <p className="text-muted-foreground italic">Encara no tens cap sol·licitud.</p>
               </div>
             ) : (
               requests.map((req: any) => {
-                const isAccepted = req.estat?.trim() === 'Acceptada' || req.estat?.trim() === 'Accepted';
-                const isDownloading = downloadingId === req.id;
+                const statusClean = req.estat?.toLowerCase().trim();
+                const isAccepted = statusClean === 'acceptada' || statusClean === 'aceptada';
 
                 return (
-                  <Card key={req.id} className="hover:shadow-xl transition-all duration-300 border-l-[12px] border-l-primary bg-card group rounded-xl overflow-hidden">
-                    <CardContent className="p-8">
-                      <div className="flex justify-between items-start mb-6">
+                  <Card key={req.id} className="hover:shadow-md transition-shadow border-l-4 border-l-primary bg-card">
+                    <CardContent className="p-6">
+                      <div className="flex justify-between items-start mb-4">
                         <div>
-                          <span className="text-xs font-black text-accent uppercase tracking-widest bg-accent/10 px-3 py-1 rounded-full">{req.data}</span>
-                          <h3 className="font-headline text-2xl text-primary mt-3">{req.id}</h3>
+                          <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">{req.data}</span>
+                          <h3 className="font-headline text-xl text-primary mt-1">{req.id}</h3>
                         </div>
                         <Badge className={cn(
-                          "font-black py-2 px-5 text-sm uppercase shadow-sm border-2",
-                          req.estat === 'Pendent' ? 'bg-amber-50 text-amber-700 hover:bg-amber-50 border-amber-200' : 
-                          isAccepted ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-50 border-emerald-200' :
-                          'bg-rose-50 text-rose-700 hover:bg-rose-50 border-rose-200'
+                          "font-bold py-1 px-3",
+                          isAccepted ? 'bg-green-100 text-green-700 hover:bg-green-100' : 'bg-yellow-100 text-yellow-700 hover:bg-yellow-100'
                         )}>
                           {req.estat}
                         </Badge>
                       </div>
-                      <div className="text-base text-foreground space-y-3 border-t border-primary/5 pt-6">
+                      <div className="text-sm text-foreground space-y-2 border-t pt-4">
                         {req.detalls.split(' | ').map((line: string, i: number) => (
-                          <p key={i} className="flex items-start gap-3">
-                            <span className="w-2.5 h-2.5 rounded-full bg-accent mt-1.5 group-hover:scale-125 transition-transform shrink-0" />
-                            <span className="leading-relaxed">{line}</span>
+                          <p key={i} className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
+                            {line}
                           </p>
                         ))}
                       </div>
 
                       {isAccepted && (
-                        <div className="mt-8 pt-6 border-t border-primary/5 flex justify-end">
+                        <div className="mt-6 pt-4 border-t flex justify-end">
                           <Button 
                             variant="outline" 
-                            size="lg" 
-                            className={cn(
-                              "font-headline border-2 border-primary/20 hover:bg-primary/5 text-primary h-14 px-8 rounded-xl transition-all hover:border-primary",
-                              isDownloading && "opacity-50"
-                            )}
-                            onClick={() => handleDownload(req)}
-                            disabled={isDownloading}
+                            size="sm" 
+                            className="text-primary hover:bg-primary/10 border-primary/20 font-bold"
+                            onClick={() => handleDownloadAlbara(req)}
                           >
-                            {isDownloading ? (
-                              <>
-                                <Loader2 className="mr-2 h-5 w-5 animate-spin text-accent" />
-                                Generant...
-                              </>
-                            ) : (
-                              <>
-                                <FileText className="mr-2 h-5 w-5 text-accent" />
-                                {t.booking_mgmt.downloadDelivery}
-                              </>
-                            )}
+                            <FileText className="mr-2 h-4 w-4" />
+                            Descarregar Albarà
                           </Button>
                         </div>
                       )}
