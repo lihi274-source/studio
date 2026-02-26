@@ -28,10 +28,11 @@ export const translations = {
       sending: "Enviando...",
       historyTitle: "Mis Solicitudes",
       empty: "No tienes solicitudes registradas.",
+      downloadDelivery: "Descargar Albarán",
       status: {
         pending: "Pendiente",
-        approved: "Aprobado",
-        rejected: "Rechazado"
+        approved: "Acceptada",
+        rejected: "Rechazada"
       },
       services: {
         sea: "Transporte Marítimo",
@@ -261,10 +262,11 @@ export const translations = {
       sending: "Enviant...",
       historyTitle: "Les meves sol·licituds",
       empty: "No tens sol·licituds registrades.",
+      downloadDelivery: "Descarregar Albarà",
       status: {
         pending: "Pendent",
-        approved: "Aprovat",
-        rejected: "Rebutjat"
+        approved: "Acceptada",
+        rejected: "Rebutjada"
       },
       services: {
         sea: "Transport Marítim",
@@ -494,9 +496,10 @@ export const translations = {
       sending: "Sending...",
       historyTitle: "My Requests",
       empty: "You have no registered requests.",
+      downloadDelivery: "Download Delivery Note",
       status: {
         pending: "Pending",
-        approved: "Approved",
+        approved: "Accepted",
         rejected: "Rejected"
       },
       services: {
@@ -717,10 +720,11 @@ export const translations = {
       sending: "Envoi...",
       historyTitle: "Mes Demandes",
       empty: "Vous n'avez aucune demande enregistrée.",
+      downloadDelivery: "Télécharger le bon",
       status: {
         pending: "En attente",
-        approved: "Approuvé",
-        rejected: "Rejeté"
+        approved: "Acceptée",
+        rejected: "Rejetée"
       },
       services: {
         sea: "Transport Maritime",

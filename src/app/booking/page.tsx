@@ -12,7 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, Plane, MapPin, Send, History, Palmtree, Luggage, Hotel } from 'lucide-react';
+import { Loader2, Plane, MapPin, Send, History, Palmtree, Luggage, FileText } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { useLocale } from '@/contexts/locale-context';
@@ -246,7 +246,7 @@ export default function BookingManagementPage() {
                         "font-bold py-1 px-3",
                         req.estat === 'Pendent' ? 'bg-yellow-100 text-yellow-700 hover:bg-yellow-100' : 'bg-green-100 text-green-700 hover:bg-green-100'
                       )}>
-                        {req.estat}
+                        {req.estat === 'Acceptada' ? t.booking_mgmt.status.approved : req.estat}
                       </Badge>
                     </div>
                     <div className="text-sm text-foreground space-y-2 border-t pt-4">
@@ -257,6 +257,16 @@ export default function BookingManagementPage() {
                         </p>
                       ))}
                     </div>
+
+                    {/* Botó condicional per a estat Acceptada */}
+                    {req.estat === 'Acceptada' && (
+                      <div className="mt-6 pt-4 border-t flex justify-end">
+                        <Button variant="outline" size="sm" className="text-primary hover:bg-primary/10 border-primary/20">
+                          <FileText className="mr-2 h-4 w-4" />
+                          {t.booking_mgmt.downloadDelivery}
+                        </Button>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               ))
