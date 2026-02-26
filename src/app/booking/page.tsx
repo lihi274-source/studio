@@ -8,17 +8,20 @@ import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, Package, MapPin, Send, History, ClipboardList } from 'lucide-react';
+import { Loader2, Package, MapPin, Send, History, ClipboardList, ArrowLeft } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useLocale } from '@/contexts/locale-context';
 import { translations } from '@/lib/translations';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
-// --- SCHEMA & TYPES ---
+const SHEETDB_URL = 'https://sheetdb.io/api/v1/reou400435n4c?sheet=solicituds';
+const SHEETDB_SEARCH_URL = 'https://sheetdb.io/api/v1/reou400435n4c/search?sheet=solicituds';
+
 const bookingFormSchema = z.object({
   serviceType: z.string().min(1),
   origin: z.string().min(2),
@@ -51,9 +54,7 @@ export default function BookingManagementPage() {
   const [requests, setRequests] = useState<BookingRequest[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoadingRequests, setIsLoadingRequests] = useState(true);
-  const [isAuthLoading, setIsAuthLoading] = useState(true);
 
-  // --- AUTH CHECK & INITIAL FETCH ---
   useEffect(() => {
     const userDataString = localStorage.getItem('user');
     if (userDataString) {
@@ -63,15 +64,13 @@ export default function BookingManagementPage() {
     } else {
       router.push('/account');
     }
-    setIsAuthLoading(false);
   }, [router]);
 
   const fetchRequests = async (username: string) => {
     setIsLoadingRequests(true);
     try {
-      const response = await fetch(`https://sheetdb.io/api/v1/reou400435n4c/search?sheet=solicituds&usuari=${username}`);
+      const response = await fetch(`${SHEETDB_SEARCH_URL}&usuari=${username}`);
       const data = await response.json();
-      // Reverse to show newest first
       setRequests(Array.isArray(data) ? data.reverse() : []);
     } catch (error) {
       console.error("Error fetching requests:", error);
@@ -90,7 +89,6 @@ export default function BookingManagementPage() {
     },
   });
 
-  // --- FORM SUBMISSION ---
   const onSubmit = async (values: BookingFormValues) => {
     if (!user) return;
     setIsSubmitting(true);
@@ -98,8 +96,6 @@ export default function BookingManagementPage() {
     try {
       const id = `BK-${Math.floor(100000 + Math.random() * 900000)}`;
       const dataHoje = new Date().toLocaleDateString('es-ES');
-      
-      // CONCATENATION LOGIC
       const detalls = `Servei: ${values.serviceType} | Origen: ${values.origin} | Destí: ${values.destination} | Càrrega: ${values.cargo}`;
 
       const payload = {
@@ -110,7 +106,7 @@ export default function BookingManagementPage() {
         detalls,
       };
 
-      const response = await fetch('https://sheetdb.io/api/v1/reou400435n4c?sheet=solicituds', {
+      const response = await fetch(SHEETDB_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ data: [payload] }),
@@ -130,189 +126,136 @@ export default function BookingManagementPage() {
     }
   };
 
-  if (isAuthLoading) return <div className="flex h-screen items-center justify-center"><Loader2 className="animate-spin h-12 w-12 text-primary" /></div>;
   if (!user) return null;
 
   return (
-    <div className="container mx-auto px-4 py-12 max-w-6xl">
-      <div className="mb-10 text-center">
-        <h1 className="font-headline text-4xl text-primary-foreground flex items-center justify-center gap-3">
-          <ClipboardList className="h-10 w-10 text-primary" />
-          {t.booking_mgmt.title}
-        </h1>
-        <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-          {t.booking_mgmt.subtitle}
-        </p>
+    <div className="container mx-auto px-4 py-8 max-w-5xl">
+      <div className="mb-6">
+        <Button asChild variant="ghost">
+          <Link href="/dashboard">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            {t.about.back}
+          </Link>
+        </Button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        
-        {/* 1. FORM PART */}
-        <section>
-          <Card className="border-2 border-primary/10 shadow-xl sticky top-24">
-            <CardHeader className="bg-primary/5">
-              <CardTitle className="text-2xl flex items-center gap-2">
-                <Send className="h-5 w-5 text-primary" />
-                {t.booking_mgmt.formTitle}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="pt-6">
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField
-                    control={form.control}
-                    name="serviceType"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t.booking_mgmt.serviceType}</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder={t.booking_mgmt.serviceType} />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value={t.booking_mgmt.services.sea}>{t.booking_mgmt.services.sea}</SelectItem>
-                            <SelectItem value={t.booking_mgmt.services.air}>{t.booking_mgmt.services.air}</SelectItem>
-                            <SelectItem value={t.booking_mgmt.services.land}>{t.booking_mgmt.services.land}</SelectItem>
-                            <SelectItem value={t.booking_mgmt.services.warehouse}>{t.booking_mgmt.services.warehouse}</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <div className="grid grid-cols-2 gap-4">
-                    <FormField
-                      control={form.control}
-                      name="origin"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>{t.booking_mgmt.origin}</FormLabel>
-                          <div className="relative">
-                            <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                            <FormControl>
-                              <Input placeholder="BCN, Madrid..." {...field} className="pl-9" />
-                            </FormControl>
-                          </div>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="destination"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>{t.booking_mgmt.destination}</FormLabel>
-                          <div className="relative">
-                            <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                            <FormControl>
-                              <Input placeholder="NYC, London..." {...field} className="pl-9" />
-                            </FormControl>
-                          </div>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  <FormField
-                    control={form.control}
-                    name="cargo"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t.booking_mgmt.cargo}</FormLabel>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* FORMULARI */}
+        <Card className="shadow-lg border-primary/20 h-fit">
+          <CardHeader>
+            <CardTitle className="font-headline text-3xl flex items-center gap-2">
+              <Send className="text-primary" />
+              {t.booking_mgmt.formTitle}
+            </CardTitle>
+            <CardDescription>{t.booking_mgmt.subtitle}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                <FormField
+                  control={form.control}
+                  name="serviceType"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t.booking_mgmt.serviceType}</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
-                          <Textarea 
-                            placeholder={t.booking_mgmt.cargoPlace} 
-                            className="min-h-[100px]" 
-                            {...field} 
-                          />
+                          <SelectTrigger>
+                            <SelectValue placeholder={t.booking_mgmt.serviceType} />
+                          </SelectTrigger>
                         </FormControl>
+                        <SelectContent>
+                          <SelectItem value="Marítim">{t.booking_mgmt.services.sea}</SelectItem>
+                          <SelectItem value="Aeri">{t.booking_mgmt.services.air}</SelectItem>
+                          <SelectItem value="Terrestre">{t.booking_mgmt.services.land}</SelectItem>
+                          <SelectItem value="Magatzem">{t.booking_mgmt.services.warehouse}</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <div className="grid grid-cols-2 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="origin"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{t.booking_mgmt.origin}</FormLabel>
+                        <FormControl><Input {...field} /></FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-
-                  <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground" disabled={isSubmitting}>
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        {t.booking_mgmt.sending}
-                      </>
-                    ) : (
-                      t.booking_mgmt.submit
+                  <FormField
+                    control={form.control}
+                    name="destination"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{t.booking_mgmt.destination}</FormLabel>
+                        <FormControl><Input {...field} /></FormControl>
+                        <FormMessage />
+                      </FormItem>
                     )}
-                  </Button>
-                </form>
-              </Form>
-            </CardContent>
-          </Card>
-        </section>
+                  />
+                </div>
+                <FormField
+                  control={form.control}
+                  name="cargo"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t.booking_mgmt.cargo}</FormLabel>
+                      <FormControl><Textarea placeholder={t.booking_mgmt.cargoPlace} {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground" disabled={isSubmitting}>
+                  {isSubmitting ? <Loader2 className="animate-spin mr-2" /> : <Send className="mr-2" />}
+                  {isSubmitting ? t.booking_mgmt.sending : t.booking_mgmt.submit}
+                </Button>
+              </form>
+            </Form>
+          </CardContent>
+        </Card>
 
-        {/* 2. LIST PART */}
-        <section>
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-headline text-primary-foreground flex items-center gap-2">
-              <History className="h-6 w-6 text-primary" />
-              {t.booking_mgmt.historyTitle}
-            </h2>
-            <Badge variant="outline" className="text-primary border-primary">
-              {requests.length}
-            </Badge>
+        {/* HISTÒRIC */}
+        <div className="space-y-6">
+          <div className="flex items-center gap-2 mb-4">
+            <History className="text-primary h-6 w-6" />
+            <h2 className="text-2xl font-headline text-primary-foreground">{t.booking_mgmt.historyTitle}</h2>
           </div>
 
-          <div className="space-y-4">
-            {isLoadingRequests ? (
-              <div className="flex justify-center py-20">
-                <Loader2 className="h-8 w-8 animate-spin text-primary/40" />
-              </div>
-            ) : requests.length === 0 ? (
-              <div className="text-center py-20 bg-card/50 rounded-lg border-2 border-dashed">
-                <Package className="h-12 w-12 text-muted-foreground mx-auto mb-3 opacity-20" />
-                <p className="text-muted-foreground">{t.booking_mgmt.empty}</p>
-              </div>
-            ) : (
-              requests.map((req) => {
-                const isPending = req.estat.toLowerCase() === 'pendent' || req.estat.toLowerCase() === 'pendiente';
-                const isApproved = req.estat.toLowerCase() === 'aprovat' || req.estat.toLowerCase() === 'aprobado';
-                
-                return (
-                  <Card key={req.id} className="overflow-hidden border-l-4 transition-all hover:shadow-md" style={{ borderLeftColor: isPending ? '#eab308' : isApproved ? '#22c55e' : '#ef4444' }}>
-                    <CardHeader className="p-4 pb-2 bg-muted/30">
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">{req.data}</p>
-                          <CardTitle className="text-lg font-bold text-primary">{req.id}</CardTitle>
-                        </div>
-                        <Badge className={cn(
-                          "uppercase text-[10px]",
-                          isPending && "bg-yellow-100 text-yellow-800 border-yellow-200",
-                          isApproved && "bg-green-100 text-green-800 border-green-200"
-                        )}>
-                          {req.estat}
-                        </Badge>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="p-4 pt-2">
-                      <div className="text-sm text-foreground whitespace-pre-wrap leading-relaxed">
-                        {req.detalls.split(' | ').map((part, i) => (
-                          <div key={i} className="flex gap-2 mb-1">
-                            <span className="font-semibold text-primary/80 min-w-[70px]">{part.split(': ')[0]}:</span>
-                            <span className="text-muted-foreground">{part.split(': ')[1]}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                );
-              })
-            )}
-          </div>
-        </section>
-
+          {isLoadingRequests ? (
+            <div className="flex justify-center py-10"><Loader2 className="animate-spin h-10 w-10 text-muted-foreground" /></div>
+          ) : requests.length === 0 ? (
+            <p className="text-center text-muted-foreground bg-muted/30 py-10 rounded-lg">{t.booking_mgmt.empty}</p>
+          ) : (
+            <div className="space-y-4">
+              {requests.map((req) => (
+                <Card key={req.id} className="overflow-hidden hover:shadow-md transition-shadow">
+                  <div className="p-4 flex flex-col gap-2">
+                    <div className="flex justify-between items-start">
+                      <span className="font-bold text-primary">{req.id}</span>
+                      <Badge className={cn(
+                        req.estat === 'Aprovat' ? "bg-green-500" : 
+                        req.estat === 'Rebutjat' ? "bg-red-500" : "bg-yellow-500"
+                      )}>
+                        {req.estat === 'Pendent' ? t.booking_mgmt.status.pending : 
+                         req.estat === 'Aprovat' ? t.booking_mgmt.status.approved : 
+                         t.booking_mgmt.status.rejected}
+                      </Badge>
+                    </div>
+                    <div className="text-xs text-muted-foreground flex items-center gap-1">
+                      <History className="h-3 w-3" /> {req.data}
+                    </div>
+                    <p className="text-sm border-t pt-2 mt-2 leading-relaxed">{req.detalls}</p>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
