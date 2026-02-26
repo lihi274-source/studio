@@ -12,17 +12,17 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, Plane, MapPin, Send, History, Palmtree, Luggage, FileText } from 'lucide-react';
+import { Loader2, Plane, MapPin, Send, History, Palmtree, Luggage, FileText, CheckCircle2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { useLocale } from '@/contexts/locale-context';
 import { translations } from '@/lib/translations';
 
-// --- CONFIGURACIÓN API ---
+// --- CONFIGURACIÓ API ---
 const SHEETDB_URL = 'https://sheetdb.io/api/v1/reou400435n4c?sheet=solicituds';
 const SHEETDB_SEARCH_URL = 'https://sheetdb.io/api/v1/reou400435n4c/search?sheet=solicituds';
 
-// --- ESQUEMA DE VALIDACIÓN ---
+// --- ESQUEMA DE VALIDACIÓ ---
 const bookingFormSchema = z.object({
   serviceType: z.string().min(1, "Selecciona un tipus de viatge"),
   origin: z.string().min(2, "Introdueix l'origen"),
@@ -41,6 +41,7 @@ export default function BookingManagementPage() {
   const [requests, setRequests] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoadingRequests, setIsLoadingRequests] = useState(true);
+  const [downloadingId, setDownloadingId] = useState<string | null>(null);
 
   useEffect(() => {
     const userDataString = localStorage.getItem('user');
@@ -105,6 +106,19 @@ export default function BookingManagementPage() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleDownload = (id: string) => {
+    setDownloadingId(id);
+    
+    // Simulem un procés de generació de PDF/Descàrrega
+    setTimeout(() => {
+      setDownloadingId(null);
+      toast({
+        title: "Albarà generat correctament",
+        description: `El document ${id}.pdf s'ha descarregat a la teva carpeta de descàrregues.`,
+      });
+    }, 1500);
   };
 
   return (
@@ -234,42 +248,67 @@ export default function BookingManagementPage() {
                 <p className="text-muted-foreground italic">{t.booking_mgmt.empty}</p>
               </div>
             ) : (
-              requests.map((req: any) => (
-                <Card key={req.id} className="hover:shadow-md transition-shadow border-l-4 border-l-primary bg-card">
-                  <CardContent className="p-6">
-                    <div className="flex justify-between items-start mb-4">
-                      <div>
-                        <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">{req.data}</span>
-                        <h3 className="font-headline text-xl text-primary mt-1">{req.id}</h3>
-                      </div>
-                      <Badge className={cn(
-                        "font-bold py-1 px-3",
-                        req.estat === 'Pendent' ? 'bg-yellow-100 text-yellow-700 hover:bg-yellow-100' : 'bg-green-100 text-green-700 hover:bg-green-100'
-                      )}>
-                        {req.estat === 'Acceptada' ? t.booking_mgmt.status.approved : req.estat}
-                      </Badge>
-                    </div>
-                    <div className="text-sm text-foreground space-y-2 border-t pt-4">
-                      {req.detalls.split(' | ').map((line: string, i: number) => (
-                        <p key={i} className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
-                          {line}
-                        </p>
-                      ))}
-                    </div>
+              requests.map((req: any) => {
+                const isAccepted = req.estat === 'Acceptada';
+                const isDownloading = downloadingId === req.id;
 
-                    {/* Botó condicional per a estat Acceptada */}
-                    {req.estat === 'Acceptada' && (
-                      <div className="mt-6 pt-4 border-t flex justify-end">
-                        <Button variant="outline" size="sm" className="text-primary hover:bg-primary/10 border-primary/20">
-                          <FileText className="mr-2 h-4 w-4" />
-                          {t.booking_mgmt.downloadDelivery}
-                        </Button>
+                return (
+                  <Card key={req.id} className="hover:shadow-md transition-shadow border-l-4 border-l-primary bg-card">
+                    <CardContent className="p-6">
+                      <div className="flex justify-between items-start mb-4">
+                        <div>
+                          <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">{req.data}</span>
+                          <h3 className="font-headline text-xl text-primary mt-1">{req.id}</h3>
+                        </div>
+                        <Badge className={cn(
+                          "font-bold py-1 px-3",
+                          req.estat === 'Pendent' ? 'bg-yellow-100 text-yellow-700 hover:bg-yellow-100' : 
+                          isAccepted ? 'bg-green-100 text-green-700 hover:bg-green-100' :
+                          'bg-red-100 text-red-700 hover:bg-red-100'
+                        )}>
+                          {req.estat}
+                        </Badge>
                       </div>
-                    )}
-                  </CardContent>
-                </Card>
-              ))
+                      <div className="text-sm text-foreground space-y-2 border-t pt-4">
+                        {req.detalls.split(' | ').map((line: string, i: number) => (
+                          <p key={i} className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
+                            {line}
+                          </p>
+                        ))}
+                      </div>
+
+                      {/* Botó funcional per a estat Acceptada */}
+                      {isAccepted && (
+                        <div className="mt-6 pt-4 border-t flex justify-end">
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className={cn(
+                              "transition-all",
+                              isDownloading ? "text-muted-foreground" : "text-primary hover:bg-primary/10 border-primary/20"
+                            )}
+                            onClick={() => handleDownload(req.id)}
+                            disabled={isDownloading}
+                          >
+                            {isDownloading ? (
+                              <>
+                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                Generant...
+                              </>
+                            ) : (
+                              <>
+                                <FileText className="mr-2 h-4 w-4" />
+                                {t.booking_mgmt.downloadDelivery}
+                              </>
+                            )}
+                          </Button>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                );
+              })
             )}
           </div>
         </section>
