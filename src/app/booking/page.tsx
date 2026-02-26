@@ -12,7 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, Plane, MapPin, Send, History, Palmtree, Luggage, FileText, CheckCircle2 } from 'lucide-react';
+import { Loader2, Plane, MapPin, Send, History, Palmtree, Luggage, FileText } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { useLocale } from '@/contexts/locale-context';
@@ -80,7 +80,7 @@ export default function BookingManagementPage() {
       const id = `HICA-${Math.floor(1000 + Math.random() * 9000)}`;
       const dataAvui = new Date().toLocaleDateString('ca-ES');
       
-      const detalls = `Viatge: ${values.serviceType} | Origen: ${values.origin} | Destí: ${values.destination} | Info: ${values.cargo}`;
+      const detalls = `Servei: ${values.serviceType} | Origen: ${values.origin} | Destí: ${values.destination} | Càrrega: ${values.cargo}`;
 
       const payload = {
         id,
@@ -108,17 +108,98 @@ export default function BookingManagementPage() {
     }
   };
 
-  const handleDownload = (id: string) => {
-    setDownloadingId(id);
+  const handleDownload = (req: any) => {
+    setDownloadingId(req.id);
     
-    // Simulem un procés de generació de PDF/Descàrrega
+    // Simulem un procés de generació de PDF/Obertura de document
     setTimeout(() => {
+      const albaraWindow = window.open('', '_blank');
+      if (albaraWindow) {
+        const detallsHtml = req.detalls.split(' | ').map((line: string) => `<p style="margin: 5px 0;">${line}</p>`).join('');
+        
+        albaraWindow.document.write(`
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <title>Albarà ${req.id} - Viajes HICA</title>
+              <style>
+                body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; color: #333; line-height: 1.6; }
+                .container { max-width: 800px; margin: 0 auto; border: 1px solid #eee; padding: 40px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+                .header { display: flex; justify-content: space-between; border-bottom: 3px solid #222538; padding-bottom: 20px; margin-bottom: 30px; }
+                .logo { font-size: 28px; font-weight: 900; color: #222538; text-transform: uppercase; letter-spacing: -1px; }
+                .title { font-size: 32px; font-weight: 900; text-transform: uppercase; margin: 0; color: #222538; }
+                .info-section { display: grid; grid-template-cols: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+                .info-box h3 { margin-top: 0; border-bottom: 1px solid #ddd; padding-bottom: 5px; font-size: 14px; text-transform: uppercase; color: #666; }
+                .label { font-weight: bold; color: #222538; }
+                .details-box { border: 2px solid #f0f0f0; padding: 25px; background: #fafafa; border-radius: 8px; margin-bottom: 30px; }
+                .details-box h2 { margin-top: 0; color: #222538; font-size: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+                .footer { margin-top: 60px; font-size: 11px; color: #999; text-align: center; border-top: 1px solid #eee; padding-top: 20px; }
+                .status-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; background: #e8f5e9; color: #2e7d32; font-weight: bold; font-size: 12px; }
+                @media print { .no-print { display: none !important; } .container { border: none; box-shadow: none; padding: 0; } }
+                .btn-print { padding: 12px 25px; background: #222538; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: opacity 0.2s; }
+                .btn-print:hover { opacity: 0.9; }
+              </style>
+            </head>
+            <body>
+              <div class="container">
+                <div class="header">
+                  <div>
+                    <div class="logo">Viajes HICA</div>
+                    <p style="margin: 5px 0;">C/Amposta Nº8 Bajo s/n</p>
+                    <p style="margin: 5px 0;">46000 València, Espanya</p>
+                  </div>
+                  <div style="text-align: right;">
+                    <h1 class="title">Albarà</h1>
+                    <p style="margin: 5px 0;"><strong>Nº Document:</strong> ${req.id}</p>
+                    <p style="margin: 5px 0;"><strong>Data d'Emissió:</strong> ${req.data}</p>
+                    <div class="status-badge">Estat: ${req.estat}</div>
+                  </div>
+                </div>
+                
+                <div class="info-section">
+                  <div class="info-box">
+                    <h3>Dades del Sol·licitant</h3>
+                    <p><span class="label">Usuari:</span> ${req.usuari}</p>
+                    <p><span class="label">Client:</span> Empresa de l'usuari</p>
+                  </div>
+                  <div class="info-box">
+                    <h3>Referència de Gestió</h3>
+                    <p><span class="label">ID Sistema:</span> ${req.id}</p>
+                    <p><span class="label">Tipus:</span> Sol·licitud de Servei</p>
+                  </div>
+                </div>
+                
+                <div class="details-box">
+                  <h2>Detalls de la Sol·licitud</h2>
+                  <div style="font-size: 15px;">
+                    ${detallsHtml}
+                  </div>
+                </div>
+                
+                <div style="margin-top: 40px;">
+                   <p><strong>Observacions:</strong> Aquest document acredita la recepció de la vostra sol·licitud per part dels nostres sistemes logístics. Un agent es posarà en contacte amb vosaltres per coordinar els següents passos.</p>
+                </div>
+
+                <div class="footer">
+                  <p>© ${new Date().getFullYear()} Viajes HICA. Tots els drets reservats. Document de control intern.</p>
+                </div>
+              </div>
+              
+              <div class="no-print" style="text-align: center; margin-top: 30px;">
+                <button onclick="window.print()" class="btn-print">Imprimir o Guardar com a PDF</button>
+              </div>
+            </body>
+          </html>
+        `);
+        albaraWindow.document.close();
+      }
+      
       setDownloadingId(null);
       toast({
-        title: "Albarà generat correctament",
-        description: `El document ${id}.pdf s'ha descarregat a la teva carpeta de descàrregues.`,
+        title: "Document obert",
+        description: `L'albarà ${req.id} s'ha generat i obert en una nova pestanya.`,
       });
-    }, 1500);
+    }, 1200);
   };
 
   return (
@@ -160,11 +241,10 @@ export default function BookingManagementPage() {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="Paquet Vacacional">☀️ Paquet Vacacional</SelectItem>
-                            <SelectItem value="Només Vols">✈️ Només Vols</SelectItem>
-                            <SelectItem value="Hotels / Allotjament">🏨 Hotels / Allotjament</SelectItem>
-                            <SelectItem value="Creuers">🚢 Creuers</SelectItem>
-                            <SelectItem value="Circuits Culturals">🗺️ Circuits Culturals</SelectItem>
+                            <SelectItem value="Transport Marítim">🚢 Transport Marítim</SelectItem>
+                            <SelectItem value="Transport Aeri">✈️ Transport Aeri</SelectItem>
+                            <SelectItem value="Transport Terrestre">🚛 Transport Terrestre</SelectItem>
+                            <SelectItem value="Almacén">🏬 Magatzem</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -249,7 +329,7 @@ export default function BookingManagementPage() {
               </div>
             ) : (
               requests.map((req: any) => {
-                const isAccepted = req.estat === 'Acceptada';
+                const isAccepted = req.estat?.trim() === 'Acceptada';
                 const isDownloading = downloadingId === req.id;
 
                 return (
@@ -288,7 +368,7 @@ export default function BookingManagementPage() {
                               "transition-all",
                               isDownloading ? "text-muted-foreground" : "text-primary hover:bg-primary/10 border-primary/20"
                             )}
-                            onClick={() => handleDownload(req.id)}
+                            onClick={() => handleDownload(req)}
                             disabled={isDownloading}
                           >
                             {isDownloading ? (
