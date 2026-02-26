@@ -18,11 +18,9 @@ import { cn } from '@/lib/utils';
 import { useLocale } from '@/contexts/locale-context';
 import { translations } from '@/lib/translations';
 
-// --- CONFIGURACIÓ API ---
 const SHEETDB_URL = 'https://sheetdb.io/api/v1/reou400435n4c?sheet=solicituds';
 const SHEETDB_SEARCH_URL = 'https://sheetdb.io/api/v1/reou400435n4c/search?sheet=solicituds';
 
-// --- ESQUEMA DE VALIDACIÓ ---
 const bookingFormSchema = z.object({
   serviceType: z.string().min(1, "Selecciona un tipus de viatge"),
   origin: z.string().min(2, "Introdueix l'origen"),
