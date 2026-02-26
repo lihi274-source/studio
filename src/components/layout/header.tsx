@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Menu, Home, Newspaper, User, Info, MessageSquare, PackageSearch, FileText, Languages } from 'lucide-react';
+import { Menu, Home, Newspaper, User, Info, MessageSquare, PackageSearch, FileText, Languages, ClipboardList } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,6 +21,7 @@ const Header = () => {
     { href: '/', label: t.nav.home, icon: Home },
     { href: '/about', label: t.nav.about, icon: Info },
     { href: '/blog', label: t.nav.blog, icon: Newspaper },
+    { href: '/booking', label: t.nav.booking_mgmt, icon: ClipboardList },
     { href: '/tracking', label: t.nav.tracking, icon: PackageSearch },
     { href: '/documents', label: t.nav.documents, icon: FileText },
     { href: '/contacto', label: t.nav.contact, icon: MessageSquare },

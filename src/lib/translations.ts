@@ -10,9 +10,37 @@ export const translations = {
       documents: "Documentos",
       contact: "Contacto",
       account: "Mi Cuenta",
+      booking_mgmt: "Solicitudes",
       menuTitle: "Menú de Navegación",
       langTitle: "Idioma",
       tagline: "Tu agencia de viajes para explorar el mundo"
+    },
+    booking_mgmt: {
+      title: "Gestión de Solicitudes",
+      subtitle: "Crea y consulta tus solicitudes de transporte y logística.",
+      formTitle: "Nueva Solicitud",
+      serviceType: "Tipo de Servicio",
+      origin: "Origen",
+      destination: "Destino",
+      cargo: "Descripción de la Carga",
+      cargoPlace: "Pesos, medidas, cantidad...",
+      submit: "Enviar Solicitud",
+      sending: "Enviando...",
+      historyTitle: "Mis Solicitudes",
+      empty: "No tienes solicitudes registradas.",
+      status: {
+        pending: "Pendiente",
+        approved: "Aprobado",
+        rejected: "Rechazado"
+      },
+      services: {
+        sea: "Transporte Marítimo",
+        air: "Transporte Aéreo",
+        land: "Transporte Terrestre",
+        warehouse: "Almacén"
+      },
+      success: "Solicitud enviada correctamente",
+      error: "Error al enviar la solicitud"
     },
     home: {
       destinations: "Destinos",
@@ -215,9 +243,37 @@ export const translations = {
       documents: "Documents",
       contact: "Contacte",
       account: "El meu Compte",
+      booking_mgmt: "Sol·licituds",
       menuTitle: "Menú de Navegació",
       langTitle: "Idioma",
       tagline: "La teva agència de viatges per explorar el món"
+    },
+    booking_mgmt: {
+      title: "Gestió de Sol·licituds",
+      subtitle: "Crea i consulta les teves sol·licituds de transport i logística.",
+      formTitle: "Nova Sol·licitud",
+      serviceType: "Tipus de Servei",
+      origin: "Origen",
+      destination: "Destí",
+      cargo: "Descripció de la Càrrega",
+      cargoPlace: "Pesos, mides, quantitat...",
+      submit: "Enviar Sol·licitud",
+      sending: "Enviant...",
+      historyTitle: "Les meves sol·licituds",
+      empty: "No tens sol·licituds registrades.",
+      status: {
+        pending: "Pendent",
+        approved: "Aprovat",
+        rejected: "Rebutjat"
+      },
+      services: {
+        sea: "Transport Marítim",
+        air: "Transport Aeri",
+        land: "Transport Terrestre",
+        warehouse: "Magatzem"
+      },
+      success: "Sol·licitud enviada correctament",
+      error: "Error en enviar la sol·licitud"
     },
     home: {
       destinations: "Destins",
@@ -420,9 +476,37 @@ export const translations = {
       documents: "Documents",
       contact: "Contact",
       account: "My Account",
+      booking_mgmt: "Requests",
       menuTitle: "Navigation Menu",
       langTitle: "Language",
       tagline: "Your travel agency to explore the world"
+    },
+    booking_mgmt: {
+      title: "Request Management",
+      subtitle: "Create and view your transport and logistics requests.",
+      formTitle: "New Request",
+      serviceType: "Service Type",
+      origin: "Origin",
+      destination: "Destination",
+      cargo: "Cargo Description",
+      cargoPlace: "Weights, measurements, quantity...",
+      submit: "Send Request",
+      sending: "Sending...",
+      historyTitle: "My Requests",
+      empty: "You have no registered requests.",
+      status: {
+        pending: "Pending",
+        approved: "Approved",
+        rejected: "Rejected"
+      },
+      services: {
+        sea: "Sea Transport",
+        air: "Air Transport",
+        land: "Land Transport",
+        warehouse: "Warehouse"
+      },
+      success: "Request sent successfully",
+      error: "Error sending request"
     },
     home: {
       destinations: "Destinations",
@@ -615,9 +699,37 @@ export const translations = {
       documents: "Documents",
       contact: "Contact",
       account: "Mon Compte",
+      booking_mgmt: "Demandes",
       menuTitle: "Menu de Navigation",
       langTitle: "Langue",
       tagline: "Votre agence de voyages pour explorer le monde"
+    },
+    booking_mgmt: {
+      title: "Gestion des Demandes",
+      subtitle: "Créez et consultez vos demandes de transport et logistique.",
+      formTitle: "Nouvelle Demande",
+      serviceType: "Type de Service",
+      origin: "Origine",
+      destination: "Destination",
+      cargo: "Description du Chargement",
+      cargoPlace: "Poids, mesures, quantité...",
+      submit: "Envoyer la Demande",
+      sending: "Envoi...",
+      historyTitle: "Mes Demandes",
+      empty: "Vous n'avez aucune demande enregistrée.",
+      status: {
+        pending: "En attente",
+        approved: "Approuvé",
+        rejected: "Rejeté"
+      },
+      services: {
+        sea: "Transport Maritime",
+        air: "Transport Aérien",
+        land: "Transport Terrestre",
+        warehouse: "Entrepôt"
+      },
+      success: "Demande envoyée avec succès",
+      error: "Erreur lors de l'envoi de la demande"
     },
     home: {
       destinations: "Destinations",
@@ -660,7 +772,7 @@ export const translations = {
       articleH1: "Recherches Simplifiées",
       articleP2: "Nos formulaires de recherche sont un exemple clair de notre engagement envers la simplicité. Avec des champs clairement étiquetés et des icônes qui vous guident.",
       quote: "Notre objectif est que la technologie travaille pour vous, pas contre vous. Un bon site web est celui qui se sent invisible.",
-      articleH2: "Découvrez des Expériences Inoubliables",
+      articleH2: "Découvrez des Expériences Inoblidables",
       articleP3: "L'onglet Excursions est votre fenêtre sur les aventures qui vous attendent. Nous présentons chaque activité avec des images de haute qualité et des prix transparents.",
       back: "Retour à l'accueil"
     },
