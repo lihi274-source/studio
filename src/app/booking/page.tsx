@@ -109,8 +109,10 @@ export default function BookingManagementPage() {
   const handleDownload = (req: any) => {
     setDownloadingId(req.id);
     
+    // Open window immediately to avoid popup blockers
+    const albaraWindow = window.open('', '_blank');
+    
     setTimeout(() => {
-      const albaraWindow = window.open('', '_blank');
       if (albaraWindow) {
         const detallsHtml = req.detalls.split(' | ').map((line: string) => `<p style="margin: 5px 0;">${line}</p>`).join('');
         
@@ -195,17 +197,17 @@ export default function BookingManagementPage() {
         title: "Document obert",
         description: `L'albarà ${req.id} s'ha generat correctament.`,
       });
-    }, 1500);
+    }, 1000);
   };
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
       <div className="mb-12 text-center">
-        <h1 className="text-4xl md:text-5xl font-headline text-primary-foreground flex items-center justify-center gap-4">
-          <Palmtree className="h-12 w-12 text-accent" />
+        <h1 className="text-4xl md:text-6xl font-headline text-primary-foreground flex items-center justify-center gap-4 mb-4">
+          <Palmtree className="h-12 w-12 md:h-16 md:w-16 text-accent" />
           {t.booking_mgmt.title}
         </h1>
-        <p className="text-muted-foreground mt-4 text-lg max-w-2xl mx-auto italic">
+        <p className="text-muted-foreground mt-4 text-lg md:text-xl max-w-3xl mx-auto italic">
           {t.booking_mgmt.subtitle}
         </p>
       </div>
@@ -214,14 +216,14 @@ export default function BookingManagementPage() {
         
         {/* FORMULARIO */}
         <section>
-          <Card className="shadow-2xl border-t-8 border-t-accent bg-card overflow-hidden">
-            <CardHeader className="bg-primary/5 border-b">
+          <Card className="shadow-2xl border-t-8 border-t-accent bg-card overflow-hidden rounded-2xl">
+            <CardHeader className="bg-primary/5 border-b py-6">
               <CardTitle className="flex items-center gap-3 font-headline text-2xl text-primary">
                 <Plane className="h-7 w-7" />
                 {t.booking_mgmt.formTitle}
               </CardTitle>
             </CardHeader>
-            <CardContent className="pt-8">
+            <CardContent className="pt-8 px-6 md:px-8">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <FormField
@@ -232,7 +234,7 @@ export default function BookingManagementPage() {
                         <FormLabel className="text-primary font-bold">{t.booking_mgmt.serviceType}</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
-                            <SelectTrigger className="bg-background border-primary/20">
+                            <SelectTrigger className="bg-background border-primary/20 h-12">
                               <SelectValue placeholder={t.booking_mgmt.serviceType} />
                             </SelectTrigger>
                           </FormControl>
@@ -255,7 +257,7 @@ export default function BookingManagementPage() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-primary font-bold">{t.booking_mgmt.origin}</FormLabel>
-                          <FormControl><Input placeholder={t.booking_mgmt.origin} {...field} className="bg-background border-primary/20 focus:ring-accent" /></FormControl>
+                          <FormControl><Input placeholder={t.booking_mgmt.origin} {...field} className="bg-background border-primary/20 h-12 focus:ring-accent" /></FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -266,7 +268,7 @@ export default function BookingManagementPage() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-primary font-bold">{t.booking_mgmt.destination}</FormLabel>
-                          <FormControl><Input placeholder={t.booking_mgmt.destination} {...field} className="bg-background border-primary/20 focus:ring-accent" /></FormControl>
+                          <FormControl><Input placeholder={t.booking_mgmt.destination} {...field} className="bg-background border-primary/20 h-12 focus:ring-accent" /></FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -282,7 +284,7 @@ export default function BookingManagementPage() {
                         <FormControl>
                           <Textarea 
                             placeholder={t.booking_mgmt.cargoPlace}
-                            className="bg-background min-h-[140px] border-primary/20 focus:ring-accent" 
+                            className="bg-background min-h-[140px] border-primary/20 focus:ring-accent text-base" 
                             {...field} 
                           />
                         </FormControl>
@@ -291,7 +293,7 @@ export default function BookingManagementPage() {
                     )}
                   />
 
-                  <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-headline text-lg h-14 shadow-lg transition-all" disabled={isSubmitting}>
+                  <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-headline text-lg h-16 shadow-lg transition-all rounded-xl" disabled={isSubmitting}>
                     {isSubmitting ? (
                       <Loader2 className="animate-spin h-6 w-6" />
                     ) : (
@@ -315,7 +317,7 @@ export default function BookingManagementPage() {
           </h2>
           <div className="space-y-6">
             {isLoadingRequests ? (
-              <div className="flex flex-col items-center justify-center p-20">
+              <div className="flex flex-col items-center justify-center p-20 bg-card rounded-3xl border border-primary/10">
                 <Loader2 className="h-12 w-12 animate-spin text-accent mb-4" />
                 <p className="text-muted-foreground">Carregant les teves dades...</p>
               </div>
@@ -326,31 +328,31 @@ export default function BookingManagementPage() {
               </div>
             ) : (
               requests.map((req: any) => {
-                const isAccepted = req.estat?.trim() === 'Acceptada';
+                const isAccepted = req.estat?.trim() === 'Acceptada' || req.estat?.trim() === 'Accepted';
                 const isDownloading = downloadingId === req.id;
 
                 return (
-                  <Card key={req.id} className="hover:shadow-xl transition-all duration-300 border-l-[12px] border-l-primary bg-card group">
+                  <Card key={req.id} className="hover:shadow-xl transition-all duration-300 border-l-[12px] border-l-primary bg-card group rounded-xl overflow-hidden">
                     <CardContent className="p-8">
                       <div className="flex justify-between items-start mb-6">
                         <div>
-                          <span className="text-xs font-black text-accent uppercase tracking-widest bg-accent/10 px-2 py-1 rounded">{req.data}</span>
-                          <h3 className="font-headline text-2xl text-primary mt-2">{req.id}</h3>
+                          <span className="text-xs font-black text-accent uppercase tracking-widest bg-accent/10 px-3 py-1 rounded-full">{req.data}</span>
+                          <h3 className="font-headline text-2xl text-primary mt-3">{req.id}</h3>
                         </div>
                         <Badge className={cn(
-                          "font-black py-2 px-5 text-sm uppercase shadow-sm",
-                          req.estat === 'Pendent' ? 'bg-amber-100 text-amber-700 hover:bg-amber-100 border-amber-200' : 
-                          isAccepted ? 'bg-emerald-100 text-emerald-700 hover:bg-emerald-100 border-emerald-200' :
-                          'bg-rose-100 text-rose-700 hover:bg-rose-100 border-rose-200'
+                          "font-black py-2 px-5 text-sm uppercase shadow-sm border-2",
+                          req.estat === 'Pendent' ? 'bg-amber-50 text-amber-700 hover:bg-amber-50 border-amber-200' : 
+                          isAccepted ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-50 border-emerald-200' :
+                          'bg-rose-50 text-rose-700 hover:bg-rose-50 border-rose-200'
                         )}>
                           {req.estat}
                         </Badge>
                       </div>
-                      <div className="text-sm text-foreground space-y-3 border-t border-primary/5 pt-6">
+                      <div className="text-base text-foreground space-y-3 border-t border-primary/5 pt-6">
                         {req.detalls.split(' | ').map((line: string, i: number) => (
-                          <p key={i} className="flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-accent group-hover:scale-125 transition-transform" />
-                            {line}
+                          <p key={i} className="flex items-start gap-3">
+                            <span className="w-2.5 h-2.5 rounded-full bg-accent mt-1.5 group-hover:scale-125 transition-transform shrink-0" />
+                            <span className="leading-relaxed">{line}</span>
                           </p>
                         ))}
                       </div>
@@ -361,7 +363,7 @@ export default function BookingManagementPage() {
                             variant="outline" 
                             size="lg" 
                             className={cn(
-                              "font-headline border-primary/20 hover:bg-primary/5 text-primary h-12",
+                              "font-headline border-2 border-primary/20 hover:bg-primary/5 text-primary h-14 px-8 rounded-xl transition-all hover:border-primary",
                               isDownloading && "opacity-50"
                             )}
                             onClick={() => handleDownload(req)}
