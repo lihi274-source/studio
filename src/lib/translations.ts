@@ -158,6 +158,7 @@ export const translations = {
       profileSub: "Bienvenido/a a tu zona privada,",
       company: "Empresa",
       viewInvoices: "Ver mis facturas",
+      backToHome: "Volver al Inicio",
       error: "Error de autenticación",
       errorDesc: "Los datos introducidos son incorrectos."
     },
@@ -392,6 +393,7 @@ export const translations = {
       profileSub: "Benvingut/da a la teva zona privada,",
       company: "Empresa",
       viewInvoices: "Veure les meves factures",
+      backToHome: "Tornar a l'Inici",
       error: "Error d'autenticació",
       errorDesc: "Les dades introduïdes són incorrectes."
     },
@@ -626,6 +628,7 @@ export const translations = {
       profileSub: "Welcome to your private area,",
       company: "Company",
       viewInvoices: "View my invoices",
+      backToHome: "Back to Home",
       error: "Authentication error",
       errorDesc: "The entered data is incorrect."
     },
@@ -772,9 +775,9 @@ export const translations = {
       mission: "Notre Mission",
       missionDesc: "Éliminer le stress de la planification pour que vous n'ayez qu'à profiter.",
       articleTitle: "Une Expérience Centrée sur Vous",
-      articleP1: "Chez Viajes HICA, nous pensons que la planification de votre voyage doit être aussi excitante que le voyage lui-même. C'est pourquoi nous avons conçu un site web intuitif et puissant.",
+      articleP1: "Chez Viajes HICA, nous pensons que la planification de votre voyage doit être aussi excitante et puissante.",
       articleH1: "Recherches Simplifiées",
-      articleP2: "Nos formulaires de recherche sont un exemple clair de notre engagement envers la simplicité. Avec des champs clairement étiquetés et des icônes qui vous guident.",
+      articleP2: "Nos formulaires de recherche sont un exemple clair de notre engagement envers la simplicité.",
       quote: "Notre objectif est que la technologie travaille pour vous, pas contre vous. Un bon site web est celui qui se sent invisible.",
       articleH2: "Découvrez des Expériences Inoblidables",
       articleP3: "L'onglet Excursions est votre fenêtre sur les aventures qui vous attendent. Nous présentons chaque activité avec des images de haute qualité et des prix transparents.",
@@ -850,6 +853,7 @@ export const translations = {
       profileSub: "Bienvenue dans votre zone privée,",
       company: "Entreprise",
       viewInvoices: "Voir mes factures",
+      backToHome: "Retour à l'Accueil",
       error: "Erreur d'authentification",
       errorDesc: "Les données saisies sont incorrectes."
     },
@@ -861,16 +865,6 @@ export const translations = {
       legal: "Mentions légales",
       privacy: "Confidentialité",
       cookies: "Cookies"
-    },
-    assistent: {
-      welcome: "Bonjour ! Je suis l'assistant de **Viajes HICA**. Comment puis-je vous aider aujourd'hui pour votre prochain voyage ?",
-      placeholder: "Écrivez où vous voulez aller ou quel voyage vous cherchez...",
-      thinking: "Préparation de votre voyage...",
-      reset: "Réinitialiser le chat",
-      back: "Retour",
-      title: "Assistant Voyageur HICA",
-      subtitle: "Intelligence Artificielle à votre service",
-      disclaimer: "Rappelez-vous que je suis une IA. Vérifiez toujours les détails finaux avec notre équipe."
     },
     blog: {
       title: "Notre Blog",

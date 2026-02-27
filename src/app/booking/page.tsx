@@ -12,7 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, Plane, MapPin, Send, History, Palmtree, Luggage, FileText, Printer } from 'lucide-react';
+import { Loader2, Plane, Send, History, Palmtree, Luggage, FileText } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { useLocale } from '@/contexts/locale-context';
@@ -22,10 +22,10 @@ const SHEETDB_URL = 'https://sheetdb.io/api/v1/reou400435n4c?sheet=solicituds';
 const SHEETDB_SEARCH_URL = 'https://sheetdb.io/api/v1/reou400435n4c/search?sheet=solicituds';
 
 const bookingFormSchema = z.object({
-  serviceType: z.string().min(1, "Selecciona un tipus de viatge"),
-  origin: z.string().min(2, "Introdueix l'origen"),
-  destination: z.string().min(2, "Introdueix la destinació"),
-  cargo: z.string().min(5, "Explica'ns els detalls (persones, dates, preferències...)"),
+  serviceType: z.string().min(1, "Required"),
+  origin: z.string().min(2, "Min 2 chars"),
+  destination: z.string().min(2, "Min 2 chars"),
+  description: z.string().min(5, "Min 5 chars"),
 });
 
 type BookingFormValues = z.infer<typeof bookingFormSchema>;
@@ -39,6 +39,24 @@ export default function BookingManagementPage() {
   const [requests, setRequests] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoadingRequests, setIsLoadingRequests] = useState(true);
+
+  // Textos locales rápidos para los 4 idiomas
+  const localTxt = {
+    newReq: { ca: 'Nova Sol·licitud', es: 'Nueva Solicitud', en: 'New Request', fr: 'Nouvelle Demande' },
+    servType: { ca: 'Tipus de Viatge', es: 'Tipo de Viaje', en: 'Travel Type', fr: 'Type de Voyage' },
+    placeholder: { ca: 'Què vols reservar?', es: '¿Qué quieres reservar?', en: 'What to book?', fr: 'Que reserver?' },
+    descLabel: { ca: 'Descripció del viatge', es: 'Descripción del viaje', en: 'Travel description', fr: 'Description du voyage' },
+    descPlace: { 
+      ca: "Dates, persones, edats dels nens...", 
+      es: "Fechas, personas, edades de niños...", 
+      en: "Dates, people, children ages...", 
+      fr: "Dates, personnes, âges des enfants..." 
+    },
+    noReq: { ca: 'Encara no tens cap sol·licitud.', es: 'Aún no tienes ninguna solicitud.', en: 'No requests yet.', fr: 'Aucune demande pour le moment.' },
+    print: { ca: 'IMPRIMIR PDF', es: 'IMPRIMIR PDF', en: 'PRINT PDF', fr: 'IMPRIMER PDF' }
+  };
+
+  const getTxt = (key: keyof typeof localTxt) => localTxt[key][locale as 'ca' | 'es' | 'en' | 'fr'] || localTxt[key]['es'];
 
   useEffect(() => {
     const userDataString = localStorage.getItem('user');
@@ -66,18 +84,16 @@ export default function BookingManagementPage() {
 
   const form = useForm<BookingFormValues>({
     resolver: zodResolver(bookingFormSchema),
-    defaultValues: { serviceType: '', origin: '', destination: '', cargo: '' },
+    defaultValues: { serviceType: '', origin: '', destination: '', description: '' },
   });
 
   const onSubmit = async (values: BookingFormValues) => {
     if (!user) return;
     setIsSubmitting(true);
-
     try {
       const id = `HICA-${Math.floor(10000 + Math.random() * 90000)}`;
       const dataAvui = new Date().toLocaleDateString('ca-ES');
-      
-      const detalls = `Servei: ${values.serviceType} | Origen: ${values.origin} | Destí: ${values.destination} | Detalls: ${values.cargo}`;
+      const detalls = `Servei: ${values.serviceType} | Origen: ${values.origin} | Destí: ${values.destination} | Descripció: ${values.description}`;
 
       const payload = {
         id,
@@ -99,75 +115,52 @@ export default function BookingManagementPage() {
         fetchRequests(user.usuari);
       }
     } catch (error) {
-      toast({ variant: "destructive", title: t.booking_mgmt.error });
+      toast({ variant: "destructive", title: "Error" });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleDownloadAlbara = (req: any) => {
-    const printWindow = window.open('', '_blank');
-    if (!printWindow) return;
+    // Intentar abrir la ventana inmediatamente para evitar el bloqueo del navegador
+    const printWindow = window.open('', '_blank', 'width=800,height=900');
+    
+    if (!printWindow) {
+      alert("⚠️ Navegador bloqueja la finestra. Per favor, activa les 'Finestres Emergents' (Pop-ups) per aquesta web.");
+      return;
+    }
 
     const detailsLines = req.detalls.split(' | ').map((line: string) => `<li>${line}</li>`).join('');
 
     const htmlContent = `
-      <!DOCTYPE html>
       <html>
       <head>
-        <title>Albarà ${req.id} - Viajes HICA</title>
+        <title>Reserva ${req.id}</title>
         <style>
-          body { font-family: Arial, sans-serif; padding: 40px; color: #333; line-height: 1.6; }
-          .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #2079ad; padding-bottom: 20px; margin-bottom: 30px; }
-          .logo-area h1 { color: #2079ad; margin: 0; font-size: 28px; }
-          .logo-area p { margin: 5px 0 0; font-size: 14px; color: #666; }
-          .info-area { text-align: right; }
-          .info-area h2 { margin: 0; font-size: 18px; color: #2079ad; }
-          .section { margin-bottom: 30px; }
-          .section-title { font-weight: bold; text-transform: uppercase; font-size: 14px; color: #2079ad; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-          .details-list { list-style: none; padding: 0; margin: 0; }
-          .details-list li { margin-bottom: 8px; padding-left: 15px; position: relative; }
-          .details-list li::before { content: "•"; color: #ffae4d; position: absolute; left: 0; font-weight: bold; }
-          .footer { margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #999; text-align: center; }
-          .btn-print { background: #2079ad; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-bottom: 20px; }
-          @media print { .btn-print { display: none; } }
+          body { font-family: sans-serif; padding: 40px; color: #333; line-height: 1.5; }
+          .header { display: flex; justify-content: space-between; border-bottom: 3px solid #2079ad; padding-bottom: 20px; margin-bottom: 30px; }
+          .logo h1 { color: #2079ad; margin: 0; font-size: 24px; }
+          .section { margin-bottom: 20px; }
+          .section-title { font-weight: bold; color: #2079ad; text-transform: uppercase; font-size: 14px; margin-bottom: 10px; border-bottom: 1px solid #eee; }
+          li { margin-bottom: 10px; padding-left: 10px; border-left: 3px solid #ffae4d; list-style:none; }
+          @media print { .no-print { display: none; } }
         </style>
       </head>
       <body>
-        <button class="btn-print" onclick="window.print()">IMPRIMIR / GUARDAR PDF</button>
+        <button class="no-print" onclick="window.print()" style="margin-bottom:20px; padding:10px 20px; background:#2079ad; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold;">
+          ${getTxt('print')}
+        </button>
         <div class="header">
-          <div class="logo-area">
-            <h1>Viajes HICA</h1>
-            <p>Tu agencia de viajes para explorar el mundo</p>
-          </div>
-          <div class="info-area">
-            <h2>ALBARÀ DE SERVEI</h2>
+          <div class="logo"><h1>Viajes HICA</h1></div>
+          <div style="text-align:right;">
+            <h2 style="margin:0; color:#2079ad;">COMPROVANT</h2>
             <p><strong>Ref:</strong> ${req.id}</p>
             <p><strong>Data:</strong> ${req.data}</p>
           </div>
         </div>
-        
         <div class="section">
-          <div class="section-title">Dades del Client</div>
-          <p><strong>Usuari:</strong> ${req.usuari}</p>
-          <p><strong>Empresa:</strong> ${user?.empresa || 'Client Particular'}</p>
-        </div>
-
-        <div class="section">
-          <div class="section-title">Estat de la Sol·licitud</div>
-          <p><strong>Estat:</strong> <span style="color: #16a34a; font-weight: bold;">${req.estat}</span></p>
-        </div>
-
-        <div class="section">
-          <div class="section-title">Detalls del Viatge i Serveis</div>
-          <ul class="details-list">
-            ${detailsLines}
-          </ul>
-        </div>
-
-        <div class="footer">
-          <p>Aquest document és un justificant de servei acceptat per Viajes HICA.</p>
-          <p>C/Amposta Nº8 Bajo s/n - contacto@viajeshica.com</p>
+          <p class="section-title">Detalls</p>
+          <ul>${detailsLines}</ul>
         </div>
       </body>
       </html>
@@ -184,101 +177,70 @@ export default function BookingManagementPage() {
           <Palmtree className="h-12 w-12 text-accent" />
           {t.booking_mgmt.title}
         </h1>
-        <p className="text-muted-foreground mt-4 text-lg max-w-2xl mx-auto">
-          Gestiona les teves sol·licituds de viatge i consulta el teu historial
-        </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        
         <section>
           <Card className="shadow-xl border-t-4 border-t-accent bg-card">
             <CardHeader>
               <CardTitle className="flex items-center gap-3 font-headline text-2xl">
-                <Plane className="h-6 w-6 text-primary" />
-                Nova Sol·licitud de Viatge
+                <Plane className="h-6 w-6 text-primary" /> 
+                {getTxt('newReq')}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField
-                    control={form.control}
-                    name="serviceType"
-                    render={({ field }) => (
+                  <FormField control={form.control} name="serviceType" render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-primary-foreground font-semibold">{getTxt('servType')}</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="bg-background">
+                            <SelectValue placeholder={getTxt('placeholder')} />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="Paquet Vacacional">☀️ {locale === 'ca' ? 'Paquet Vacacional' : locale === 'en' ? 'Vacation Package' : locale === 'fr' ? 'Forfait Vacances' : 'Paquete Vacacional'}</SelectItem>
+                          <SelectItem value="Només Vols">✈️ {locale === 'ca' ? 'Només Vols' : locale === 'en' ? 'Only Flights' : locale === 'fr' ? 'Vols Uniquement' : 'Solo Vuelos'}</SelectItem>
+                          <SelectItem value="Hotels">🏨 {locale === 'ca' ? 'Hotels' : locale === 'en' ? 'Hotels' : locale === 'fr' ? 'Hôtels' : 'Hoteles'}</SelectItem>
+                          <SelectItem value="Creuers">🚢 {locale === 'ca' ? 'Creuers' : locale === 'en' ? 'Cruises' : locale === 'fr' ? 'Croisières' : 'Cruceros'}</SelectItem>
+                          <SelectItem value="Circuits">🗺️ {locale === 'ca' ? 'Circuits' : locale === 'en' ? 'Circuits' : locale === 'fr' ? 'Circuits' : 'Circuitos'}</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <FormField control={form.control} name="origin" render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-primary-foreground font-semibold">Tipus de Servei</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger className="bg-background">
-                              <SelectValue placeholder="Què vols reservar?" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="Paquet Vacacional">☀️ Paquet Vacacional</SelectItem>
-                            <SelectItem value="Només Vols">✈️ Només Vols</SelectItem>
-                            <SelectItem value="Hotels / Allotjament">🏨 Hotels / Allotjament</SelectItem>
-                            <SelectItem value="Creuers">🚢 Creuers</SelectItem>
-                            <SelectItem value="Circuits Culturals">🗺️ Circuits Culturals</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <FormLabel className="text-primary-foreground font-semibold">{t.booking_mgmt.origin}</FormLabel>
+                        <FormControl><Input {...field} className="bg-background" /></FormControl>
                         <FormMessage />
                       </FormItem>
-                    )}
-                  />
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <FormField
-                      control={form.control}
-                      name="origin"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-primary-foreground font-semibold">Ciutat d'Origen</FormLabel>
-                          <FormControl><Input placeholder="Ex: Barcelona" {...field} className="bg-background" /></FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="destination"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-primary-foreground font-semibold">Destinació</FormLabel>
-                          <FormControl><Input placeholder="Ex: París, Japó..." {...field} className="bg-background" /></FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    )} />
+                    <FormField control={form.control} name="destination" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-primary-foreground font-semibold">{t.booking_mgmt.destination}</FormLabel>
+                        <FormControl><Input {...field} className="bg-background" /></FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
                   </div>
 
-                  <FormField
-                    control={form.control}
-                    name="cargo"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-primary-foreground font-semibold">Detalls del viatge</FormLabel>
-                        <FormControl>
-                          <Textarea 
-                            placeholder="Indica dates aproximades, número de persones (adults/nens), categoria d'hotel..."
-                            className="bg-background min-h-[120px]" 
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                  <FormField control={form.control} name="description" render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-primary-foreground font-semibold">{getTxt('descLabel')}</FormLabel>
+                      <FormControl>
+                        <Textarea placeholder={getTxt('descPlace')} className="bg-background min-h-[120px]" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
 
-                  <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg h-12" disabled={isSubmitting}>
-                    {isSubmitting ? (
-                      <Loader2 className="animate-spin h-6 w-6" />
-                    ) : (
-                      <>
-                        <Send className="mr-2 h-5 w-5" />
-                        Enviar Sol·licitud
-                      </>
-                    )}
+                  <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold" disabled={isSubmitting}>
+                    {isSubmitting ? <Loader2 className="animate-spin h-6 w-6" /> : <><Send className="mr-2 h-5 w-5" /> {t.booking_mgmt.submit}</>}
                   </Button>
                 </form>
               </Form>
@@ -289,65 +251,37 @@ export default function BookingManagementPage() {
         <section>
           <h2 className="text-2xl font-headline text-primary-foreground mb-6 flex items-center gap-3">
             <History className="h-7 w-7 text-primary" /> 
-            Les meves reserves
+            {t.booking_mgmt.historyTitle}
           </h2>
           <div className="space-y-4">
-            {isLoadingRequests ? (
-              <div className="flex justify-center p-12">
-                <Loader2 className="h-10 w-10 animate-spin text-primary" />
-              </div>
-            ) : requests.length === 0 ? (
-              <div className="p-12 text-center border-2 border-dashed rounded-xl bg-card/50">
-                <Luggage className="h-16 w-16 mx-auto text-muted-foreground/30 mb-4" />
-                <p className="text-muted-foreground italic">Encara no tens cap sol·licitud.</p>
-              </div>
-            ) : (
-              requests.map((req: any) => {
-                const statusClean = req.estat?.toLowerCase().trim();
-                const isAccepted = statusClean === 'acceptada' || statusClean === 'aceptada';
-
-                return (
-                  <Card key={req.id} className="hover:shadow-md transition-shadow border-l-4 border-l-primary bg-card">
-                    <CardContent className="p-6">
-                      <div className="flex justify-between items-start mb-4">
-                        <div>
-                          <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">{req.data}</span>
-                          <h3 className="font-headline text-xl text-primary mt-1">{req.id}</h3>
-                        </div>
-                        <Badge className={cn(
-                          "font-bold py-1 px-3",
-                          isAccepted ? 'bg-green-100 text-green-700 hover:bg-green-100' : 'bg-yellow-100 text-yellow-700 hover:bg-yellow-100'
-                        )}>
-                          {req.estat}
-                        </Badge>
+            {isLoadingRequests ? <Loader2 className="animate-spin mx-auto text-primary" /> : requests.length === 0 ? (
+              <p className="text-muted-foreground italic text-center p-8">{getTxt('noReq')}</p>
+            ) : requests.map((req: any) => {
+              const statusClean = req.estat?.toLowerCase().trim();
+              const isAccepted = statusClean === 'acceptada' || statusClean === 'aceptada' || statusClean === 'accepted' || statusClean === 'acceptée';
+              return (
+                <Card key={req.id} className="border-l-4 border-l-primary bg-card">
+                  <CardContent className="p-6">
+                    <div className="flex justify-between items-start mb-4">
+                      <div><span className="text-xs font-bold text-muted-foreground">{req.data}</span><h3 className="font-headline text-xl text-primary">{req.id}</h3></div>
+                      <Badge className={cn("font-bold px-3 py-1", isAccepted ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700')}>
+                        {isAccepted ? (locale === 'ca' ? 'Acceptada' : locale === 'en' ? 'Accepted' : locale === 'fr' ? 'Acceptée' : 'Aceptada') : req.estat}
+                      </Badge>
+                    </div>
+                    <div className="text-sm space-y-2 border-t pt-4">
+                      {req.detalls.split(' | ').map((line: string, i: number) => <p key={i} className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-accent" />{line}</p>)}
+                    </div>
+                    {isAccepted && (
+                      <div className="mt-6 pt-4 border-t flex justify-end">
+                        <Button variant="outline" size="sm" className="text-primary font-bold" onClick={() => handleDownloadAlbara(req)}>
+                          <FileText className="mr-2 h-4 w-4" /> {t.booking_mgmt.downloadDelivery}
+                        </Button>
                       </div>
-                      <div className="text-sm text-foreground space-y-2 border-t pt-4">
-                        {req.detalls.split(' | ').map((line: string, i: number) => (
-                          <p key={i} className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
-                            {line}
-                          </p>
-                        ))}
-                      </div>
-
-                      {isAccepted && (
-                        <div className="mt-6 pt-4 border-t flex justify-end">
-                          <Button 
-                            variant="outline" 
-                            size="sm" 
-                            className="text-primary hover:bg-primary/10 border-primary/20 font-bold"
-                            onClick={() => handleDownloadAlbara(req)}
-                          >
-                            <FileText className="mr-2 h-4 w-4" />
-                            Descarregar Albarà
-                          </Button>
-                        </div>
-                      )}
-                    </CardContent>
-                  </Card>
-                );
-              })
-            )}
+                    )}
+                  </CardContent>
+                </Card>
+              )
+            })}
           </div>
         </section>
       </div>
