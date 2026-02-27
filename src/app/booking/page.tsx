@@ -12,11 +12,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, Plane, Send, History, Palmtree, Luggage, FileText } from 'lucide-react';
+import { Loader2, Plane, Send, History, Palmtree, Luggage, FileText, ArrowLeft } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { useLocale } from '@/contexts/locale-context';
 import { translations } from '@/lib/translations';
+import Link from 'next/link';
 
 const SHEETDB_URL = 'https://sheetdb.io/api/v1/reou400435n4c?sheet=solicituds';
 const SHEETDB_SEARCH_URL = 'https://sheetdb.io/api/v1/reou400435n4c/search?sheet=solicituds';
@@ -53,7 +54,8 @@ export default function BookingManagementPage() {
       fr: "Dates, personnes, âges des enfants..." 
     },
     noReq: { ca: 'Encara no tens cap sol·licitud.', es: 'Aún no tienes ninguna solicitud.', en: 'No requests yet.', fr: 'Aucune demande pour le moment.' },
-    print: { ca: 'IMPRIMIR PDF', es: 'IMPRIMIR PDF', en: 'PRINT PDF', fr: 'IMPRIMER PDF' }
+    print: { ca: 'IMPRIMIR PDF', es: 'IMPRIMIR PDF', en: 'PRINT PDF', fr: 'IMPRIMER PDF' },
+    backToProfile: { ca: 'Tornar al Perfil', es: 'Volver al Perfil', en: 'Back to Profile', fr: 'Retour au Profil' }
   };
 
   const getTxt = (key: keyof typeof localTxt) => localTxt[key][locale as 'ca' | 'es' | 'en' | 'fr'] || localTxt[key]['es'];
@@ -172,6 +174,15 @@ export default function BookingManagementPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
+      <div className="mb-6 flex justify-start">
+        <Button asChild variant="ghost" className="text-primary hover:text-primary/80 font-bold">
+          <Link href="/dashboard">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            {getTxt('backToProfile')}
+          </Link>
+        </Button>
+      </div>
+
       <div className="mb-12 text-center">
         <h1 className="text-4xl md:text-5xl font-headline text-primary-foreground flex items-center justify-center gap-4">
           <Palmtree className="h-12 w-12 text-accent" />
