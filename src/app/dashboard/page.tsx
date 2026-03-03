@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2, LogOut, User, Building, FileText, ClipboardList, ArrowLeft } from 'lucide-react';
+import { Loader2, LogOut, User, Building, FileText, ClipboardList, ArrowLeft, Home } from 'lucide-react';
 import { useLocale } from '@/contexts/locale-context';
 import { translations } from '@/lib/translations';
 import Link from 'next/link';
@@ -42,10 +42,16 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow container mx-auto px-4 py-8 max-w-lg">
-        <div className="mb-6 flex justify-start">
+        <div className="mb-6 flex flex-col sm:flex-row gap-3 justify-start">
           <Button asChild variant="ghost" className="text-primary hover:text-primary/80 font-bold">
             <Link href="/account">
               <ArrowLeft className="mr-2 h-4 w-4" />
+              {locale === 'ca' ? 'Tornar al Compte' : locale === 'en' ? 'Back to Account' : locale === 'fr' ? 'Retour au Compte' : 'Volver a la Cuenta'}
+            </Link>
+          </Button>
+          <Button asChild variant="ghost" className="text-primary hover:text-primary/80 font-bold">
+            <Link href="/">
+              <Home className="mr-2 h-4 w-4" />
               {t.account.backToHome}
             </Link>
           </Button>
