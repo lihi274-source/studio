@@ -7,8 +7,9 @@ import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Loader2, Printer, AlertCircle, FileText } from 'lucide-react';
+import { Loader2, Printer, AlertCircle, FileText, ArrowLeft } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { useLocale } from '@/contexts/locale-context';
 import { translations } from '@/lib/translations';
@@ -191,7 +192,16 @@ export default function DocumentsPage() {
   if (isLoading) return <div className="flex h-64 justify-center items-center"><Loader2 className="animate-spin h-16 w-16" /></div>;
 
   return (
-    <div>
+    <div className="space-y-6">
+      <div className="flex justify-start">
+        <Button asChild variant="ghost" className="text-primary hover:text-primary/80 font-bold">
+          <Link href="/dashboard">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            {locale === 'ca' ? 'Tornar al Perfil' : locale === 'en' ? 'Back to Profile' : locale === 'fr' ? 'Retour au Profil' : 'Volver al Perfil'}
+          </Link>
+        </Button>
+      </div>
+
       <Card>
         <CardHeader>
           <CardTitle className="font-headline text-4xl flex items-center"><FileText className="mr-4" />{t.documents.title}</CardTitle>
