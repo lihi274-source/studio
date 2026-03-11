@@ -6,8 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Loader2, Printer, AlertCircle, FileText, ArrowLeft } from 'lucide-react';
+import { Loader2, FileText, ArrowLeft } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -38,20 +37,10 @@ type ClientData = {
   telefon: string;
 };
 
-type LoggedInUser = {
-  usuari: string;
-  empresa: string;
-};
-
-type VatSummary = {
-  [rate: number]: { base: number; amount: number };
-};
-
 type InvoiceTotals = {
   subtotal: number;
   discountAmount: number;
   totalBase: number;
-  vatSummary: VatSummary;
   totalVat: number;
   grandTotal: number;
 };
@@ -131,6 +120,7 @@ const InvoiceDetail = ({ invoice, t }: { invoice: GroupedInvoice, t: any }) => (
             <div className="flex justify-between"><span>{t.documents.subtotal}:</span><span>{invoice.totals.subtotal.toFixed(2)} €</span></div>
             <div className="flex justify-between"><span>{t.documents.totalDiscount}:</span><span>- {invoice.totals.discountAmount.toFixed(2)} €</span></div>
             <div className="flex justify-between font-bold border-t pt-2"><span>{t.documents.taxBase}:</span><span>{invoice.totals.totalBase.toFixed(2)} €</span></div>
+            <div className="flex justify-between text-muted-foreground italic"><span>{t.documents.vat}:</span><span>{invoice.totals.totalVat.toFixed(2)} €</span></div>
             <div className="flex justify-between text-xl font-bold border-t pt-2 mt-2"><span>{t.documents.total}:</span><span>{invoice.totals.grandTotal.toFixed(2)} €</span></div>
         </div>
       </section>
@@ -177,13 +167,29 @@ export default function DocumentsPage() {
     });
     return Array.from(map.entries()).map(([id, lines]) => {
       const client = clients.find(c => c.usuari === lines[0].usuari) || {} as ClientData;
-      let subtotal = 0, discount = 0, vat = 0;
+      let subtotal = 0, discount = 0, totalVat = 0;
       lines.forEach(l => {
           const p = parseFloat(l.preu_unitari) || 0, u = parseFloat(l.unitats) || 0, d = parseFloat(l.dte) || 0, v = parseFloat(l.iva) || 0;
           const s = p * u, dis = s * (d/100), base = s - dis;
-          subtotal += s; discount += dis; vat += base * (v/100);
+          subtotal += s; 
+          discount += dis; 
+          totalVat += base * (v/100);
       });
-      return { num_factura: id, data: lines[0].data, client, lines, estat: lines[0].estat, fpagament: lines[0].fpagament, totals: { subtotal, discountAmount: discount, totalBase: subtotal - discount, grandTotal: subtotal - discount + vat } };
+      return { 
+        num_factura: id, 
+        data: lines[0].data, 
+        client, 
+        lines, 
+        estat: lines[0].estat, 
+        fpagament: lines[0].fpagament, 
+        totals: { 
+          subtotal, 
+          discountAmount: discount, 
+          totalBase: subtotal - discount, 
+          totalVat,
+          grandTotal: subtotal - discount + totalVat 
+        } 
+      };
     });
   }, [documents, clients]);
 

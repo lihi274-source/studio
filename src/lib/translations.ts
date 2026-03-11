@@ -138,6 +138,7 @@ export const translations = {
       subtotal: "Subtotal",
       totalDiscount: "Descuento Total",
       taxBase: "Base Imponible",
+      vat: "IVA",
       payment: "Forma de pago",
       status: {
         paid: "Pagada",
@@ -373,6 +374,7 @@ export const translations = {
       subtotal: "Subtotal",
       totalDiscount: "Descompte Total",
       taxBase: "Base Imposable",
+      vat: "IVA",
       payment: "Forma de pagament",
       status: {
         paid: "Pagada",
@@ -608,6 +610,7 @@ export const translations = {
       subtotal: "Subtotal",
       totalDiscount: "Total Discount",
       taxBase: "Tax Base",
+      vat: "VAT",
       payment: "Payment Method",
       status: {
         paid: "Paid",
@@ -821,7 +824,7 @@ export const translations = {
       title: "Mes Documents",
       subtitle: "Ici vous pouvez consulter et imprimer vos factures.",
       empty: "Aucune facture trouvée.",
-      invoice: "Facture",
+      invoice: "Factura",
       date: "Date",
       total: "TOTAL À PAYER",
       print: "Imprimer PDF",
@@ -833,6 +836,7 @@ export const translations = {
       subtotal: "Sous-total",
       totalDiscount: "Remise Totale",
       taxBase: "Base Imposable",
+      vat: "TVA",
       payment: "Mode de paiement",
       status: {
         paid: "Payée",
