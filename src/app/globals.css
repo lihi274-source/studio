@@ -37,77 +37,71 @@
 }
 
 @media print {
-  /* Hide EVERY web element that is not the invoice */
-  header, footer, nav, aside, .no-print, button, [role="button"], 
-  .accordion, .card-header, .tabs, .breadcrumb, [data-radix-collection] {
-    display: none !important;
+  /* Ocultar absolutamente todo excepto el área de impresión */
+  body * {
+    visibility: hidden;
   }
 
-  /* Reset layout for high-quality printing */
+  .print-only, .print-only * {
+    visibility: visible;
+  }
+
+  .print-only {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    background: white !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Reset layout para impresión */
   html, body {
     background: white !important;
     color: black !important;
-    margin: 0 !important;
-    padding: 0 !important;
     width: 100% !important;
-    height: auto !important;
+    height: 100% !important;
+    overflow: visible !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
-  main, .container, #__next {
-    width: 100% !important;
-    max-width: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    display: block !important;
-  }
-
-  /* Style the actual document */
-  .print-only {
-    display: block !important;
-    visibility: visible !important;
-    position: absolute !important;
-    left: 0 !important;
-    top: 0 !important;
-    width: 100% !important;
-    background: white !important;
-  }
-
-  .print-document {
-    padding: 1.5cm !important;
-    width: 100% !important;
-    box-shadow: none !important;
-    border: none !important;
-  }
-
-  /* Page setup */
+  /* Ajuste de página A4 */
   @page {
     size: A4;
-    margin: 0;
+    margin: 1cm;
   }
 
-  /* Fix for shadows and borders in print */
+  /* Limpieza de sombras y bordes innecesarios */
   * {
     box-shadow: none !important;
     text-shadow: none !important;
   }
 
-  /* Force background colors to print */
+  .print-document {
+    padding: 0 !important;
+    width: 100% !important;
+    border: none !important;
+  }
+
+  /* Forzar visibilidad de colores de fondo suaves */
   .bg-slate-50, .bg-slate-100 {
     background-color: #f8fafc !important;
   }
   
   .text-primary {
-    color: #4facfe !important; /* Aproximació al primary de Viajes HICA */
+    color: #4facfe !important;
   }
 
-  /* Ensure the table is legible */
+  /* Tablas compactas */
   table {
-    page-break-inside: auto;
+    width: 100% !important;
+    border-collapse: collapse !important;
   }
-  tr {
-    page-break-inside: avoid;
-    page-break-after: auto;
+  
+  th, td {
+    padding: 8px 4px !important;
   }
 }
